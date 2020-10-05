@@ -1,0 +1,53 @@
+html {
+    font-size: 75%; /* px*/
+    box-sizing: border-box; /*tells browser to account for border and padding*/
+}
+
+body {
+    font: Helvetica;
+    height: 100vh; /*sorta arbitrary*/
+    margin: 0;
+
+}
+
+.grid-container { /* specify header, main, footer grids & setup */
+    display: grid;
+    grid-template-areas: "header" "main" "footer";
+    grid-template-columns: 1fr; 
+    grid-template-rows: 5rem 1fr 5rem; /*header, main, footer heights*/
+    height:100%;
+}
+
+.header { 
+    grid-area: header;
+    background-color: #003366; /*banner color: dark midnight blue*/
+    color: #FFFFFF; /*text color*/
+    display: flex; /*makes boxy*/
+    justify-content: space-between;
+    align-items: center; /*center items vertically on banner*/
+
+}
+
+.main {
+    grid-area: main;
+}
+
+.footer {
+    grid-area: footer;
+}
+
+.brand a{/*brank link*/
+    color: white;
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-decoration: none; /*remove bullet point*/
+}
+
+.header-links a{
+    color: white;
+    text-decoration: none; /*remove bullet point*/
+}
+
+.header-links a:hover{
+    color: red; /*color on hover*/
+}
