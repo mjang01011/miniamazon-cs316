@@ -1,13 +1,136 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+bhtml {
+  font-size: 75%; /* px*/
+  box-sizing: border-box; /*tells browser to account for border and padding*/
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  font: Helvetica;
+  height: 100vh; /*sorta arbitrary*/
+  margin: 0;
+
+}
+a{
+  text-decoration: none;
+}
+a:hover{ /*default color when hover over any link*/
+  color: #87f9ff;
+}
+.grid-container { /* specify header, main, footer grids & setup */
+  display: grid;
+  grid-template-areas: "header" "main" "footer";
+  grid-template-columns: 1fr; 
+  grid-template-rows: 5rem 1fr 5rem; /*header, main, footer heights*/
+  height:100%;
+}
+
+.header { 
+  grid-area: header;
+  background-color: #003366; /*banner color: dark midnight blue*/
+  color: #FFFFFF; /*text color*/
+  display: flex; /*makes boxy*/
+  justify-content: space-between;
+  align-items: center; /*center items vertically on banner*/
+  padding: 0.5rem;
+}
+
+.main {
+  grid-area: main;
+}
+
+.footer {
+  grid-area: footer;
+  background-color: #2C3036;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.brand a{/*brank link*/
+  color: white;
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-decoration: none; /*remove bullet point*/
+}
+
+.header-links a{
+  color: white;
+  text-decoration: none; /*remove bullet point*/
+}
+
+.header-links a:hover{
+  color: red; /*color on hover*/
+}
+/*Home Screen*/
+.products{ /*different products*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.products li{ /*describes attributes of each product (price, rating, etc.)*/
+  flex: 0 1 34rem; /*0 = how much it grows; 1 = how much it shrinks; 34 = length of product li*/
+  margin: 1rem;
+  height: 40rem;
+  border-bottom: 0.1rem #dce6f5 solid;
+  list-style-type: none;
+  padding: 0;
+}
+.product-image{ /*might not need this*/
+  max-width: 20rem;
+  max-height: 20rem;
+}
+.product-name{
+  font-size: 2rem;
+  font-weight: bold;
+}
+.product-brand{
+  font-size: 1.2rem;
+  color: #005f82;
+}
+.product-price{
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+.product{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+.product-rating{
+  margin-bottom: 1rem;
+}
+/*Sidebar*/
+.brand button {
+  font-size: 3rem;
+  padding: .5rem;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+.sidebar {
+  position: fixed;
+  transform: translateX(-30rem); /* Starts out 30rem to the left */
+  width: 30rem;
+  background-color: oldlace;
+  height: 100%;
+  transition: all .5s;
+}
+.sidebar.open {
+  transform: translateX(0); /* Shift sidebar to right 30rem on open */
+}
+.sidebar-close {
+  border-radius: 50%;
+  border: .1rem black solid;
+  width: 3rem;
+  height: 3rem;
+  padding: .5rem;
+  font-size: 2rem;
+  padding-top: 0;
+  cursor: pointer;
+  position: absolute;
+  right: .5rem;
+  top: 1.5rem;
 }
