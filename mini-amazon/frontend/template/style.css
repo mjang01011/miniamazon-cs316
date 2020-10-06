@@ -9,7 +9,12 @@ body {
     margin: 0;
 
 }
-
+a{
+    text-decoration: none;
+}
+a:hover{ /*default color when hover over any link*/
+    color: #87f9ff;
+}
 .grid-container { /* specify header, main, footer grids & setup */
     display: grid;
     grid-template-areas: "header" "main" "footer";
@@ -25,7 +30,7 @@ body {
     display: flex; /*makes boxy*/
     justify-content: space-between;
     align-items: center; /*center items vertically on banner*/
-
+    padding: 0.5rem;
 }
 
 .main {
@@ -34,6 +39,11 @@ body {
 
 .footer {
     grid-area: footer;
+    background-color: #2C3036;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .brand a{/*brank link*/
@@ -51,3 +61,44 @@ body {
 .header-links a:hover{
     color: red; /*color on hover*/
 }
+/*Home Screen*/
+.products{ /*different products*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.products li{ /*describes attributes of each product (price, rating, etc.)*/
+    flex: 0 1 34rem; /*0 = how much it grows; 1 = how much it shrinks; 34 = length of product li*/
+    margin: 1rem;
+    height: 40rem;
+    border-bottom: 0.1rem #dce6f5 solid;
+    list-style-type: none;
+    padding: 0;
+}
+.product-image{ /*might not need this*/
+    max-width: 20rem;
+    max-height: 20rem;
+}
+.product-name{
+    font-size: 2rem;
+    font-weight: bold;
+}
+.product-brand{
+    font-size: 1.2rem;
+    color: #005f82;
+}
+.product-price{
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+.product{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+.product-rating{
+    margin-bottom: 1rem;
+}
+/*Sidebar*/
