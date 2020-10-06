@@ -1,6 +1,5 @@
 import express from 'express';
 import Item from "../models/itemModel";
-import { getToken } from "../util";
 
 const router = express.Router();
 
