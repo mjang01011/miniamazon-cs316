@@ -11,13 +11,26 @@
         <div class="grid-container"> 
             <!--Banner-->
             <header class="header">
-                <div class="brand"><a href="index.html"> Mini Amazon</a></div>
+                <div class="brand">
+                    <button onclick="openSidebar()">&#9776;</button> <!--Call openSidebar on button click-->
+                    <a href="index.html"> Mini Amazon</a></div>
                 <div class="header-links"> <!--banner links-->
                     <a href="cart.html">Cart</a>
                     <a href="signin.html"> Sign In</a>
                 </div>
             </header>
-            
+            <aside class="sidebar">
+                <h3>Shopping Categories</h3>
+                <button class="sidebar-close" onclick="closeSidebar()">x</button> 
+                <ul>
+                    <li>
+                        <a href="index.html">Toys</a>
+                    </li>
+                    <li>
+                        <a href="index.html">Tea</a>
+                    </li>
+                </ul>
+            </aside>
             <main class="main">
                 <div class = "content">
                     <ul class = "products">
@@ -80,6 +93,15 @@
                 </div>
             </main>
         </div>
+        <script>
+            /* functions to open and close the sidebar when clicked */
+            function openSidebar(){
+                document.querySelector(".sidebar").classList.add("open");
+            }
+            function closeSidebar(){
+                document.querySelector(".sidebar").classList.remove("open");
+            }
+        </script>
     </body>
 
     <footer class="footer">
