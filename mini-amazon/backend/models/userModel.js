@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
     username: { type: String, required: true, unique: true },
     email: { type: String, required: true, unique: true, dropDups: true },
     password: { type: String, required: true },
-    avatar : { type: Blob, required: false},
+    avatar : { type: String, required: false},
     secret_question: { type: String, required: true},
     isSeller: { type: Boolean, required: true, default: false },
     balance: { type: Number, required: true, default: 0 }
