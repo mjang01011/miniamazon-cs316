@@ -1,7 +1,8 @@
 import mongoose from 'mongoose';
+const Schema = mongoose.Schema;
 
-//define user schema
-const userSchema = new mongoose.Schema({
+//Define user schema
+const userSchema = new Schema({
     uid: { type: String, reguired: true, unique: true },
     fullName: { type: String, required: true },
     username: { type: String, required: true, unique: true },
@@ -13,7 +14,7 @@ const userSchema = new mongoose.Schema({
     balance: { type: Number, required: true, default: 0 }
 });
 
-//Create model
-const userModel = mongoose.model('User', userSchema);
+//Create user model
+const User = mongoose.model('User', userSchema);
 
-export default userModel;
+export default User;

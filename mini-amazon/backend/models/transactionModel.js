@@ -1,29 +1,24 @@
 import mongoose from 'mongoose';
+const Schema = mongoose.Schema;
 
-//define order schema. An order is for a specific purchase of an item by a buyer from a seller.
-const orderSchema = new mongoose.Schema(
+//Define transaction schema. A transaction is a list of transaction items made by a buyer at one datetime.
+const transactionSchema = new Schema(
     {
-        itemId: { type: String, required: true },
-        sellerId: { type: String, required: true },
-        orderQty: { type: Number, required: true },
-        orderPrice: { type: Number, required: true },
-    },
-);
-
-//define transaction schema. A transaction is a list of orders made by a buyer at one datetime.
-const transactionSchema = new mongoose.Schema(
-    {
-        transactionId: { type: String, required: true, unique: true },
-        buyerId: { type: String, required: true },
+        buyerId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
         totalPrice: { type: Number, required: true },
-        orders: [orderSchema],
+        transactedItems: [{
+            item: { type: Schema.Types.ObjectId, ref: 'Item', required: true },
+            seller: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+            quantity: { type: Number, required: true },
+            price: { type: Number, required: true },
+        }],
     },
     {
         timestamps: true,
     }
 );
 
-//Create model
-const transactionModel = mongoose.model('Transaction', transactionSchema);
+//Create transaction model
+const Transaction = mongoose.model('Transaction', transactionSchema);
 
-export default transactionModel;
+export default Transaction;

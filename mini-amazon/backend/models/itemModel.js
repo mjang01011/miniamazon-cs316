@@ -1,10 +1,11 @@
 import mongoose from 'mongoose';
+const Schema = mongoose.Schema;
 
-//define review schema
-const reviewSchema = new mongoose.Schema(
+//Define review schema
+const reviewSchema = new Schema(
     {
-        uid: { type: String, required: true },
         rating: { type: Number, required: true, min: 1, max: 5},
+        title: { type: String, required: false },
         comment: { type: String, required: false },
     },
     {
@@ -12,17 +13,17 @@ const reviewSchema = new mongoose.Schema(
     }
 );
 
-//define item schema
-const itemSchema = new mongoose.Schema({
-    itemId: { type: String, required: true, unique: true },
+//Define item schema
+const itemSchema = new Schema({
     itemName: { type: String, required: true },
     category: { type: String, required: true },
-    image: { type: String, required: false }, // will upload to AWS S3 and return link
+    image: { type: String, required: false }, // link to AWS file
     description: { type: String, required: true },
     reviews: [reviewSchema],
+    avgRating: { type: Number, required: true, min: 1, max: 5},
 });
 
-//Create model
-const itemModel = mongoose.model('Item', itemSchema);
+//Create item model
+const Item = mongoose.model('Item', itemSchema);
 
-export default itemModel;
+export default Item;

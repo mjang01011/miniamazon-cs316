@@ -3,6 +3,8 @@ import config from './config';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import itemRoute from './routes/itemRoute';
+import transactionRoute from './routes/transactionRoute';
+import soldByRoute from './routes/soldByRoute';
 
 dotenv.config();
 
@@ -14,6 +16,8 @@ mongoose.connect(mongodbUrl,
 const app = express();
 
 app.use("/api/products", itemRoute);
+app.use("/api/transactions", transactionRoute);
+app.use("/api/sells", soldByRoute)
 
 app.listen(8080, () => {console.log('Server started at http://localhost:8080')});
 
