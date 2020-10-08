@@ -2,8 +2,6 @@ import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 //Define schema for soldBy
-import mongoose from "mongoose";
-
 const soldBySchema = new Schema({
     item: { type: Schema.Types.ObjectId, ref: 'Item', required: true },
     seller: { type: Schema.Types.ObjectId, ref: 'User', required: true },

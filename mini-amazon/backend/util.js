@@ -1,0 +1,1 @@
+//add isAuth, isSeller, isAdmin
