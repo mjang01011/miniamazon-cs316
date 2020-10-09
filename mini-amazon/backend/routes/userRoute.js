@@ -5,7 +5,7 @@ import { getToken, isAuth } from '../util';
 const router = express.Router();
 
 
-//signin
+//Signin; Get email and password from user for signin
 router.post('/signin', async (req, res) => {
   const signinUser = await User.findOne({
     //check email and password
@@ -27,7 +27,7 @@ router.post('/signin', async (req, res) => {
   }
 });
 
-//create admin
+//Create admin
 router.get('/createadmin', async (req, res) => {
   try {
     const user = new User({
