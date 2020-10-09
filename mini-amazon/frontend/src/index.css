@@ -1,4 +1,4 @@
-bhtml {
+html {
   font-size: 75%; /* px*/
   box-sizing: border-box; /*tells browser to account for border and padding*/
 }

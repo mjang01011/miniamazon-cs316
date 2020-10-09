@@ -1,4 +1,5 @@
 import React from 'react';
+import data from './data';
 import './App.css';
 
 function App() {
@@ -35,28 +36,24 @@ function App() {
             <main className="main">
                 <div className = "content">
                     <ul className = "products">
-                        <li>
-                            <div className = "product">
-                                <img className="product-image" src="/images/cutebunny.png" alt="cute stuffed bunny"></img>
-                                <div className="product-name">
-                                    <a href="product.html">Cute Stuffed Bunny</a>
-                                </div>
-                                <div className="product-brand">buildabear</div>
-                                <div className="product-price">$14</div>
-                                <div className="product-rating">4.5 stars</div>
-                            </div>
-                        </li>
-                        <li>
-                            <div className = "product">
-                                <img className="product-image" src="/images/cutebunny.png" alt="cute stuffed bunny"></img>
-                                <div className="product-name">
-                                    <a href="product.html">Cute Stuffed Bunny</a>
-                                </div>
-                                <div className="product-brand">buildabear</div>
-                                <div className="product-price">$14</div>
-                                <div className="product-rating">4.5 stars</div>
-                            </div>
-                        </li>
+                        {  //allows flexibility in product attributes (can insert data for values)
+                            //call var product 
+                            //utilize data.js
+                            data.products.map(product => 
+                                <li>
+                                    <div className = "product">
+                                        <img className="product-image" src={product.image}></img>
+                                        <div className="product-name">
+                                            <a href="product.html">{product.name}</a>
+                                        </div>
+                                        <div className="product-brand">{product.brand}</div>
+                                        <div className="product-price">${product.price}</div>
+                                        <div className="product-rating">{product.rating} stars ({product.numRatings} ratings)</div>
+                                    </div>
+                                </li>
+                                )
+                        }
+                        
                     </ul>
                 </div>
             </main>
