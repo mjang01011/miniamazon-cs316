@@ -1,6 +1,9 @@
 import React from 'react';
 import data from './data';
+import {BrowserRouter, Route, Link} from 'react-router-dom';
 import './App.css';
+import HomeScreen from './Screens/HomeScreen';
+import ProductScreen from './Screens/ProductScreen';
 
 function App() {
   const openSidebar = () => {
@@ -10,12 +13,14 @@ function App() {
     document.querySelector(".sidebar").classList.remove("open");
   }
   return (
+      <BrowserRouter> {/*set up router*/}
     <div className="grid-container"> 
             {/*Banner*/}
             <header className="header">
                 <div className="brand">
                     <button onClick={openSidebar}>&#9776;</button> {/*Call openSidebar on button click*/}
-                    <a href="index.html"> Mini Amazon</a></div>
+                    <Link to="/">Mini Amazon</Link> {/*Links back to home on click of brand*/}
+                </div>
                 <div className="header-links"> {/*banner links*/}
                     <a href="cart.html">Cart</a>
                     <a href="signin.html"> Sign In</a>
@@ -35,30 +40,13 @@ function App() {
             </aside>
             <main className="main">
                 <div className = "content">
-                    <ul className = "products">
-                        {  //allows flexibility in product attributes (can insert data for values)
-                            //call var product 
-                            //utilize data.js
-                            data.products.map(product => 
-                                <li>
-                                    <div className = "product">
-                                        <img className="product-image" src={product.image}></img>
-                                        <div className="product-name">
-                                            <a href="product.html">{product.name}</a>
-                                        </div>
-                                        <div className="product-brand">{product.brand}</div>
-                                        <div className="product-price">${product.price}</div>
-                                        <div className="product-rating">{product.rating} stars ({product.numRatings} ratings)</div>
-                                    </div>
-                                </li>
-                                )
-                        }
-                        
-                    </ul>
+                    <Route path="/product/:id" component={ProductScreen}/> {/*route to product screen when root/products/number -- app.js will render ProductScreen.js*/} 
+                    <Route path="/" exact={true} component={HomeScreen}/> {/*creates a route : default = homescreen*/}
+                    
                 </div>
             </main>
         </div>
-        
+   </BrowserRouter>    
   );
 }
 

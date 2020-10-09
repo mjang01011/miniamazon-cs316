@@ -1,5 +1,6 @@
 export default { //populate data as json object
     products: [{
+        id: '1',
         name: 'Cute Stuffed Bunny',
         category: 'Toys',
         image: '/images/cutebunny.png',
@@ -9,6 +10,7 @@ export default { //populate data as json object
         numRatings: 20
     },
     {
+        id: '2',
         name: 'Green Tea',
         category: 'Tea',
         image: '/images/greentea.png',

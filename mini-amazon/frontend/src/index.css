@@ -7,8 +7,11 @@ body {
   font: Helvetica;
   height: 100vh; /*sorta arbitrary*/
   margin: 0;
-
 }
+#root {
+  height: 100%;
+}
+
 a{
   text-decoration: none;
 }
@@ -134,3 +137,60 @@ a:hover{ /*default color when hover over any link*/
   right: .5rem;
   top: 1.5rem;
 }
+
+/*Product Details*/
+.details {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  padding: 1rem;
+}
+
+.details-image {
+  flex: 2 1 60rem; /*2 = how much it grows; 1 = how much it shrinks; 60 = length of product li*/
+}
+.details-image img{
+  max-width: 40%;
+  width: 100%;/*Specifies the minimum number of line boxes of a block container that must be left in a fragment after a break.*/
+}
+.details-info {
+  flex: 1 1 3rem; 
+}
+.details-info ul, .details-action ul {
+  list-style-type: none;
+  padding: 0;
+
+}
+.details-info li, .details-action li {
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 1rem;
+}
+.details-action {
+  flex: 1 1 30rem; 
+  border: .1rem black solid;
+  border-radius: .5rem;
+}
+.details-action ul li:last-child{
+  display: flex;
+  flex-direction: column;
+}
+.button {
+  padding: 1rem;
+  border: .1rem black;
+  border-radius: .5rem;
+  cursor: pointer;
+}
+.button:hover{
+  border: .1rem black solid;
+}
+.button.primary{
+  background-color: #f0c040;
+
+}
+.back-to-res {
+  padding: 1rem;
+}
+
+
