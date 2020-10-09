@@ -10,7 +10,9 @@ const userSchema = new Schema({
     password: { type: String, required: true },
     avatar : { type: String, required: false},
     secret_question: { type: String, required: true},
+    isAuth: { type: Boolean, required: true, default: false },
     isSeller: { type: Boolean, required: true, default: false },
+    isAdmin: { type: Boolean, required: true, default: false },
     balance: { type: Number, required: true, default: 0 }
 });
 

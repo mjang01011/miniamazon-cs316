@@ -16,9 +16,8 @@ router.post('/signin', async (req, res) => {
   if (signinUser) {
     res.send({
       uid: signinUser.uid,
-      fullName: signinUser.fullname,
-      username: signinUser.username,
       email: signinUser.email,
+      isAuth: signinUser.isAuth,
       isSeller: signinUser.isSeller,
       isAdmin: signinUser.isAdmin,
       token: getToken(signinUser),
