@@ -27,6 +27,32 @@ router.post('/signin', async (req, res) => {
   }
 });
 
+//User Registration
+router.post('/register', async (req, res) => {
+  const user = new User({
+    uid: req.body.uid,
+    fullName: req.body.fullname,
+    username: req.body.username,
+    email: req.body.email,
+    password: req.body.password,
+  });
+  const newUser = await user.save();
+  if (newUser) {
+    res.send({
+      uid: newUser.uid,
+      fullname: newUser.fullname,
+      username: newUser.username,
+      email: newUser.email,
+      isAuth: newUser.isAuth,
+      isSeller: newUser.isSeller,
+      isAdmin: newUser.isAdmin,
+      token: getToken(newUser),
+    });
+  } else {
+    res.status(401).send({ message: 'Invalid User Data.' });
+  }
+});
+
 //Create admin
 router.get('/createadmin', async (req, res) => {
   try {
