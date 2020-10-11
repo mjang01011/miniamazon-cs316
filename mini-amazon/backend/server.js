@@ -3,10 +3,11 @@ import config from './config';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser'
-import User from './models/userModel';
+import userRoute from './routes/userRoute';
 import itemRoute from './routes/itemRoute';
 import transactionRoute from './routes/transactionRoute';
 import soldByRoute from './routes/soldByRoute';
+import awsUploadRoute from './routes/awsUploadRoute';
 
 dotenv.config();
 
@@ -22,6 +23,7 @@ app.use("/api/users", userRoute);
 app.use("/api/products", itemRoute);
 app.use("/api/transactions", transactionRoute);
 app.use("/api/sells", soldByRoute)
+app.use("api/upload", awsUploadRoute)
 
 app.listen(8080, () => {console.log('Server started at http://localhost:8080')});
 
