@@ -19,6 +19,8 @@ mongoose.connect(mongodbUrl,
 const app = express();
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use("/api/users", userRoute);
 app.use("/api/products", itemRoute);
 app.use("/api/transactions", transactionRoute);

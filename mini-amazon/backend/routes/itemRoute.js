@@ -19,18 +19,24 @@ router.get("/:id", async(req, res) => {
 //Posting, updating, deleting items (only accessible to sellers)
 router.post("/:id", isAuth, isSeller, async(req, res) => {
     const itemId = req.params.id;
-    const existingItem = await Item.findOne({_id: itemId});
-    //If item does not exist, create one
-    if (!existingItem) {
-        const item = new Item({
-            itemName: req.body.itemName,
-            category: req.body.category,
-            image: req.body.image,
-            description: req.body.description,
-        });
-        const newItem = await item.save();
-        if (!newItem) return res.status(500).send({message: 'Error in adding new item'});
-    }
+    await Item.findOne({_id: itemId}), async (err, existingItem) => {
+        if (err) {
+            return res.status(500).send({message: err});
+        }
+        //If item does not exist, create one
+        if (!existingItem) {
+            const item = new Item({
+                itemName: req.body.itemName,
+                category: req.body.category,
+                image: req.body.image,
+                description: req.body.description,
+            });
+            const newItem = await item.save();
+            if (!newItem) return res.status(500).send({message: 'Error in adding new item'});
+            else res.status(201).send({message: 'Item successfully added', data: newItem});
+        }
+    };
+
     //Add to the SoldBy schema
     const soldBy = new SoldBy({
         item: itemId,
@@ -40,7 +46,7 @@ router.post("/:id", isAuth, isSeller, async(req, res) => {
     })
     const newSoldBy = await soldBy.save();
     if (newSoldBy) {
-        return res.status(201).send({message: 'Item successfully added', data: newItem});
+        return res.status(201).send({message: 'Sells updated', data: newSoldBy});
     }
     return res.status(500).send({message: 'Error in adding item'});
 })
