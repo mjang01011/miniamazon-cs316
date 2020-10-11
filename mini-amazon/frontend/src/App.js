@@ -1,6 +1,7 @@
 import React from 'react';
 import {BrowserRouter, Route, Link} from 'react-router-dom';
 import './App.css';
+import CartScreen from './screens/CartScreen';
 import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
 
@@ -40,6 +41,7 @@ function App() {
             <main className="main">
                 <div className = "content">
                     <Route path="/product/:id" component={ProductScreen}/> {/*route to product screen when root/products/number -- app.js will render ProductScreen.js*/} 
+                    <Route path="/cart/:id?" component={CartScreen}/> {/*id is optional; represents id of item in cart; route to cart */}
                     <Route path="/" exact={true} component={HomeScreen}/> {/*creates a route : default = homescreen*/}
                     
                 </div>
