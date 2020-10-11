@@ -6,12 +6,12 @@ import { isAuth, isSeller, isAdmin} from '../util';
 const router = express.Router();
 
 //Getting items (accessible to all users)
-router.get("/", isAuth, async(req, res) => {
+router.get("/", async(req, res) => {
     const items = await Item.find({});
     res.send(items);
 })
 
-router.get("/:id", isAuth, async(req, res) => {
+router.get("/:id", async(req, res) => {
     const items = await Item.findById(req.params.id);
     res.send(items);
 })

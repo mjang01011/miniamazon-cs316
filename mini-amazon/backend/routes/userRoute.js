@@ -4,7 +4,6 @@ import { getToken, isAuth } from '../util';
 
 const router = express.Router();
 
-
 //Signin; Get email and password from user for signin
 router.post('/signin', async (req, res) => {
   const signinUser = await User.findOne({
@@ -12,7 +11,8 @@ router.post('/signin', async (req, res) => {
     email: req.body.email,
     password: req.body.password,
   });
-  //if email & passowrd exists, send back data to front end
+
+  //if email & password exists, send back data to front end
   if (signinUser) {
     res.send({
       uid: signinUser.uid,
