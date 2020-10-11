@@ -1,15 +1,35 @@
-import React from 'react';
-import data from '../data'
+import React, {useEffect, useState} from 'react';
+import {useSelector, useDispatch } from 'react-redux';
 import {Link} from 'react-router-dom';
+import { detailsProduct } from '../actions/productActions';
 
 
 function ProductScreen(props){
-    const product = data.products.find(x => x.id === props.match.params.id); //product = find product by id in data
+    const [qty, setQty] = useState(1);
+    const productDetails = useSelector(state => state.productDetails);
+    const {product, loading, error} = productDetails; // get info from productDetails
+    const dispatch = useDispatch(); // dispatch an action
+
+    useEffect(() => {
+        // runs after the elements are rendered on the screen 
+        dispatch(detailsProduct(props.match.params.id)); // matches product based on id
+        return () => {
+            //
+        };
+    }, []);
+
+    const handleAddToCart = () => {
+        props.history.push("/cart/" + props.match.params.id + "?qty=" + qty)
+    }
+
     return <div>
         <div className="back-to-res">
             <Link to="/">Back to Results</Link>
         </div>
-        <div className="details">
+        {loading? <div>Loading...</div>:
+        error? <div>{error}</div>:
+        (
+            <div className="details">
             <div className="details-image">
                 <img src={product.image}></img>
             </div>
@@ -40,26 +60,28 @@ function ProductScreen(props){
                         Price: {product.price}
                     </li>
                     <li>
-                        Status: {product.status}
+                        Status: {product.inventory>0? "In stock" : "Out of stock" }
                     </li>
                     <li>
-                        Quantity: <select>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
+                        {/*value that user selects is put in qty var*/}
+                        Quantity: <select value={qty} onChange={(e)=>{setQty(e.target.value)}}>
+                            {[...Array(product.inventory).keys()].map(x=>
+                                <option key={x+1} value={x+1}>{x+1}</option>)}
 
                         </select>
                     </li>
                     <li>
-                        <button className="button primary">
+                        {/* only show add to cart if item in stock*/}
+                        {product.inventory>0 && <button onClick={handleAddToCart} className="button primary">
                             Add to cart
-                        </button>
+                        </button>}
                     </li>
                 </ul>
             </div>
         </div>
+        )
+        }   
+        
 
         </div>
 }

@@ -7,7 +7,8 @@ export default { //populate data as json object
         price: 14,
         brand: 'Build a Bear',
         rating: 4.5,
-        numRatings: 20
+        numRatings: 20,
+        inventory: 0,
     },
     {
         id: '2',
@@ -17,7 +18,8 @@ export default { //populate data as json object
         price: 5,
         brand: 'Bigelow',
         rating: 4.7,
-        numRatings: 50
+        numRatings: 50,
+        inventory: 5,
     }
     ]
 }
