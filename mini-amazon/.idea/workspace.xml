@@ -20,12 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="802ccfbf-113d-47b3-975a-3a468654391c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/.env" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/routes/awsUploadRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/awsUploadRoute.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/body-parser/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/body-parser/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/util.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/util.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
@@ -70,7 +65,7 @@
       <option name="presentableId" value="Default" />
       <updated>1601978067905</updated>
       <workItem from="1601978069537" duration="16949000" />
-      <workItem from="1602382982353" duration="2975000" />
+      <workItem from="1602382982353" duration="3296000" />
     </task>
     <servers />
   </component>
