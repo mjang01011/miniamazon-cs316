@@ -22,7 +22,8 @@ function App() {
                     <Link to="/">Mini Amazon</Link> {/*Links back to home on click of brand*/}
                 </div>
                 <div className="header-links"> {/*banner links*/}
-                    <a href="cart.html">Cart</a>
+                    {/* <a href="cart.html">Cart</a> */}
+                    <Link to="/cart">Cart</Link>
                     <a href="signin.html"> Sign In</a>
                 </div>
             </header>
