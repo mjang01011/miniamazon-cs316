@@ -7,9 +7,32 @@ const router = express.Router();
 //*** ALL endpoints here require isSeller authentication ***
 
 //Get list of items sold by seller id
-router.get("/", isAuth, isSeller, async(req, res) => {
+router.get("/", isAuth, async(req, res) => {
     const sellList = await SoldBy.find({seller: req.user._id}).populate('item');
     res.send(sellList);
+})
+
+//Get list of sellers that sell an item by item id
+router.get("/:id", isAuth, async(req, res) => {
+    const soldItemId = req.params.id;
+    const sellerList = await SoldBy.find({item: soldItemId}).populate('seller');
+    res.send(sellerList);
+})
+
+//Allow seller to add item to seller list for the first time
+router.post("/:id", isAuth, isSeller, async(req, res) => {
+    const soldItemId = req.params.id;
+    const soldBy = new SoldBy({
+        item: soldItemId,
+        seller: req.user._id,
+        quantity: req.body.quantity,
+        price: req.body.price,
+    })
+    const newSoldBy = await soldBy.save();
+    if (newSoldBy) {
+        return res.status(201).send({message: 'Item added to selling list', data: newSoldBy});
+    }
+    return res.status(500).send({message: 'Error in adding item'});
 })
 
 //Allow seller to amend item stock and price

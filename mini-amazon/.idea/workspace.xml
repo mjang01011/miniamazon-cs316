@@ -22,7 +22,8 @@
     <list default="true" id="802ccfbf-113d-47b3-975a-3a468654391c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/routes/itemRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/itemRoute.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/actions/productActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/actions/productActions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/routes/soldByRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/soldByRoute.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/@babel/register/.babel.7.11.6.development.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/@babel/register/.babel.7.11.6.development.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +68,8 @@
       <workItem from="1601978069537" duration="16949000" />
       <workItem from="1602382982353" duration="8471000" />
       <workItem from="1602462394203" duration="381000" />
-      <workItem from="1602507603329" duration="3126000" />
+      <workItem from="1602507603329" duration="3282000" />
+      <workItem from="1602514470921" duration="574000" />
     </task>
     <servers />
   </component>

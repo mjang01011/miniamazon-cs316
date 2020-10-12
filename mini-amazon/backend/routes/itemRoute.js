@@ -5,6 +5,8 @@ import { isAuth, isSeller, isAdmin} from '../util';
 
 const router = express.Router();
 
+//TODO: add back auths
+
 //Getting items (accessible to all users)
 router.get("/", async(req, res) => {
     const items = await Item.find({});
@@ -19,36 +21,19 @@ router.get("/:id", async(req, res) => {
 //Posting, updating, deleting items (only accessible to sellers)
 router.post("/:id", async(req, res) => {
     const itemId = req.params.id;
-    await Item.findOne({_id: itemId}), async (err, existingItem) => {
-        if (err) {
-            return res.status(500).send({message: err});
-        }
-        //If item does not exist, create one
-        if (!existingItem) {
-            const item = new Item({
-                itemName: req.body.itemName,
-                category: req.body.category,
-                image: req.body.image,
-                description: req.body.description,
-            });
-            const newItem = await item.save();
-            if (!newItem) return res.status(500).send({message: 'Error in adding new item'});
-            else res.status(201).send({message: 'Item successfully added', data: newItem});
-        }
-    };
-
-    //Add to the SoldBy schema
-    const soldBy = new SoldBy({
-        item: itemId,
-        seller: req.user._id,
-        quantity: req.body.quantity,
-        price: req.body.price,
-    })
-    const newSoldBy = await soldBy.save();
-    if (newSoldBy) {
-        return res.status(201).send({message: 'Sells updated', data: newSoldBy});
-    }
-    return res.status(500).send({message: 'Error in adding item'});
+    const existingItem = await Item.findOne({_id: itemId});
+    //If item does not exist, create one
+    if (!existingItem) {
+        const item = new Item({
+            itemName: req.body.itemName,
+            category: req.body.category,
+            image: req.body.image,
+            description: req.body.description,
+        });
+        const newItem = await item.save();
+        if (!newItem) return res.status(500).send({message: 'Error in adding new item'});
+        else res.status(201).send({message: 'Item successfully added', data: newItem});
+    } else res.status(500).send({message: 'Item already exists', data: existingItem});
 })
 
 //Posting reviews (accessible to all users)
