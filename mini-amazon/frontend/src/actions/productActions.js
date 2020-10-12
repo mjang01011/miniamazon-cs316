@@ -9,6 +9,7 @@ const listProducts = () => async (dispatch) => {
     dispatch({type: PRODUCT_LIST_REQUEST});
     //send ajax request to server
     const {data} = await axios.get("/api/products");
+    console.log(data);
     //get data from server
     dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data});
     }
@@ -23,6 +24,7 @@ const detailsProduct = (productId) => async (dispatch) => {
        // get product data from server
        const {data} = await axios.get("/api/products/" + productId);
        dispatch({type:PRODUCT_DETAILS_SUCCESS, payload:data});
+       console.log(data);
     } catch (error) {
         dispatch({type:PRODUCT_DETAILS_FAIL, payload: error.message});
     }

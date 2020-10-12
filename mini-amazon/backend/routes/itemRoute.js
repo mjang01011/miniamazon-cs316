@@ -17,7 +17,7 @@ router.get("/:id", async(req, res) => {
 })
 
 //Posting, updating, deleting items (only accessible to sellers)
-router.post("/:id", isAuth, isSeller, async(req, res) => {
+router.post("/:id", async(req, res) => {
     const itemId = req.params.id;
     await Item.findOne({_id: itemId}), async (err, existingItem) => {
         if (err) {
