@@ -49,7 +49,7 @@ a:hover{ /*default color when hover over any link*/
   align-items: center;
 }
 
-.brand a{/*brank link*/
+.category a{
   color: white;
   font-size: 2.5rem;
   font-weight: bold;
@@ -87,7 +87,7 @@ a:hover{ /*default color when hover over any link*/
   font-size: 2rem;
   font-weight: bold;
 }
-.product-brand{
+.product-category{
   font-size: 1.2rem;
   color: #005f82;
 }

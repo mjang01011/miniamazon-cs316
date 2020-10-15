@@ -17,7 +17,7 @@ function App() {
     <div className="grid-container"> 
             {/*Banner*/}
             <header className="header">
-                <div className="brand">
+                <div className="category">
                     <button onClick={openSidebar}>&#9776;</button> {/*Call openSidebar on button click*/}
                     <Link to="/">Mini Amazon</Link> {/*Links back to home on click of brand*/}
                 </div>

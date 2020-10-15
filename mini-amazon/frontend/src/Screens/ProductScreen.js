@@ -41,7 +41,7 @@ function ProductScreen(props){
                         </h3>
                     </li>
                     <li>
-                        {product.rating} stars ({product.numRatings} ratings)
+                        {product.avgRating} stars ({product.reviews && product.reviews.length} ratings)
                     </li>
                     <li>
                         <b>Price: ${product.price}</b>
@@ -80,7 +80,7 @@ function ProductScreen(props){
             </div>
         </div>
         )
-        }   
+        }
         
 
         </div>

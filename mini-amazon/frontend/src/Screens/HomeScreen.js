@@ -35,9 +35,9 @@ function HomeScreen(props){
                                         <div className="product-name">
                                             <Link to={'/product/' + product._id}>{product.itemName}</Link>
                                         </div>
-                                        <div className="product-brand">{product.category}</div>
+                                        <div className="product-category">{product.category}</div>
                                         <div className="product-price">${product.price}</div>
-                                        <div className="product-rating">{product.rating} stars ({product.numRatings} ratings)</div>
+                                        <div className="product-rating">{product.avgRating} stars ({product.reviews.length} ratings)</div>
                                     </div>
                                 </li>
                                 )

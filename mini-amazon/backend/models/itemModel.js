@@ -20,7 +20,7 @@ const itemSchema = new Schema({
     image: { type: String, required: false }, // link to AWS file
     description: { type: String, required: true },
     reviews: [reviewSchema],
-    avgRating: { type: Number, required: false, min: 1, max: 5},
+    avgRating: { type: Number, required: false, min: 0, max: 5, default: 0},
 });
 
 //Create item model
