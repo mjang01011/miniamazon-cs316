@@ -9,12 +9,12 @@ const router = express.Router();
 
 //Getting items (accessible to all users)
 router.get("/", async(req, res) => {
-    const items = await Item.find({});
+    const items = await Item.find({}).populate('reviews.authorId');
     res.send(items);
 })
 
 router.get("/:id", async(req, res) => {
-    const items = await Item.findById(req.params.id);
+    const items = await Item.findById(req.params.id).populate('reviews.authorId');
     res.send(items);
 })
 
@@ -55,10 +55,11 @@ router.post("/:id", isAuth, isSeller, async(req, res) => {
 })
 
 //Posting reviews (accessible to all users)
-router.post('/:id/reviews', isAuth, async (req, res) => {
+router.post('/review/:id', isAuth, async (req, res) => {
     const item = await Item.findById(req.params.id);
     if (item) {
         const review = {
+            authorId: req.user._id,
             rating: Number(req.body.rating),
             comment: req.body.comment,
             title: req.body.title,

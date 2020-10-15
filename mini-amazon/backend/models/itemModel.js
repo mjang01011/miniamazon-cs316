@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 //Define review schema
 const reviewSchema = new Schema(
     {
+        authorId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
         rating: { type: Number, required: true, min: 1, max: 5},
         title: { type: String, required: false },
         comment: { type: String, required: false },
