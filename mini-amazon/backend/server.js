@@ -1,6 +1,5 @@
 import express from 'express';
 import config from './config';
-import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser'
 import userRoute from './routes/userRoute';
@@ -8,8 +7,6 @@ import itemRoute from './routes/itemRoute';
 import transactionRoute from './routes/transactionRoute';
 import soldByRoute from './routes/soldByRoute';
 import awsUploadRoute from './routes/awsUploadRoute';
-
-dotenv.config();
 
 const mongodbUrl = config.MONGODB_URL;
 mongoose.connect(mongodbUrl,
