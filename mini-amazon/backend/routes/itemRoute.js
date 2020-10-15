@@ -19,7 +19,25 @@ router.get("/:id", async(req, res) => {
 })
 
 //Posting, updating, deleting items (only accessible to sellers)
-router.post("/:id", async(req, res) => {
+
+//for new items
+router.post("/", isAuth, isSeller, async(req, res) => {
+    const item = new Item({
+        itemId: req.body.itemId,
+        itemName: req.body.itemName,
+        category: req.body.category,
+        image: req.body.image,
+        description: req.body.description,
+    });
+    const newItem = await item.save();
+    if (newItem) {
+        return res.status(201).send({message: 'New item successfully added', data: newItem});
+    }
+    return res.status(500).send({message: 'Error in adding new item'});
+})
+
+//for existing items
+router.post("/:id", isAuth, isSeller, async(req, res) => {
     const itemId = req.params.id;
     const existingItem = await Item.findOne({_id: itemId});
     //If item does not exist, create one
@@ -59,20 +77,6 @@ router.post('/:id/reviews', isAuth, async (req, res) => {
 });
 
 //*** Admin endpoints below. SHOULD NOT BE TOUCHED BY USERS. To change item stock/quantity by seller, use soldByRoute endpoints ****
-router.post("/", async(req, res) => {
-    const item = new Item({
-        itemId: req.body.itemId,
-        itemName: req.body.itemName,
-        category: req.body.category,
-        image: req.body.image,
-        description: req.body.description,
-    });
-    const newItem = await item.save();
-    if (newItem) {
-        return res.status(201).send({message: 'New item successfully added', data: newItem});
-    }
-    return res.status(500).send({message: 'Error in adding new item'});
-})
 
 router.put("/:id", isAuth, isSeller, isAdmin, async(req, res) => {
     const item = await Item.findById(req.params.id);

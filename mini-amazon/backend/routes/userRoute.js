@@ -4,7 +4,7 @@ import { getToken, isAuth } from '../util';
 
 const router = express.Router();
 
-//Signin; Get email and password from user for signin
+//Sign-in; Get email and password from user for sign-in
 router.post('/signin', async (req, res) => {
   const signinUser = await User.findOne({
     //check email and password
@@ -56,11 +56,10 @@ router.post('/register', async (req, res) => {
 router.get('/createadmin', async (req, res) => {
   try {
     const user = new User({
-      fullname: 'Admin',
+      fullName: 'Admin',
       username: 'Admin',
-      email: 'admin@gmail.com',
+      email: 'admin@admin.com',
       password: 'admin',
-      secret_question: 'Course number:',
       isSeller: false,
       isAdmin: true,
       balance: 0,

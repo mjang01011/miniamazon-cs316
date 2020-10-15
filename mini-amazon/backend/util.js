@@ -5,7 +5,7 @@ import config from './config';
 
 const getToken = (user) => {
     return jwt.sign({
-        uid: user.uid,
+        uid: user._id,
         email: user.email,
         isAuth: user.isAuth,
         isSeller: user.isSeller,
