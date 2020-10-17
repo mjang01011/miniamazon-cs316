@@ -5,22 +5,23 @@ import { isAuth, isSeller } from '../util';
 const router = express.Router();
 
 //*** ALL endpoints here require isSeller authentication ***
+//TODO: Add back auths
 
 //Get list of items sold by seller id
-router.get("/", isAuth, async(req, res) => {
+router.get("/", async(req, res) => {
     const sellList = await SoldBy.find({seller: req.user._id}).populate('item');
     res.send(sellList);
 })
 
 //Get list of sellers that sell an item by item id
-router.get("/:id", isAuth, async(req, res) => {
+router.get("/:id", async(req, res) => {
     const soldItemId = req.params.id;
     const sellerList = await SoldBy.find({item: soldItemId}).populate('seller');
     res.send(sellerList);
 })
 
 //Allow seller to add item to seller list for the first time
-router.post("/:id", isAuth, isSeller, async(req, res) => {
+router.post("/:id", async(req, res) => {
     const soldItemId = req.params.id;
     const soldBy = new SoldBy({
         item: soldItemId,
@@ -36,7 +37,7 @@ router.post("/:id", isAuth, isSeller, async(req, res) => {
 })
 
 //Allow seller to amend item stock and price
-router.put("/:id", isAuth, isSeller, async(req, res) => {
+router.put("/:id", async(req, res) => {
     const soldItemId = req.params.id;
     const soldItem = await SoldBy.findOne({item: soldItemId, seller: req.user._id});
     if (soldItem) {
@@ -50,7 +51,7 @@ router.put("/:id", isAuth, isSeller, async(req, res) => {
     return res.status(500).send({message: 'Error in updating item'});
 })
 
-router.delete("/:id", isAuth, isSeller, async(req, res) => {
+router.delete("/:id", async(req, res) => {
     const soldItemId = req.params.id;
     const soldItem = await SoldBy.findOne({item: soldItemId, seller: req.user._id});
     if (soldItem) {

@@ -4,14 +4,16 @@ import { isAuth } from '../util';
 
 const router = express.Router();
 
+//TODO: Add back Auths
+
 //Get user's list of transactions
-router.get("/", isAuth, async(req, res) => {
+router.get("/", async(req, res) => {
     const transactions = await Transaction.find({buyerId: req.user._id}).populate('transactedItems.item transactedItems.seller');
     res.send(transactions);
 })
 
 //Create transactions when purchase is made
-router.post("/", isAuth, async(req, res) => {
+router.post("/", async(req, res) => {
     const transaction = new Transaction({
         buyerId: req.user._id,
         totalPrice: req.body.totalPrice,
