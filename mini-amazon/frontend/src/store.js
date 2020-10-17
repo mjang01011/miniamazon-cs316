@@ -2,12 +2,21 @@ import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
 import { productDetailsReducer, productListReducer } from './reducers/productReducers';
 import thunk from 'redux-thunk';
 import { cartReducer } from './reducers/cartReducers';
+import { userSigninReducer } from './reducers/userReducers';
 
-const initialState = {};
+  const cartItems = Cookie.getJSON('cartItems') || [];
+  const userInfo = Cookie.getJSON('userInfo') || null; //get userInfo from Cookie 
+
+  const initialState = {//default states
+    cart: { cartItems, shipping: {}, payment: {} },
+    userSignin: { userInfo },
+  };
+
 const reducer = combineReducers({
     productList: productListReducer, 
     productDetails: productDetailsReducer,
-    cart: cartReducer//add cart reducer
+    cart: cartReducer,//add cart reducer
+    userSignin: userSigninReducer
 })
 //check devtools on chrome
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
