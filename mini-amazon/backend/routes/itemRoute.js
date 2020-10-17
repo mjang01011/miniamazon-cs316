@@ -21,7 +21,7 @@ router.get("/:id", async(req, res) => {
 //Posting, updating, deleting items (only accessible to sellers)
 
 //for new items
-router.post("/", isAuth, isSeller, async(req, res) => {
+router.post("/", async(req, res) => {
     const item = new Item({
         itemId: req.body.itemId,
         itemName: req.body.itemName,
@@ -37,7 +37,7 @@ router.post("/", isAuth, isSeller, async(req, res) => {
 })
 
 //for existing items
-router.post("/:id", isAuth, isSeller, async(req, res) => {
+router.post("/:id", async(req, res) => {
     const itemId = req.params.id;
     const existingItem = await Item.findOne({_id: itemId});
     //If item does not exist, create one
@@ -55,7 +55,7 @@ router.post("/:id", isAuth, isSeller, async(req, res) => {
 })
 
 //Posting reviews (accessible to all users)
-router.post('/review/:id', isAuth, async (req, res) => {
+router.post('/review/:id', async (req, res) => {
     const item = await Item.findById(req.params.id);
     if (item) {
         const review = {
