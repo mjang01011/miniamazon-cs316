@@ -6,8 +6,12 @@ import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
 import LoginScreen from './screens/LoginScreen';
 import SigninScreen from './screens/LoginScreen';
+import { useSelector } from 'react-redux';
 
 function App() {
+  const userSignin = useSelector((state) => state.userSignin);
+  const { userInfo } = userSignin;
+
   const openSidebar = () => {
     document.querySelector(".sidebar").classList.add("open");
   }
@@ -27,7 +31,15 @@ function App() {
                     {/* <a href="cart.html">Cart</a> */}
                     <Link to="/cart">Cart</Link>
                     {/* <a href="login.html"> Log In</a> */}
-                    <Link to="/signin"> Log In</Link>
+                    {/* <Link to="/signin"> Log In</Link> */}
+                    {userInfo ? ( //if user info exists, show profile, else show signin
+                        <Link to="/profile">{userInfo.name} Profile</Link>
+                        ) : (
+                    <Link to="/signin">Sign In</Link>
+                    )}
+
+                    
+                    {/* <Link to="/signin">Sign In</Link> */}
                 </div>
             </header>
             <aside className="sidebar">

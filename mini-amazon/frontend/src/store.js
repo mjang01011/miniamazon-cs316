@@ -3,6 +3,7 @@ import { productDetailsReducer, productListReducer } from './reducers/productRed
 import thunk from 'redux-thunk';
 import { cartReducer } from './reducers/cartReducers';
 import { userSigninReducer } from './reducers/userReducers';
+import Cookie from 'js-cookie';
 
   const cartItems = Cookie.getJSON('cartItems') || [];
   const userInfo = Cookie.getJSON('userInfo') || null; //get userInfo from Cookie 
