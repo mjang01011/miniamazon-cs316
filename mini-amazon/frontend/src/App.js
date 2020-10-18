@@ -47,10 +47,22 @@ function App() {
                 <button className="sidebar-close" onClick={closeSidebar}>x</button> 
                 <ul>
                     <li>
-                        <a href="index.html">Toys</a>
+                        <a href="index.html">Food and Beverage</a>
                     </li>
                     <li>
-                        <a href="index.html">Tea</a>
+                        <a href="index.html">Apparel</a>
+                    </li>
+                    <li>
+                        <a href="index.html">Appliances</a>
+                    </li>
+                    <li>
+                        <a href="index.html">Sporting Equipment</a>
+                    </li>
+                    <li>
+                        <a href="index.html">Shoes</a>
+                    </li>
+                    <li>
+                        <a href="index.html">Books</a>
                     </li>
                 </ul>
             </aside>
