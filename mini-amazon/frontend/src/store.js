@@ -2,7 +2,7 @@ import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
 import { productDetailsReducer, productListReducer } from './reducers/productReducers';
 import thunk from 'redux-thunk';
 import { cartReducer } from './reducers/cartReducers';
-import { userSigninReducer } from './reducers/userReducers';
+import { userSigninReducer , userRegisterReducer} from './reducers/userReducers';
 import Cookie from 'js-cookie';
 
   const cartItems = Cookie.getJSON("cartItems") || []; //if no cart items, set empty array
@@ -18,7 +18,8 @@ const reducer = combineReducers({
     productList: productListReducer, 
     productDetails: productDetailsReducer,
     cart: cartReducer,//add cart reducer
-    userSignin: userSigninReducer
+    userSignin: userSigninReducer,
+    userRegister: userRegisterReducer
 })
 //check devtools on chrome
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

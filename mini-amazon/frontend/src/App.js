@@ -5,6 +5,7 @@ import CartScreen from './screens/CartScreen';
 import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
 import LoginScreen from './screens/LoginScreen';
+import RegisterScreen from './screens/RegisterScreen';
 import SigninScreen from './screens/LoginScreen';
 import { useSelector } from 'react-redux';
 
@@ -68,11 +69,11 @@ function App() {
             </aside>
             <main className="main">
                 <div className = "content">
-                    <Route path="/signin" component={SigninScreen} />
+                    <Route path="/signin" component={LoginScreen} />
                     <Route path="/product/:id" component={ProductScreen}/> {/*route to product screen when root/products/number -- app.js will render ProductScreen.js*/} 
                     <Route path="/cart/:id?" component={CartScreen}/> {/*id is optional; represents id of item in cart; route to cart */}
                     <Route path="/" exact={true} component={HomeScreen}/> {/*creates a route : default = homescreen*/}
-                    {/* <Route exact path="/login.html" component={LoginScreen}/> route to login screen */}
+                    <Route exact path="/register" component={RegisterScreen}/> {/*route to register screen*/}
                 </div>
             </main>
         </div>
