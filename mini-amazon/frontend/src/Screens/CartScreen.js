@@ -62,7 +62,7 @@ function CartScreen(props) {
                   Qty: 
                   {/*updates the cart subtotal when quantity is changed*/}
                 <select value={item.qty} onChange={(e) => dispatch(addToCart(item.product, e.target.value))}>
-                    {[...Array(item.countInStock).keys()].map(x =>
+                    {[...Array(item.inventory).keys()].map(x =>
                       <option key={x + 1} value={x + 1}>{x + 1}</option> 
                     )}
                   </select>

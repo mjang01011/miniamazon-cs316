@@ -7,20 +7,18 @@ const addToCart = (productId, qty) => async (dispatch, getState) => { //addToCar
     const { data } = await Axios.get("/api/products/" + productId); //get this product data from server
     dispatch({//will send action to reducer in cartReducers.js
         type: ADD_ITEM_CART, payload: { //dispatch action type and payload
-            product: data._id,
+            product: data._id, //bug fix: items replacing each other
             name: data.itemName,
             image: data.image,
             price: data.price,
             inventory: data.inventory,
-            qty //number of items in cart for specific product
+            qty, //number of items in cart for specific product
       }
     });
     //get access to cart items
     const { cart: { cartItems } } = getState();
-    console.log(cartItems);
     //save cart items into the cookie
     Cookie.set("cartItems", JSON.stringify(cartItems));
-    console.log(cartItems);
   } catch (error) {
 
   }
@@ -28,6 +26,7 @@ const addToCart = (productId, qty) => async (dispatch, getState) => { //addToCar
 
 const removeFromCart = (productId) => (dispatch, getState) => {
     dispatch({ type: REMOVE_ITEM_CART, payload: productId });
+    //remove the items from cookie
     const { cart: { cartItems } } = getState();
     Cookie.set("cartItems", JSON.stringify(cartItems));
 }
