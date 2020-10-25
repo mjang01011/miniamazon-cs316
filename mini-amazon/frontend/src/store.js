@@ -5,8 +5,8 @@ import { cartReducer } from './reducers/cartReducers';
 import { userSigninReducer } from './reducers/userReducers';
 import Cookie from 'js-cookie';
 
-  const cartItems = Cookie.getJSON('cartItems') || [];
-  const userInfo = Cookie.getJSON('userInfo') || null; //get userInfo from Cookie 
+  const cartItems = Cookie.getJSON("cartItems") || []; //if no cart items, set empty array
+  const userInfo = Cookie.getJSON("userInfo") || null; //get userInfo from Cookie 
 
   const initialState = {//default states
     cart: { cartItems, shipping: {}, payment: {} },

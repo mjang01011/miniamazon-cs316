@@ -22,9 +22,9 @@ function CartScreen(props) {
     }
   }, []);//only run command after rendering has been done
 
-//   const checkoutHandler = () => {
-//     props.history.push("/signin?redirect=shipping");
-//   }
+  const checkoutHandler = () => {
+     props.history.push("/signin?redirect=shipping");
+  }
 
   return <div className="cart">
   <div className="cart-list">
@@ -59,7 +59,8 @@ function CartScreen(props) {
 
                 </div>
                 <div>
-                  Qty:
+                  Qty: 
+                  {/*updates the cart subtotal when quantity is changed*/}
                 <select value={item.qty} onChange={(e) => dispatch(addToCart(item.product, e.target.value))}>
                     {[...Array(item.countInStock).keys()].map(x =>
                       <option key={x + 1} value={x + 1}>{x + 1}</option> 
@@ -86,7 +87,7 @@ function CartScreen(props) {
       :
        $ {cartItems.reduce((a, c) => a + c.price * c.qty, 0)} {/*default val is 0, calculate cart subtotal; reduce is like map */}
     </h3>
-    <button className="button primary full-width" disabled={cartItems.length === 0}> {/*if no item, cannot add to cart */}
+    <button onClick={checkoutHandler}className="button primary full-width" disabled={cartItems.length === 0}> {/*if no item, cannot add to cart */}
       Proceed to Checkout
     </button>
 
