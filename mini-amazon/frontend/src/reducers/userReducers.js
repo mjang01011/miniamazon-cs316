@@ -12,7 +12,7 @@ function userSigninReducer(state = {}, action) {
       default: return state;
     }
   }
-
+  //handle actions for user registration
   function userRegisterReducer(state = {}, action) {
     switch (action.type) {
       case USER_REGISTER_REQUEST:

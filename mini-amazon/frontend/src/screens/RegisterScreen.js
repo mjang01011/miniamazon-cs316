@@ -5,15 +5,18 @@ import { register } from '../actions/userActions';
 
 function RegisterScreen(props) {
 
+//get name, email, password
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rePassword, setRePassword] = useState('');
+
   const userRegister = useSelector(state => state.userRegister);
   const { loading, userInfo, error } = userRegister;
   const dispatch = useDispatch();
 
   const redirect = props.location.search ? props.location.search.split("=")[1] : '/';
+  //if user info exists redirect to homepage
   useEffect(() => {
     if (userInfo) {
       props.history.push(redirect);
@@ -24,9 +27,10 @@ function RegisterScreen(props) {
   }, [userInfo]);
 
   const submitHandler = (e) => {
-    e.preventDefault();
-    dispatch(register(name, email, password));
+    e.preventDefault(); //prevent refreshing of screen
+    dispatch(register(name, email, password)); //dispatch register action
   }
+  //registration form
   return <div className="form">
     <form onSubmit={submitHandler} >
       <ul className="form-container">
