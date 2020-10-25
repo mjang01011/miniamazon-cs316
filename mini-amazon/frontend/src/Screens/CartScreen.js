@@ -85,7 +85,7 @@ function CartScreen(props) {
     <h3>
       Subtotal ( {cartItems.reduce((a, c) => a + c.qty, 0)} items)
       :
-       $ {cartItems.reduce((a, c) => a + c.price * c.qty, 0)} {/*default val is 0, calculate cart subtotal; reduce is like map */}
+       ${cartItems.reduce((a, c) => a + c.price * c.qty, 0)} {/*default val is 0, calculate cart subtotal; reduce is like map */}
     </h3>
     <button onClick={checkoutHandler}className="button primary full-width" disabled={cartItems.length === 0}> {/*if no item, cannot add to cart */}
       Proceed to Checkout
