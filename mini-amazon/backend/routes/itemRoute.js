@@ -87,14 +87,14 @@ router.post('/review/:id', async (req, res) => {
     const item = await Item.findById(req.params.id);
     if (item) {
         const review = {
-            authorId: req.user._id,
+            authorId: req.body.user,
             rating: Number(req.body.rating),
             comment: req.body.comment,
             title: req.body.title,
         };
         item.reviews.push(review);
         item.avgRating =
-            item.reviews.reduce((sumRating, currReview) => {return sumRating + currReview.rating}, 0) / item.reviews.length;
+            Number(item.reviews.reduce((sumRating, currReview) => sumRating + currReview.rating, 0) / item.reviews.length).toFixed(2);
         await item.save();
         res.status(201).send({
             data: review,

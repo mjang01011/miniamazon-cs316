@@ -6,7 +6,6 @@ function cartReducer(state = { cartItems: [], shipping: {}, payment: {} }, actio
       const item = action.payload; //get item
       const product = state.cartItems.find(x => x.product === item.product); //search for the product in the state where x.product = item.product [if so, product exists]
       if (product) {//if product exists
-        console.log(product);
         return {
           cartItems://replace product with items in cart
           //if x id matches product id, return item, else return x;

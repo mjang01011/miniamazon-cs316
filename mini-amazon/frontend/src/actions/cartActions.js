@@ -12,7 +12,7 @@ const addToCart = (productId, qty) => async (dispatch, getState) => { //addToCar
             image: data.image,
             price: data.price,
             inventory: data.inventory,
-            qty, //number of items in cart for specific product
+            qty: qty, //number of items in cart for specific product
       }
     });
     //get access to cart items

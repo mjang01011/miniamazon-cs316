@@ -13,9 +13,6 @@ function ProductScreen(props){
     useEffect(() => {
         // runs after the elements are rendered on the screen 
         dispatch(detailsProduct(props.match.params.id)); // matches product based on id
-        return () => {
-            //
-        };
     }, []);
 
     const handleAddToCart = () => {
