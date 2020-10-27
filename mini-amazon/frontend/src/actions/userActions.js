@@ -1,5 +1,4 @@
 import Axios from "axios";
-/*import Cookie from 'js-cookie';*/
 import Cookies from 'js-cookie';
 import {
   USER_SIGNIN_REQUEST, USER_SIGNIN_SUCCESS,

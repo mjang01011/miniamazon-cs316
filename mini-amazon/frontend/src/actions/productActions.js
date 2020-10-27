@@ -33,7 +33,7 @@ const saveProduct = (product) => async (dispatch, getState) => {
       //if (!product._id) {
         const { data } = await axios.post('/api/products', product, {
           headers: {
-            Authorization: 'Bearer ' + userInfo.token, //make sure user token is authorized to do this request, gotten by  getState()
+            Authorization: 'Bearer ' + userInfo.token, //make sure user token is authorized to do this request, gotten by getState()
           },
         });
         console.log("dispatching create product message");
