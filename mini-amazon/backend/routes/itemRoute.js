@@ -6,10 +6,39 @@ import { isAuth, isSeller, isAdmin} from '../util';
 const router = express.Router();
 
 //TODO: add back auths
+//Sorting functions
+const alphabeticalAsc = (a,b) => a.itemName.localeCompare(b.itemName);
+const alphabeticalDesc = (a,b) => b.itemName.localeCompare(a.itemName);
+const categoryAsc = (a,b) => a.category.localeCompare(b.category);
+const ratingAsc = (a,b) => b.avgRating - a.avgRating;
 
 //Getting items (accessible to all users)
 router.get("/", async(req, res) => {
-    const items = await Item.find({}).populate('reviews.authorId');
+    const searchKeyword = req.query.searchKeyword
+        ? {
+            itemName: {
+                $regex: req.query.searchKeyword,
+                $options: 'i',
+            },
+        }
+        : {};
+
+    let sortOrder = req.query.sortOrder
+    switch(sortOrder) {
+        case "zToA":
+            sortOrder = alphabeticalDesc;
+            break;
+        case "rating":
+            sortOrder = ratingAsc;
+            break;
+        case "category":
+            sortOrder = categoryAsc;
+            break;
+        default:
+            sortOrder = alphabeticalAsc;
+    }
+    const items = await Item.find({...searchKeyword }).populate('reviews.authorId');
+    items.sort(sortOrder);
     res.send(items);
 })
 
@@ -23,7 +52,6 @@ router.get("/:id", async(req, res) => {
 //for new items
 router.post("/", async(req, res) => {
     const item = new Item({
-        itemId: req.body.itemId,
         itemName: req.body.itemName,
         category: req.body.category,
         image: req.body.image,
