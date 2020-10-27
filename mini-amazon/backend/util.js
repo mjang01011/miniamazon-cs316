@@ -15,6 +15,7 @@ const getToken = (user) => {
     });
 }
 
+//user authentication
 const isAuth = (req, res, next) => {
     const token = req.headers.authorization;
     if (token) {

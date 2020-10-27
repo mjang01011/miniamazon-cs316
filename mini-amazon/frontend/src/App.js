@@ -8,6 +8,7 @@ import RegisterScreen from './screens/RegisterScreen';
 import SigninScreen from './screens/LoginScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import { useSelector } from 'react-redux';
+import SellerProductsScreen from './screens/SellerProductsScreen';
 
 function App() {
   const userSignin = useSelector((state) => state.userSignin);
@@ -19,7 +20,9 @@ function App() {
   const closeSidebar = () => {
     document.querySelector(".sidebar").classList.remove("open");
   }
+  console.log("test log message");
   return (
+      
       <BrowserRouter> {/*set up router*/}
     <div className="grid-container"> 
             {/*Banner*/}
@@ -69,6 +72,7 @@ function App() {
             </aside>
             <main className="main">
                 <div className = "content">
+                    <Route path="/products" component={SellerProductsScreen} />
                     <Route path="/signin" component={SigninScreen} />
                     <Route path="/profile" component={ProfileScreen} /> 
                     <Route path="/product/:id" component={ProductScreen}/> {/*route to product screen when root/products/number -- app.js will render ProductScreen.js*/} 
