@@ -2,7 +2,7 @@ import axios from "axios";
 
 const { PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_LIST_FAIL, PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_DETAILS_FAIL, PRODUCT_SAVE_REQUEST,
     PRODUCT_SAVE_SUCCESS,
-    PRODUCT_SAVE_FAIL} = require("../constants/productConstants")
+    PRODUCT_SAVE_FAIL, SELLER_LIST_FAIL, SELLER_LIST_REQUEST, SELLER_LIST_SUCCESS} = require("../constants/productConstants")
 
 //make function called listProduct
 const listProducts = (searchKeyword = "", sortOrder = "") => async (dispatch) => {
@@ -56,7 +56,6 @@ const saveProduct = (product) => async (dispatch, getState) => {
     }
   };
 
-  
 const detailsProduct = (productId) => async (dispatch) => {
     try{
         // send req to server to get current product details
@@ -68,4 +67,17 @@ const detailsProduct = (productId) => async (dispatch) => {
         dispatch({type:PRODUCT_DETAILS_FAIL, payload: error.message});
     }
 }
-export {listProducts, saveProduct, detailsProduct}
+//soldByRoute.js
+//attempts to get seller list by product id when on product detail page
+const listSellers = (productId) => async(dispatch) => {
+    try{
+      dispatch({type: SELLER_LIST_REQUEST, payload: productId});
+      //call server with request for list of sellers that sell item by id
+      const {data} = await axios.get("/api/products/" + productId);
+      dispatch({type:SELLER_LIST_SUCCESS, payload:data})
+    }
+    catch(error){
+      dispatch({type: SELLER_LIST_FAIL, payload: error.message});
+    }
+}
+export {listProducts, saveProduct, detailsProduct, listSellers}

@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, Component} from 'react';
 import {useSelector, useDispatch } from 'react-redux';
 import {Link} from 'react-router-dom';
-import { detailsProduct } from '../actions/productActions';
+import { detailsProduct, listSellers } from '../actions/productActions';
 
 
 function ProductScreen(props){
@@ -13,11 +13,25 @@ function ProductScreen(props){
     useEffect(() => {
         // runs after the elements are rendered on the screen 
         dispatch(detailsProduct(props.match.params.id)); // matches product based on id
+        dispatch(listSellers(props.match.params.id)); //try to get list of sellers based on prod id
     }, []);
 
     const handleAddToCart = () => {
         props.history.push("/cart/" + props.match.params.id + "?qty=" + qty)
     }
+
+    //connect list of sellers with component
+    /*const handleListSellers = state => {
+        return {sellers : state.sellers};
+    }*/
+
+    //Component for list of sellers
+    /*const words = ['a', 'b', 'c', 'd', 'e'];
+    const items = words.map((word, idx) => {
+        return <li key={idx}>{word}</li>;
+    });
+
+    console.log(items);*/
 
     return <div>
         <div className="back-to-res">
@@ -78,8 +92,15 @@ function ProductScreen(props){
         </div>
         )
         }
+        {/*<div className="seller-list">
+            <ul>
+                <li>
+                    Test
+                </li>
+            </ul>
+        </div>*/}
+    </div>
         
 
-        </div>
 }
 export default ProductScreen; //return what ProductScreen returns

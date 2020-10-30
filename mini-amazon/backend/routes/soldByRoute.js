@@ -9,14 +9,18 @@ const router = express.Router();
 
 //Get list of items sold by seller id
 router.get("/", async(req, res) => {
+    console.log("test first router");
     const sellList = await SoldBy.find({seller: req.user._id}).populate('item');
     res.send(sellList);
 })
 
 //Get list of sellers that sell an item by item id
 router.get("/:id", async(req, res) => {
+    console.log("response coming...");
     const soldItemId = req.params.id;
-    const sellerList = await SoldBy.find({item: soldItemId}).populate('seller');
+    console.log(soldItemId);
+    //added additional fields to populate
+    const sellerList = await SoldBy.find({item: soldItemId}).populate('item', 'seller', 'quantity', 'price');
     res.send(sellerList);
 })
 
