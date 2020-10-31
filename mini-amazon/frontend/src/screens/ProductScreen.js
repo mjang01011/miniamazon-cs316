@@ -7,21 +7,63 @@ import { detailsProduct, listSellers } from '../actions/productActions';
 function ProductScreen(props){
     const [qty, setQty] = useState(1);
     const productDetails = useSelector(state => state.productDetails);
-    const {product, loading, error} = productDetails; // get info from productDetails
+    const {product, loading, error} = productDetails; // extract info from productDetails
     const dispatch = useDispatch(); // dispatch an action
+
+    const sellerDetails = useSelector(state => state.sellerDetails);
+    const {products, load, err} = sellerDetails; //extract seller details for item page
 
     useEffect(() => {
         // runs after the elements are rendered on the screen 
         dispatch(detailsProduct(props.match.params.id)); // matches product based on id
-        const sellerInfo = listSellers(props.match.params.id); // list of sellers for item page
-        dispatch(sellerInfo);
-        //console.log(typeof(sellerInfo)); // type is function, not list - fix this
-        //**see productActions.js - trying to display the list as component directly instead of here
+        dispatch(listSellers(props.match.params.id)); // matches seller details based on id
     }, []);
 
+
+    var divs = []
+    function handleList(props){
+        for (var sellerIndex in props) {
+            var details = props[sellerIndex]; //gets seller info, etc. for each seller of this item
+            divs.push(
+                <ul key={details.seller._id}>
+                   <div>Seller: {details.seller.username}</div>
+                   <div>Price: {details.price}</div>
+                   <div>Available: {details.quantity}</div>
+                </ul>
+            )
+            console.log(details); 
+        }
+    }
+    handleList(products);
+    console.log(divs);
     const handleAddToCart = () => {
         props.history.push("/cart/" + props.match.params.id + "?qty=" + qty)
     }
+    //typecheck to avoid error
+    /*if(products === undefined){
+        console.log("products is undefined");
+    }
+    else {
+        //console.log(products);
+        console.log(products[0]);
+        if(products[0] != undefined){
+            console.log(products[0].seller.username);
+            listItems = products[0];
+            console.log(listItems);
+        }
+    }*/
+    /*function Test(props){
+        return(
+        <ul className = "sellers-list">
+            {props.map(x => (
+                <li key={x.seller._id}>
+                <div>Seller: {x.seller.username}</div>
+                <div>Price: {x.price}</div>
+                <div>Available: {x.quantity}</div>
+            </li>
+            ))}
+        </ul>);
+    }*/
 
     return <div>
         <div className="back-to-res">
@@ -29,6 +71,8 @@ function ProductScreen(props){
         </div>
         {loading? <div>Loading...</div>:
         error? <div>{error}</div>:
+        load? <div> loading </div>:
+        err? <div>{err}</div>:
         (
             <div className="details">
             <div className="details-image">
@@ -51,6 +95,13 @@ function ProductScreen(props){
                         Description: 
                         <div>
                             {product.description}
+                        </div>
+                    </li>
+                    <li>
+                        Other Sellers:
+                        <div>
+                            {/*try to display list of sellers for the same item*/} 
+                            {divs}
                         </div>
                     </li>
                 </ul>

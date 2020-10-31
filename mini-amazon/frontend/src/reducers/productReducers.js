@@ -45,7 +45,7 @@ function productSaveReducer(state = { product: {} }, action) {
     }
   }
 
-  function sellerListReducer(state={products:[]}, action){
+  function sellerDetailsReducer(state={products:[]}, action){
     switch(action.type){
         //sending request to server to get list of seller
         case SELLER_LIST_REQUEST: 
@@ -59,4 +59,4 @@ function productSaveReducer(state = { product: {} }, action) {
             return state;
     }
 }
-export {sellerListReducer, productListReducer, productDetailsReducer, productSaveReducer}
+export {sellerDetailsReducer, productListReducer, productDetailsReducer, productSaveReducer}

@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, {Component} from 'react';
+import ReactDOM from 'react-dom'; 
 
 const { PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_LIST_FAIL, PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_DETAILS_FAIL, PRODUCT_SAVE_REQUEST,
     PRODUCT_SAVE_SUCCESS,
@@ -75,22 +76,7 @@ const listSellers = (productId) => async(dispatch) => {
       dispatch({type: SELLER_LIST_REQUEST, payload: productId});
       //call server with request for list of sellers that sell item by id
       const {data} = await axios.get("/api/sells/" + productId);
-      //console.log(typeof(data)); //object
 
-      //trying to render list directly before dispatching
-      const Test = () => (//function Test(props){}
-        <ul className = "sellers-list">
-          {console.log(data) /*console.log(data[0].seller._id)*/}
-          {data.map(x => (
-            <li key={x.seller._id}>
-            <div>{x.price}</div>
-            <div>{x.quantity}</div>
-            <div>{x.seller.username}</div>
-          </li>
-          ))}
-        </ul>
-      )
-      Test(data); 
       dispatch({type:SELLER_LIST_SUCCESS, payload:data})
     }
     catch(error){
