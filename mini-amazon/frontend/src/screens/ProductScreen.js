@@ -19,15 +19,14 @@ function ProductScreen(props){
         dispatch(listSellers(props.match.params.id)); // matches seller details based on id
     }, []);
 
-
     var divs = []
     function handleList(props){
         for (var sellerIndex in props) {
             var details = props[sellerIndex]; //gets seller info, etc. for each seller of this item
             divs.push(
-                <ul key={details.seller._id}>
+                <ul className="sellers-list" key={details.seller._id}>
                    <div>Seller: {details.seller.username}</div>
-                   <div>Price: {details.price}</div>
+                   <div>Price: ${details.price}</div>
                    <div>Available: {details.quantity}</div>
                 </ul>
             )
@@ -39,31 +38,6 @@ function ProductScreen(props){
     const handleAddToCart = () => {
         props.history.push("/cart/" + props.match.params.id + "?qty=" + qty)
     }
-    //typecheck to avoid error
-    /*if(products === undefined){
-        console.log("products is undefined");
-    }
-    else {
-        //console.log(products);
-        console.log(products[0]);
-        if(products[0] != undefined){
-            console.log(products[0].seller.username);
-            listItems = products[0];
-            console.log(listItems);
-        }
-    }*/
-    /*function Test(props){
-        return(
-        <ul className = "sellers-list">
-            {props.map(x => (
-                <li key={x.seller._id}>
-                <div>Seller: {x.seller.username}</div>
-                <div>Price: {x.price}</div>
-                <div>Available: {x.quantity}</div>
-            </li>
-            ))}
-        </ul>);
-    }*/
 
     return <div>
         <div className="back-to-res">
@@ -92,13 +66,13 @@ function ProductScreen(props){
                         <b>Price: ${product.price}</b>
                     </li>
                     <li>
-                        Description: 
+                        <b>Description: </b>
                         <div>
                             {product.description}
                         </div>
                     </li>
                     <li>
-                        Other Sellers:
+                        <b>Other Sellers:</b>
                         <div>
                             {/*try to display list of sellers for the same item*/} 
                             {divs}
@@ -109,7 +83,7 @@ function ProductScreen(props){
             <div className="details-action">
                 <ul>
                     <li>
-                        Price: {product.price}
+                        Price: ${product.price}
                     </li>
                     <li>
                         Status: {product.inventory>0? "In stock" : "Out of stock" }
