@@ -20,7 +20,7 @@ function App() {
   const closeSidebar = () => {
     document.querySelector(".sidebar").classList.remove("open");
   }
-  console.log("test log message");
+
   return (
       
       <BrowserRouter> {/*set up router*/}

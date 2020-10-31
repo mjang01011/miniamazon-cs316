@@ -16,11 +16,9 @@ router.get("/", async(req, res) => {
 
 //Get list of sellers that sell an item by item id
 router.get("/:id", async(req, res) => {
-    console.log("response coming...");
     const soldItemId = req.params.id;
-    console.log(soldItemId);
     //added additional fields to populate
-    const sellerList = await SoldBy.find({item: soldItemId}).populate('item', 'seller', 'quantity', 'price');
+    const sellerList = await SoldBy.find({item: soldItemId}).populate('seller', 'item', 'quantity', 'price');
     res.send(sellerList);
 })
 

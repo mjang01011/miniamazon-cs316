@@ -13,25 +13,15 @@ function ProductScreen(props){
     useEffect(() => {
         // runs after the elements are rendered on the screen 
         dispatch(detailsProduct(props.match.params.id)); // matches product based on id
-        dispatch(listSellers(props.match.params.id)); //try to get list of sellers based on prod id
+        const sellerInfo = listSellers(props.match.params.id); // list of sellers for item page
+        dispatch(sellerInfo);
+        //console.log(typeof(sellerInfo)); // type is function, not list - fix this
+        //**see productActions.js - trying to display the list as component directly instead of here
     }, []);
 
     const handleAddToCart = () => {
         props.history.push("/cart/" + props.match.params.id + "?qty=" + qty)
     }
-
-    //connect list of sellers with component
-    /*const handleListSellers = state => {
-        return {sellers : state.sellers};
-    }*/
-
-    //Component for list of sellers
-    /*const words = ['a', 'b', 'c', 'd', 'e'];
-    const items = words.map((word, idx) => {
-        return <li key={idx}>{word}</li>;
-    });
-
-    console.log(items);*/
 
     return <div>
         <div className="back-to-res">
@@ -92,13 +82,6 @@ function ProductScreen(props){
         </div>
         )
         }
-        {/*<div className="seller-list">
-            <ul>
-                <li>
-                    Test
-                </li>
-            </ul>
-        </div>*/}
     </div>
         
 
