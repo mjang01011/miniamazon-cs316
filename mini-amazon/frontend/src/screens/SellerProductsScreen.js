@@ -19,7 +19,7 @@ const [modalVisible, setModalVisible] = useState(false);
   const [description, setDescription] = useState('');
   const [uploading, setUploading] = useState(false);
   const productList = useSelector((state) => state.productList);
-  const { loading, products, error } = productList;
+  const { loading, products, error } = productList; //get elements from productList element
 
   const productSave = useSelector((state) => state.productSave);
   const {
@@ -96,6 +96,7 @@ const [modalVisible, setModalVisible] = useState(false);
       });
   };
   return (
+    //show list of products this user has created
     <div className="content content-margined">
       <div className="product-header">
         <h3>Products</h3>
@@ -116,10 +117,10 @@ const [modalVisible, setModalVisible] = useState(false);
               </li>
 
               <li>
-                <label htmlFor="itemName">Item Name</label>
+                <label htmlFor="name">Item Name</label>
                 <input
                   type="text"
-                  itemName="itemName"
+                  name="itemName"
                   value={itemName}
                   id="itemName"
                   onChange={(e) => setItemName(e.target.value)}
@@ -129,7 +130,7 @@ const [modalVisible, setModalVisible] = useState(false);
                 <label htmlFor="price">Price</label>
                 <input
                   type="text"
-                  itemName="price"
+                  name="price"
                   value={price}
                   id="price"
                   onChange={(e) => setPrice(e.target.value)}
@@ -139,7 +140,7 @@ const [modalVisible, setModalVisible] = useState(false);
                 <label htmlFor="image">Image</label>
                 <input
                   type="text"
-                  itemName="image"
+                  name="image"
                   value={image}
                   id="image"
                   onChange={(e) => setImage(e.target.value)}
@@ -151,7 +152,7 @@ const [modalVisible, setModalVisible] = useState(false);
                 <label htmlFor="brand">Brand</label>
                 <input
                   type="text"
-                  itemName="brand"
+                  name="brand"
                   value={brand}
                   id="brand"
                   onChange={(e) => setBrand(e.target.value)}
@@ -161,7 +162,7 @@ const [modalVisible, setModalVisible] = useState(false);
                 <label htmlFor="inventory">inventory</label>
                 <input
                   type="text"
-                  itemName="inventory"
+                  name="inventory"
                   value={inventory}
                   id="inventory"
                   onChange={(e) => setInventory(e.target.value)}
@@ -171,7 +172,7 @@ const [modalVisible, setModalVisible] = useState(false);
                 <label htmlFor="itemName">Category</label>
                 <input
                   type="text"
-                  itemName="category"
+                  name="category"
                   value={category}
                   id="category"
                   onChange={(e) => setCategory(e.target.value)}
@@ -180,7 +181,7 @@ const [modalVisible, setModalVisible] = useState(false);
               <li>
                 <label htmlFor="description">Description</label>
                 <textarea
-                  itemName="description"
+                  name="description"
                   value={description}
                   id="description"
                   onChange={(e) => setDescription(e.target.value)}
@@ -218,7 +219,7 @@ const [modalVisible, setModalVisible] = useState(false);
             </tr>
           </thead>
           <tbody>
-            product stuff in here
+          product stuff here
           </tbody>
         </table>
       </div>
