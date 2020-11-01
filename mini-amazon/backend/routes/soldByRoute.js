@@ -18,7 +18,7 @@ router.get("/", async(req, res) => {
 router.get("/:id", async(req, res) => {
     const soldItemId = req.params.id;
     //added additional fields to populate
-    const sellerList = await SoldBy.find({item: soldItemId}).populate('seller', 'item', 'quantity', 'price');
+    const sellerList = await SoldBy.find({item: soldItemId}).populate('seller');
     res.send(sellerList);
 })
 

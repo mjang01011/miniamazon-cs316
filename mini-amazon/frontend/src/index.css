@@ -300,3 +300,9 @@ th {
 tbody > tr:nth-child(odd) {
   background-color: #f0f0f0;
 }
+
+.sellers-list{
+  color: darkblue;
+  size: 100%;
+  border: 0.1rem #c0c0c0 solid;
+}
