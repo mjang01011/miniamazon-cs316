@@ -1,14 +1,14 @@
 import React from 'react';
 import {BrowserRouter, Route, Link} from 'react-router-dom';
 import './App.css';
-import CartScreen from './screens/CartScreen';
-import HomeScreen from './screens/HomeScreen';
-import ProductScreen from './screens/ProductScreen';
-import RegisterScreen from './screens/RegisterScreen';
-import SigninScreen from './screens/LoginScreen';
-import ProfileScreen from './screens/ProfileScreen';
+import CartScreen from './Screens/CartScreen';
+import HomeScreen from './Screens/HomeScreen';
+import ProductScreen from './Screens/ProductScreen';
+import RegisterScreen from './Screens/RegisterScreen';
+import SigninScreen from './Screens/LoginScreen';
+import ProfileScreen from './Screens/ProfileScreen';
 import { useSelector } from 'react-redux';
-import SellerProductsScreen from './screens/SellerProductsScreen';
+import SellerProductsScreen from './Screens/SellerProductsScreen';
 
 function App() {
   const userSignin = useSelector((state) => state.userSignin);
