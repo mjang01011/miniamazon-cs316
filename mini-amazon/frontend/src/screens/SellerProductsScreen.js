@@ -103,8 +103,9 @@ const [modalVisible, setModalVisible] = useState(false); //hide create product f
         <button className="button primary" onClick={() => openModal({})}>
           Create Product
         </button>
-      </div>
-      {modalVisible && (
+      </div> 
+      {/* open create product form */}
+      {modalVisible && ( 
         <div className="form">
           <form onSubmit={submitHandler}>
             <ul className="form-container">
@@ -188,8 +189,9 @@ const [modalVisible, setModalVisible] = useState(false); //hide create product f
                 ></textarea>
               </li>
               <li>
+                {/* if id already exists, show update, else show create */}
                 <button type="submit" className="button primary">
-                  {id ? 'Update' : 'Create'}
+                  {id ? 'Update' : 'Create'} 
                 </button>
               </li>
               <li>
@@ -227,6 +229,7 @@ const [modalVisible, setModalVisible] = useState(false); //hide create product f
                 <td>{product.category}</td>
                 <td>{product.brand}</td>
                 <td>
+                  {/* open create product form with exact product to be edited */}
                   <button className="button" onClick={() => openModal(product)}>
                     Edit
                   </button>{' '}

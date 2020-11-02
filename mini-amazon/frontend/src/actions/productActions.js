@@ -32,7 +32,7 @@ const saveProduct = (product) => async (dispatch, getState) => {
       const {
         userSignin: { userInfo },
       } = getState();
-      //if (!product._id) {
+      if (!product._id) { //ensure we only create new product if it doesn't exist yet (when updating)
         const { data } = await axios.post('/api/products', product, {
           headers: {
             Authorization: 'Bearer ' + userInfo.token, //make sure user token is authorized to do this request, gotten by getState()
@@ -40,18 +40,18 @@ const saveProduct = (product) => async (dispatch, getState) => {
         });
         console.log("dispatching create product message");
         dispatch({ type: PRODUCT_SAVE_SUCCESS, payload: data }); //if successful authentication, dispatch data
-      //} else {
-        // const { data } = await axios.put(
-        //   '/api/products/' + product._id,
-        //   product,
-        //   {
-        //     headers: {
-        //       Authorization: 'Bearer ' + userInfo.token,
-        //     },
-        //   }
-        // );
-        // dispatch({ type: PRODUCT_SAVE_SUCCESS, payload: data });
-      //}
+      } else {
+        const { data } = await axios.put(
+          '/api/products/' + product._id,
+          product,
+          {
+            headers: {
+              Authorization: 'Bearer ' + userInfo.token,
+            },
+          }
+        );
+        dispatch({ type: PRODUCT_SAVE_SUCCESS, payload: data });
+      }
     } catch (error) {
         console.log(error.message);
       dispatch({ type: PRODUCT_SAVE_FAIL, payload: error.message });

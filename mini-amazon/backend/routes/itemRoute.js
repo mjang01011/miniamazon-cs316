@@ -108,7 +108,8 @@ router.post('/review/:id', async (req, res) => {
 //*** Admin endpoints below. SHOULD NOT BE TOUCHED BY USERS. To change item stock/quantity by seller, use soldByRoute endpoints ****
 
 router.put("/:id", isAuth, isSeller, isAdmin, async(req, res) => {
-    const item = await Item.findById(req.params.id);
+    const itemId = req.params.id;
+    const item = await Item.findById(itemId);//this needs to be here??
     if (item) {
         item.itemName = req.body.itemName;
         item.category = req.body.category;
