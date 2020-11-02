@@ -20,11 +20,19 @@ function ProfileScreen(props) {
     }
     const { user } = userDetails;
     const dispatch = useDispatch();
+    const handleBalance = () => {
+     props.history.push("/balance");
+      } 
     const handleLogout = () => {
         dispatch(logout());
         props.history.push("/signin");
       }
     return <div className="profile">
+        <li>
+          <h1>
+            Avatar:
+          </h1>
+        </li>
         <li>
           <h1>
             Full Name: {userInfo.fullName}
@@ -47,7 +55,8 @@ function ProfileScreen(props) {
         </li>
         <li>
           <h1>
-            Balance: {userInfo.balance}
+            Balance: ${userInfo.balance}
+            <button type="button" onClick={handleBalance} className="button secondary full-width">Add Balance</button>
           </h1>
         </li>
         <li>

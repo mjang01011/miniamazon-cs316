@@ -3,7 +3,6 @@
 import AWS from 'aws-sdk';
 import config from '../config';
 import multer from 'multer';
-import multerS3 from 'multer-s3';
 import express from "express";
 
 const storage = multer.memoryStorage();
@@ -11,7 +10,7 @@ const upload = multer({ storage: storage });
 const router = express.Router();
 
 const AWS_BUCKET_NAME = 'miniamazon';
-const AWS_FILE_LINK = 'https://s3-us-east-2.amazonaws.com/miniamazon'
+const AWS_FILE_LINK = 'https://miniamazon.s3.us-east-2.amazonaws.com/'
 
 router.post('/image', upload.single('image'), async (req, res) => {
     const file = req.file;
@@ -24,14 +23,15 @@ router.post('/image', upload.single('image'), async (req, res) => {
 
     const params = {
         Bucket: AWS_BUCKET_NAME,
-        Key: file.name + new Date(),
+        Key: new Date().getTime().toString() + file.originalname,
         Body: file.buffer,
-        ContentType: multerS3.AUTO_CONTENT_TYPE,
+        ContentType: file.mimetype,
         ACL: 'public-read'
     };
 
     s3bucket.upload(params, function(err, data) {
         if (err) {
+            console.log(err);
             res.status(500).json({ error: true, Message: err });
         } else {
             const fileLink = AWS_FILE_LINK + params.Key
