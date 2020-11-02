@@ -3,12 +3,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import {
   saveProduct,
-  listProducts//,
+  listProducts,
   //deleteProduct,
 } from '../actions/productActions';
 
 function SellerProductsScreen(props) {
-const [modalVisible, setModalVisible] = useState(false);
+const [modalVisible, setModalVisible] = useState(false); //hide create product form unless you click on create product button
   const [id, setId] = useState('');
   const [itemName, setItemName] = useState('');
   const [price, setPrice] = useState('');
@@ -46,7 +46,7 @@ const [modalVisible, setModalVisible] = useState(false);
     };
   }, [successSave]);
 
-  const openModal = (product) => {
+  const openModal = (product) => { //open the create product form
     setModalVisible(true);
     setId(product._id);
     setItemName(product.itemName);
@@ -219,7 +219,26 @@ const [modalVisible, setModalVisible] = useState(false);
             </tr>
           </thead>
           <tbody>
-          product stuff here
+          {products.map((product) => (
+              <tr key={product._id}>
+                <td>{product._id}</td>
+                <td>{product.itemName}</td>
+                <td>{product.price}</td>
+                <td>{product.category}</td>
+                <td>{product.brand}</td>
+                <td>
+                  <button className="button" onClick={() => openModal(product)}>
+                    Edit
+                  </button>{' '}
+                  {/* <button
+                    className="button"
+                    onClick={() => deleteHandler(product)}
+                  >
+                    Delete
+                  </button> */}
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

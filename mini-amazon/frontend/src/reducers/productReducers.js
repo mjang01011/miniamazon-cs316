@@ -5,8 +5,8 @@ import { PRODUCT_DETAILS_FAIL, PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS,
 function productListReducer(state={products:[]}, action){
     switch(action.type){
         //sending request to server to get list of products
-        case PRODUCT_LIST_REQUEST: 
-            return {loading:true}; //show variable loading true if successful
+        case PRODUCT_LIST_REQUEST:
+            return { loading: true, products: [] };//show variable loading true if successful,  declare products as empty array (otherwise won't be able to map in sellerproductsscreen.js)
         case PRODUCT_LIST_SUCCESS:
             //actions are payloads that send data from application to store
             return {loading:false, products: action.payload};
