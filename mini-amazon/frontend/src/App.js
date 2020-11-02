@@ -9,6 +9,7 @@ import SigninScreen from './screens/LoginScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import { useSelector } from 'react-redux';
 import SellerProductsScreen from './screens/SellerProductsScreen';
+import BalanceScreen from './screens/BalanceScreen';
 
 function App() {
   const userSignin = useSelector((state) => state.userSignin);
@@ -71,9 +72,10 @@ function App() {
             </aside>
             <main className="main">
                 <div className = "content">
-                    <Route path="/products" component={SellerProductsScreen} />
-                    <Route path="/signin" component={SigninScreen} />
-                    <Route path="/profile" component={ProfileScreen} /> 
+                    <Route path="/products" component={SellerProductsScreen} />  {/*route to products screen*/}
+                    <Route path="/signin" component={SigninScreen} /> {/*route to signin screen*/}
+                    <Route path="/profile" component={ProfileScreen} />  {/*route to user profile screen*/}
+                    <Route path="/balance" component={BalanceScreen} />  {/*route to add balance screen*/}
                     <Route path="/product/:id" component={ProductScreen}/> {/*route to product screen when root/products/number -- app.js will render ProductScreen.js*/} 
                     <Route path="/cart/:id?" component={CartScreen}/> {/*id is optional; represents id of item in cart; route to cart */}
                     <Route path="/" exact={true} component={HomeScreen}/> {/*creates a route : default = homescreen*/}
