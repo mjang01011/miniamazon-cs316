@@ -81,7 +81,7 @@ const [modalVisible, setModalVisible] = useState(false);
     bodyFormData.append('image', file);
     setUploading(true);
     axios
-      .post('/api/uploads', bodyFormData, {
+      .post('/api/upload/image', bodyFormData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
