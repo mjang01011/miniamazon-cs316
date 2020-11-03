@@ -38,14 +38,17 @@ router.post('/register', async (req, res) => {
     username: req.body.username,
     email: req.body.email,
     password: req.body.password,
-    isSeller: req.body.isSeller == "true",
+    isSeller: req.body.isSeller == true,
   });
   const newUser = await user.save();
   if (newUser) {
     res.send({
+      uid: newUser.uid,
       fullName: newUser.fullName,
       username: newUser.username,
       email: newUser.email,
+      password: newUser.password,
+      balance: newUser.balance,
       isAuth: newUser.isAuth,
       isSeller: newUser.isSeller,
       isAdmin: newUser.isAdmin,
