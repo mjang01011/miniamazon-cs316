@@ -22,7 +22,10 @@ function ProfileScreen(props) {
     const dispatch = useDispatch();
     const handleBalance = () => {
      props.history.push("/balance");
-      } 
+    } 
+    const handleProducts = () => {
+      props.history.push("/products");
+    }
     const handleLogout = () => {
         dispatch(logout());
         props.history.push("/signin");
@@ -63,6 +66,9 @@ function ProfileScreen(props) {
           <h1>
             Status: {seller}
           </h1>
+        </li>
+        <li>
+            <button type="button" onClick={handleProducts} className="button secondary full-width">Add/Edit Products</button>
         </li>
         <li>
             <button type="button" onClick={handleLogout} className="button secondary full-width">Logout</button>
