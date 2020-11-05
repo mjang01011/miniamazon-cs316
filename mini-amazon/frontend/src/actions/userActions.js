@@ -35,10 +35,10 @@ const signin = (email, password) => async (dispatch) => {
   }
 }
 
-const register = (name, email, password) => async (dispatch) => {
-  dispatch({ type: USER_REGISTER_REQUEST, payload: { name, email, password } });
+const register = (fullName, username, email, password, isSeller) => async (dispatch) => {
+  dispatch({ type: USER_REGISTER_REQUEST, payload: { fullName, username, email, password, isSeller } });
   try {
-    const { data } = await Axios.post("/api/users/register", { name, email, password });
+    const { data } = await Axios.post("/api/users/register", { fullName, username, email, password, isSeller });
     dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
     Cookies.set('userInfo', JSON.stringify(data));
   } catch (error) {

@@ -1,5 +1,5 @@
 import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
-import { productDetailsReducer, productListReducer, productSaveReducer, sellerDetailsReducer} from './reducers/productReducers';
+import { productDetailsReducer, productListReducer, productReviewSaveReducer, productSaveReducer, sellerDetailsReducer} from './reducers/productReducers';
 import thunk from 'redux-thunk';
 import { cartReducer } from './reducers/cartReducers';
 import { userSigninReducer , userRegisterReducer, userDetailsReducer} from './reducers/userReducers';
@@ -22,6 +22,7 @@ const reducer = combineReducers({
     userRegister: userRegisterReducer,
     productSave: productSaveReducer,
     sellerDetails: sellerDetailsReducer,
+    productReviewSave: productReviewSaveReducer,
     userDetails: userDetailsReducer,
 })
 //check devtools on chrome
