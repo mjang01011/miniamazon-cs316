@@ -105,7 +105,7 @@ function ProductScreen(props){
         if(props !== undefined && props.reviews !== undefined){
             return props.reviews.map((review) => (
                 <li key={review._id}>
-                <div>Reviewer: {review.authorId.username}</div>
+                <div><b>Reviewer: {review.authorId.username}</b></div>
                 <div>
                     <Rating value={review.rating}></Rating>
                 </div>
@@ -190,7 +190,7 @@ function ProductScreen(props){
             </div>
             <div className="review-action">
                 <h2><b>Reviews</b></h2>
-                {product.reviews !== undefined && <div>There are no reviews for this product.</div>}
+                {product.reviews !== undefined && <div>There are {product.reviews.length} reviews for this product.</div>}
                 <ul className="review" id="reviews">
                     {handleReview(product)}
                      <li>
