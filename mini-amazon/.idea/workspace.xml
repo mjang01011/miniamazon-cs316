@@ -22,8 +22,6 @@
     <list default="true" id="802ccfbf-113d-47b3-975a-3a468654391c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/routes/itemRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/itemRoute.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/actions/productActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/actions/productActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/screens/SellerProductsScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/screens/SellerProductsScreen.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +85,7 @@
       <workItem from="1603868491076" duration="30000" />
       <workItem from="1604237996314" duration="520000" />
       <workItem from="1604319454394" duration="5498000" />
-      <workItem from="1604717369371" duration="2448000" />
+      <workItem from="1604717369371" duration="3037000" />
     </task>
     <servers />
   </component>
@@ -111,9 +109,9 @@
       <screen x="-1920" y="84" width="1920" height="1057" />
     </state>
     <state x="-1222" y="333" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.810/-1920.84.1920.1057@-1920.84.1920.1057" timestamp="1602139164146" />
-    <state x="-1295" y="302" width="670" height="676" key="search.everywhere.popup" timestamp="1604323125317">
+    <state x="-1295" y="302" width="670" height="676" key="search.everywhere.popup" timestamp="1604722699212">
       <screen x="-1920" y="84" width="1920" height="990" />
     </state>
-    <state x="-1295" y="302" width="670" height="676" key="search.everywhere.popup/0.23.1440.877/-1920.84.1920.990@-1920.84.1920.990" timestamp="1604323125317" />
+    <state x="-1295" y="302" width="670" height="676" key="search.everywhere.popup/0.23.1440.877/-1920.84.1920.990@-1920.84.1920.990" timestamp="1604722699212" />
   </component>
 </project>

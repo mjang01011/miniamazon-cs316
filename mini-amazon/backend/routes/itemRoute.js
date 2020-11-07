@@ -84,7 +84,6 @@ router.post("/:id", async(req, res) => {
 
 //Posting reviews (accessible to all users)
 router.post('/review/:id', isAuth, async (req, res) => {
-    console.log(req.user);
     const item = await Item.findById(req.params.id);
     if (item) {
         const review = {
