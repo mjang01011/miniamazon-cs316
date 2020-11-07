@@ -9,8 +9,7 @@ const router = express.Router();
 
 //Get list of items sold by seller id
 router.get("/", async(req, res) => {
-    console.log("test first router");
-    const sellList = await SoldBy.find({seller: req.user._id}).populate('item');
+    const sellList = await SoldBy.find({seller: req.user.uid}).populate('item');
     res.send(sellList);
 })
 
@@ -23,11 +22,11 @@ router.get("/:id", async(req, res) => {
 })
 
 //Allow seller to add item to seller list for the first time
-router.post("/:id", async(req, res) => {
+router.post("/", isAuth, isSeller, async(req, res) => {
     const soldItemId = req.params.id;
     const soldBy = new SoldBy({
         item: soldItemId,
-        seller: req.user._id,
+        seller: req.user.uid,
         quantity: req.body.quantity,
         price: req.body.price,
     })
@@ -39,9 +38,9 @@ router.post("/:id", async(req, res) => {
 })
 
 //Allow seller to amend item stock and price
-router.put("/:id", async(req, res) => {
+router.put("/:id", isAuth, isSeller, async(req, res) => {
     const soldItemId = req.params.id;
-    const soldItem = await SoldBy.findOne({item: soldItemId, seller: req.user._id});
+    const soldItem = await SoldBy.findOne({item: soldItemId, seller: req.user.uid});
     if (soldItem) {
         soldItem.quantity = req.body.quantity;
         soldItem.price = req.body.price;
@@ -53,9 +52,9 @@ router.put("/:id", async(req, res) => {
     return res.status(500).send({message: 'Error in updating item'});
 })
 
-router.delete("/:id", async(req, res) => {
+router.delete("/:id", isAuth, isSeller, async(req, res) => {
     const soldItemId = req.params.id;
-    const soldItem = await SoldBy.findOne({item: soldItemId, seller: req.user._id});
+    const soldItem = await SoldBy.findOne({item: soldItemId, seller: req.user.uid});
     if (soldItem) {
         await soldItem.remove();
         return res.send({message: 'Item successfully deleted'});

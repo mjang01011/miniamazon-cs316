@@ -50,7 +50,7 @@ router.get("/:id", async(req, res) => {
 //Posting, updating, deleting items (only accessible to sellers)
 
 //for new items
-router.post("/", async(req, res) => {
+router.post("/", isAuth, isSeller, async(req, res) => {
     const item = new Item({
         itemName: req.body.itemName,
         category: req.body.category,
@@ -59,13 +59,24 @@ router.post("/", async(req, res) => {
     });
     const newItem = await item.save();
     if (newItem) {
-        return res.status(201).send({message: 'New item successfully added', data: newItem});
+        const soldBy = new SoldBy({
+            item: newItem._id,
+            seller: req.user.uid,
+            quantity: req.body.quantity,
+            price: req.body.price,
+        })
+        const newSoldBy = await soldBy.save();
+        if (newSoldBy) {
+            return res.status(201).send({message: 'New item successfully added', data: newItem});
+        } else {
+            return res.status(500).send({message: 'Error in adding new item'});
+        }
     }
     return res.status(500).send({message: 'Error in adding new item'});
 })
 
 //for existing items
-router.post("/:id", async(req, res) => {
+router.post("/:id", isAuth, async(req, res) => {
     const itemId = req.params.id;
     const existingItem = await Item.findOne({_id: itemId});
     //If item does not exist, create one

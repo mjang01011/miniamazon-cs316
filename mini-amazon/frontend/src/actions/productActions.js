@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, {Component} from 'react';
-import ReactDOM from 'react-dom'; 
+import ReactDOM from 'react-dom';
 
 const { PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_LIST_FAIL, PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_DETAILS_FAIL, PRODUCT_SAVE_REQUEST,
     PRODUCT_SAVE_SUCCESS,
@@ -108,5 +108,6 @@ const saveProductReview = (productId, review) => async (dispatch, getState) => {
     dispatch({ type: PRODUCT_REVIEW_SAVE_FAIL, payload: error.message });
   }
 };
+
 
 export {listProducts, saveProduct, detailsProduct, listSellers, saveProductReview}

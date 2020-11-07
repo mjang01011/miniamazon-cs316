@@ -6,7 +6,7 @@ import Rating from '../components/Rating';
 import { PRODUCT_REVIEW_SAVE_RESET } from '../constants/productConstants';
 
 function ProductScreen(props){
-    const [rating, setRating] = useState(0);
+    const [rating, setRating] = useState(1);
     const [comment, setComment] = useState('');
     const [qty, setQty] = useState(1);
     // get user info for posting reviews
@@ -51,9 +51,9 @@ function ProductScreen(props){
           })
         );
       };
-        
+
     //list to hold other listings/sellers of the current product
-    var divs = []
+    let divs = []
     //added test data; remove later
     var o = {};
     o["seller"] = {"username": "reddevil"};
@@ -82,7 +82,6 @@ function ProductScreen(props){
         divs.sort((a, b) => (a.price > b.price) ? 1 : -1) //sort listings by ascending price
     }
     handleList(products);
-    console.log(divs); //list of sellers
 
     //function to handle outputting the list info
     //TODO: make it prettier or make it into components 
@@ -103,9 +102,9 @@ function ProductScreen(props){
     function handleReview(props){
         // handles undefined products case
         if(props !== undefined && props.reviews !== undefined){
-            return product.reviews.map((review) => (
+            return props.reviews.map((review) => (
                 <li key={review._id}>
-                <div>{review.name}</div>
+                <div>{review.authorId.fullName}</div>
                 <div>
                     <Rating value={review.rating}></Rating>
                 </div>
@@ -172,14 +171,14 @@ function ProductScreen(props){
                     <li>
                         Status: {product.inventory>0? "In stock" : "Out of stock" }
                     </li>
-                    <li>
+                    {product.inventory > 0 && <li>
                         {/*value that user selects is put in qty var*/}
                         Quantity: <select value={qty} onChange={(e)=>{setQty(e.target.value)}}>
                             {[...Array(product.inventory).keys()].map(x=>
                                 <option key={x+1} value={x+1}>{x+1}</option>)}
 
                         </select>
-                    </li>
+                    </li>}
                     <li>
                         {/* only show add to cart if item in stock*/}
                         {product.inventory>0 && <button onClick={handleAddToCart} className="button primary">

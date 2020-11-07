@@ -29,7 +29,7 @@ const signin = (email, password) => async (dispatch) => {
   try {
     const { data } = await Axios.post("/api/users/signin", { email, password });
     dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
-    Cookies.set('userInfo', JSON.stringify(data), { expires: 1 }); //if you close web app, data will be stored in browser cookie, expires in 1 day
+    Cookies.set('userInfo', JSON.stringify(data), { expires: 1/24 }); //if you close web app, data will be stored in browser cookie, expires in 1 hour
   } catch (error) {
     dispatch({ type: USER_SIGNIN_FAIL, payload: error.message });
   }
@@ -40,17 +40,14 @@ const register = (fullName, username, email, password, isSeller) => async (dispa
   try {
     const { data } = await Axios.post("/api/users/register", { fullName, username, email, password, isSeller });
     dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
-    Cookies.set('userInfo', JSON.stringify(data));
+    Cookies.set('userInfo', JSON.stringify(data), { expires: 1/24 }); //cookie expires in 1 hour
   } catch (error) {
     dispatch({ type: USER_REGISTER_FAIL, payload: error.message });
   }
 }
 
 const logout = () => (dispatch) => {
-  console.log(Cookies.get("userInfo"))
-  Cookies.remove("userInfo", { path: '/'});
-  console.log("after remove cookie");
-  console.log(Cookies.get("userInfo"))
+  Cookies.remove("userInfo");
   dispatch({ type: USER_LOGOUT })
 }
 
@@ -86,7 +83,7 @@ export const updateUserBalance = (user) => async (dispatch, getState) => {
     });
     dispatch({ type: USER_UPDATE_BALANCE_SUCCESS, payload: data });
     dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
-    localStorage.setItem('userInfo', JSON.stringify(data));
+    Cookies.set('userInfo', JSON.stringify(data));
   } catch (error) {
     const message =
       error.response && error.response.data.message

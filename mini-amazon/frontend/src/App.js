@@ -10,6 +10,7 @@ import ProfileScreen from './screens/ProfileScreen';
 import { useSelector } from 'react-redux';
 import SellerProductsScreen from './screens/SellerProductsScreen';
 import BalanceScreen from './screens/BalanceScreen';
+import TransactionScreen from "./screens/TransactionScreen";
 
 function App() {
   const userSignin = useSelector((state) => state.userSignin);
@@ -80,6 +81,7 @@ function App() {
                     <Route path="/cart/:id?" component={CartScreen}/> {/*id is optional; represents id of item in cart; route to cart */}
                     <Route path="/" exact={true} component={HomeScreen}/> {/*creates a route : default = homescreen*/}
                     <Route exact path="/register" component={RegisterScreen}/> {/*route to register screen*/}
+                    <Route path="/transaction" component={TransactionScreen} />  {/*route to transaction screen*/}
                 </div>
             </main>
         </div>

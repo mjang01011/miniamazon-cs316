@@ -22,6 +22,20 @@
     <list default="true" id="802ccfbf-113d-47b3-975a-3a468654391c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/routes/itemRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/itemRoute.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/routes/soldByRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/soldByRoute.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/routes/transactionRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/transactionRoute.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/actions/cartActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/actions/cartActions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/actions/productActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/actions/productActions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/actions/userActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/actions/userActions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/constants/cartConstants.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/constants/cartConstants.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/constants/productConstants.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/constants/productConstants.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/reducers/cartReducers.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/reducers/cartReducers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/reducers/productReducers.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/reducers/productReducers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/screens/CartScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/screens/CartScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/screens/ProductScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/screens/ProductScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/screens/ProfileScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/screens/ProfileScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/store.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +46,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -51,6 +66,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -85,7 +101,7 @@
       <workItem from="1603868491076" duration="30000" />
       <workItem from="1604237996314" duration="520000" />
       <workItem from="1604319454394" duration="5498000" />
-      <workItem from="1604717369371" duration="3037000" />
+      <workItem from="1604717369371" duration="26061000" />
     </task>
     <servers />
   </component>
@@ -109,9 +125,9 @@
       <screen x="-1920" y="84" width="1920" height="1057" />
     </state>
     <state x="-1222" y="333" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.810/-1920.84.1920.1057@-1920.84.1920.1057" timestamp="1602139164146" />
-    <state x="-1295" y="302" width="670" height="676" key="search.everywhere.popup" timestamp="1604722699212">
+    <state x="-1295" y="302" width="670" height="676" key="search.everywhere.popup" timestamp="1604748545628">
       <screen x="-1920" y="84" width="1920" height="990" />
     </state>
-    <state x="-1295" y="302" width="670" height="676" key="search.everywhere.popup/0.23.1440.877/-1920.84.1920.990@-1920.84.1920.990" timestamp="1604722699212" />
+    <state x="-1295" y="302" width="670" height="676" key="search.everywhere.popup/0.23.1440.877/-1920.84.1920.990@-1920.84.1920.990" timestamp="1604748545628" />
   </component>
 </project>
