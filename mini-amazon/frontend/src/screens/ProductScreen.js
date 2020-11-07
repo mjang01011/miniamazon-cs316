@@ -93,6 +93,20 @@ function ProductScreen(props){
                 <div>Seller: {seller.username}</div>,
                 <div>Price: ${price}</div>,
                 <div>Available: {quantity}</div>,
+                <li>
+                    {/*Quantity dropdown for the other sellers*/}
+                    Quantity: <select value={qty} onChange={(e)=>{setQty(e.target.value)}}>
+                        {[...Array(quantity).keys()].map(x=>
+                            <option key={x+1} value={x+1}>{x+1}</option>)}
+
+                    </select>
+                </li>,
+                <li>
+                    {/*Add to cart buttons for the other sellers*/}
+                    {quantity>0 && <button onClick={handleAddToCart} className="button primary">
+                        Add to cart
+                    </button>}
+                </li>,
             ]);
         })
     }
