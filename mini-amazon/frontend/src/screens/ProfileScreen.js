@@ -67,9 +67,6 @@ function ProfileScreen(props) {
             <button type="button" onClick={handleTransaction} className="button secondary full-width">Purchase History</button>
         </li>
         {userInfo.isSeller && <li>
-            <button type="button" onClick={()=>{}} className="button secondary full-width">Sales History</button>
-        </li>}
-        {userInfo.isSeller && <li>
             <button type="button" onClick={handleProducts} className="button secondary full-width">Add/Edit Products</button>
         </li>}
         <li>

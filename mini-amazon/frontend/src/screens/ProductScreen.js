@@ -31,7 +31,7 @@ function ProductScreen(props){
         // submit review
         if (productSaveSuccess) {
             alert('Review submitted successfully.');
-            setRating(0);
+            setRating(1);
             setComment('');
             dispatch({ type: PRODUCT_REVIEW_SAVE_RESET });
           }
@@ -43,9 +43,9 @@ function ProductScreen(props){
     // dispatch review
     const submitHandler = (e) => {
         e.preventDefault();
+        console.log(product);
         dispatch(
           saveProductReview(props.match.params.id, {
-            name: userInfo.name,
             rating: rating,
             comment: comment,
           })
@@ -92,6 +92,20 @@ function ProductScreen(props){
                 <div>Seller: {seller.username}</div>,
                 <div>Price: ${price}</div>,
                 <div>Available: {quantity}</div>,
+                <li>
+                    {/*Quantity dropdown for the other sellers*/}
+                    Quantity: <select value={qty} onChange={(e)=>{setQty(e.target.value)}}>
+                        {[...Array(quantity).keys()].map(x=>
+                            <option key={x+1} value={x+1}>{x+1}</option>)}
+
+                    </select>
+                </li>,
+                <li>
+                    {/*Add to cart buttons for the other sellers*/}
+                    {quantity>0 && <button onClick={handleAddToCart} className="button primary">
+                        Add to cart
+                    </button>}
+                </li>,
             ]);
         })
     }
@@ -104,7 +118,7 @@ function ProductScreen(props){
         if(props !== undefined && props.reviews !== undefined){
             return props.reviews.map((review) => (
                 <li key={review._id}>
-                <div>{review.authorId.fullName}</div>
+                <div><b>Reviewer: {review.authorId.username}</b></div>
                 <div>
                     <Rating value={review.rating}></Rating>
                 </div>
@@ -189,7 +203,7 @@ function ProductScreen(props){
             </div>
             <div className="review-action">
                 <h2><b>Reviews</b></h2>
-                {product.reviews !== undefined && <div>There are no reviews for this product.</div>}
+                {product.reviews !== undefined && <div>There are {product.reviews.length} reviews for this product.</div>}
                 <ul className="review" id="reviews">
                     {handleReview(product)}
                      <li>
