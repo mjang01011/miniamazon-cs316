@@ -94,7 +94,7 @@ const saveProductReview = (productId, review) => async (dispatch, getState) => {
     dispatch({ type: PRODUCT_REVIEW_SAVE_REQUEST, payload: review });
     const { data } = await axios.post(
       //`/api/products/${productId}/reviews`,
-      "/api/review/" + productId,
+      "/api/products/review/" + productId,
       review,
       {
         headers: {

@@ -87,7 +87,7 @@ const [modalVisible, setModalVisible] = useState(false);
         },
       })
       .then((response) => {
-        setImage(response.data);
+        setImage(response.data.fileLink);
         setUploading(false);
       })
       .catch((err) => {
