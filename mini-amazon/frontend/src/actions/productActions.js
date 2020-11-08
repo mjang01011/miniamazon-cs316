@@ -72,12 +72,14 @@ const detailsProduct = (productId) => async (dispatch) => {
 }
 //soldByRoute.js
 //gets list of seller's products
-const listSellerProducts = () => async(dispatch) => {
+const listSellerProducts = () => async(dispatch, getState) => {
   try{
     dispatch({type: SELLER_PRODUCT_LIST_REQUEST});
-    console.log("getting products from seller")
+    const { userSignin: { userInfo } } = getState();
     //call server with request for list of sellers that sell item by id
-    const {data} = await axios.get("/api/sells/");
+    const {data} = await axios.get("/api/sells/", {headers:
+            { Authorization: 'Bearer ' + userInfo.token }
+    });
     console.log(data);
 
     dispatch({type:SELLER_PRODUCT_LIST_SUCCESS, payload:data})

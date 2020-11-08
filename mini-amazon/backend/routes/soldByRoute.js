@@ -5,7 +5,7 @@ import { isAuth, isSeller } from '../util';
 const router = express.Router();
 
 //Get list of items sold by seller id
-router.get("/", isAuth, async(req, res) => {
+router.get("/", isAuth, isSeller, async(req, res) => {
     const sellList = await SoldBy.find({seller: req.user.uid}).populate('item');
     res.send(sellList);
 })
