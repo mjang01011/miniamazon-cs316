@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import {
   saveProduct,
+  listSellerProducts,
   listProducts//,
   //deleteProduct,
 } from '../actions/productActions';
@@ -40,7 +41,7 @@ const [modalVisible, setModalVisible] = useState(false);
     if (successSave) {
       setModalVisible(false);
     }
-    dispatch(listProducts());
+    dispatch(listSellerProducts());
     return () => {
       //
     };
@@ -219,7 +220,7 @@ const [modalVisible, setModalVisible] = useState(false);
             </tr>
           </thead>
           <tbody>
-          product stuff here
+          {products}
           </tbody>
         </table>
       </div>
