@@ -4,11 +4,8 @@ import { isAuth, isSeller } from '../util';
 
 const router = express.Router();
 
-//*** ALL endpoints here require isSeller authentication ***
-//TODO: Add back auths
-
 //Get list of items sold by seller id
-router.get("/", async(req, res) => {
+router.get("/", isAuth, async(req, res) => {
     const sellList = await SoldBy.find({seller: req.user.uid}).populate('item');
     res.send(sellList);
 })
