@@ -44,7 +44,7 @@ const saveProduct = (product) => async (dispatch, getState) => {
         });
         console.log("dispatching create product message");
         dispatch({ type: PRODUCT_SAVE_SUCCESS, payload: data }); //if successful authentication, dispatch data
-      } else {
+      } else {//already have product: edit product
         console.log("in save product: created product already"); //gets here
         const { data } = await axios.put(
           //'/api/products/' + product._id,
@@ -56,6 +56,7 @@ const saveProduct = (product) => async (dispatch, getState) => {
             },
           }
         );
+        console.log("before dispatch");//doesn't reach this either
         dispatch({ type: PRODUCT_SAVE_SUCCESS, payload: data });
         console.log("in save product: created product already -- hopefully saved product"); //does not get here!!!
       }
