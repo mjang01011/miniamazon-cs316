@@ -16,7 +16,7 @@ const [modalVisible, setModalVisible] = useState(false); //hide create product f
   const [image, setImage] = useState('');
   const [brand, setBrand] = useState('');
   const [category, setCategory] = useState('');
-  const [inventory, setInventory] = useState('');
+  const [quantity, setInventory] = useState('');
   const [description, setDescription] = useState('');
   const [uploading, setUploading] = useState(false);
   //const productList = useSelector((state) => state.productList);
@@ -53,13 +53,14 @@ const [modalVisible, setModalVisible] = useState(false); //hide create product f
   const openModal = (product) => { //open the create product form
     setModalVisible(true);
     setId(product._id);
-    setItemName(product.itemName);
+    //if product exists, do .item if not, don;t
+    setItemName( product ? product.item.itemName : '');
     setPrice(product.price);
-    setDescription(product.description);
-    setImage(product.image);
-    setBrand(product.brand);
-    setCategory(product.category);
-    setInventory(product.inventory);
+    setDescription(product ? product.item.description : '');
+    setImage((product ? product.item.image : ''));
+    //setBrand(product.item.brand);
+    setCategory((product ? product.item.category : ''));
+    setInventory(product.quantity);
   };
   const submitHandler = (e) => { //save the product when seller adds it
     e.preventDefault();
@@ -71,7 +72,7 @@ const [modalVisible, setModalVisible] = useState(false); //hide create product f
         image,
         brand,
         category,
-        inventory: inventory,
+        quantity: quantity,
         description,
       })
     );
@@ -168,7 +169,7 @@ const [modalVisible, setModalVisible] = useState(false); //hide create product f
                 <input
                   type="text"
                   name="inventory"
-                  value={inventory}
+                  value={quantity}
                   id="inventory"
                   onChange={(e) => setInventory(e.target.value)}
                 ></input>
@@ -230,6 +231,7 @@ const [modalVisible, setModalVisible] = useState(false); //hide create product f
               <tr key={product._id}>
                 <td>{product._id}</td>
                 <td>{product.item.itemName}</td>
+                {/* need to go into item obj first to get more attributes */}
                 <td>{product.price}</td>
                 <td>{product.item.category}</td>
                 <td>

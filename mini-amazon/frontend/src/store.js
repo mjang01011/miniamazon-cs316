@@ -21,6 +21,7 @@ cart: { cartItems, shipping: {}, payment: {} },
 userSignin: { userInfo },
 };
 
+
 const reducer = combineReducers({
     sellerProductList: sellerProductListReducer,
     productList: productListReducer, 

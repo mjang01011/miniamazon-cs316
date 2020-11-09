@@ -56,7 +56,7 @@ const saveProduct = (product) => async (dispatch, getState) => {
             },
           }
         );
-        console.log("before dispatch");//doesn't reach this either
+        console.log("in save product: before dispatch");//doesn't reach this either
         dispatch({ type: PRODUCT_SAVE_SUCCESS, payload: data });
         console.log("in save product: created product already -- hopefully saved product"); //does not get here!!!
       }
