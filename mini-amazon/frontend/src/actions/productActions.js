@@ -6,7 +6,7 @@ const { SELLER_PRODUCT_LIST_REQUEST, SELLER_PRODUCT_LIST_SUCCESS, SELLER_PRODUCT
     PRODUCT_SAVE_SUCCESS,
     PRODUCT_SAVE_FAIL, SELLER_LIST_FAIL, SELLER_LIST_REQUEST, SELLER_LIST_SUCCESS, PRODUCT_REVIEW_SAVE_REQUEST, PRODUCT_REVIEW_SAVE_SUCCESS, PRODUCT_REVIEW_SAVE_FAIL} = require("../constants/productConstants")
 
-//make function called listProduct
+//make function called listProduct : lists all products
 const listProducts = (searchKeyword = "", sortOrder = "") => async (dispatch) => {
     try{
         //call api
@@ -27,15 +27,17 @@ const listProducts = (searchKeyword = "", sortOrder = "") => async (dispatch) =>
 }
 
 const saveProduct = (product) => async (dispatch, getState) => {
+  console.log("in save product");//okay so it does successfully get here
     try {
+      console.log("in save product try");//okay so it does successfully get here
       dispatch({ type: PRODUCT_SAVE_REQUEST, payload: product });
       const {
         userSignin: { userInfo },
       } = getState();
       if (!product._id) { //ensure we only create new product if it doesn't exist yet (when updating)
+        console.log("in save product: not created product yet");
         //const { data } = await axios.post('/api/products', product, {
         const { data } = await axios.post('/api/sells', product, {
-          
           headers: {
             Authorization: 'Bearer ' + userInfo.token, //make sure user token is authorized to do this request, gotten by getState()
           },
@@ -43,6 +45,7 @@ const saveProduct = (product) => async (dispatch, getState) => {
         console.log("dispatching create product message");
         dispatch({ type: PRODUCT_SAVE_SUCCESS, payload: data }); //if successful authentication, dispatch data
       } else {
+        console.log("in save product: created product already"); //gets here
         const { data } = await axios.put(
           //'/api/products/' + product._id,
           '/api/sells/' + product._id,
@@ -54,6 +57,7 @@ const saveProduct = (product) => async (dispatch, getState) => {
           }
         );
         dispatch({ type: PRODUCT_SAVE_SUCCESS, payload: data });
+        console.log("in save product: created product already -- hopefully saved product"); //does not get here!!!
       }
     } catch (error) {
         console.log(error.message);

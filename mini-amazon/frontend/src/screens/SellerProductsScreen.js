@@ -3,12 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import {
   saveProduct,
-<<<<<<< HEAD
-  listProducts,
-=======
   listSellerProducts,
-  listProducts//,
->>>>>>> 87edb0f66d1337d46e8a7600c6063d08c06131d8
+  listProducts,
   //deleteProduct,
 } from '../actions/productActions';
 
@@ -45,7 +41,8 @@ const [modalVisible, setModalVisible] = useState(false); //hide create product f
     if (successSave) {
       setModalVisible(false);
     }
-    dispatch(listSellerProducts());
+    dispatch(listSellerProducts()); //unfortunately there are no products attached to sellers yet?
+    dispatch(listProducts()); //this lists all products; 
     return () => {
       //
     };
@@ -226,7 +223,7 @@ const [modalVisible, setModalVisible] = useState(false); //hide create product f
             </tr>
           </thead>
           <tbody>
-<<<<<<< HEAD
+          {/* {products} */}
           {products.map((product) => (
               <tr key={product._id}>
                 <td>{product._id}</td>
@@ -248,9 +245,7 @@ const [modalVisible, setModalVisible] = useState(false); //hide create product f
                 </td>
               </tr>
             ))}
-=======
-          {products}
->>>>>>> 87edb0f66d1337d46e8a7600c6063d08c06131d8
+
           </tbody>
         </table>
       </div>
