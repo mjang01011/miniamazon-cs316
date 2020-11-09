@@ -54,7 +54,13 @@ const [modalVisible, setModalVisible] = useState(false); //hide create product f
     setModalVisible(true);
     setId(product._id);
     //if product exists, do .item if not, don;t
-    setItemName( product ? product.item.itemName : '');
+    if (product !== undefined){
+      setItemName(product.item.itemName);
+    }
+    else {
+      setItemName(product.itemName);
+    }
+   //setItemName( product === undefined ? '' : product.item.itemName);
     setPrice(product.price);
     setDescription(product ? product.item.description : '');
     setImage((product ? product.item.image : ''));
@@ -62,6 +68,8 @@ const [modalVisible, setModalVisible] = useState(false); //hide create product f
     setCategory((product ? product.item.category : ''));
     setInventory(product.quantity);
   };
+
+  
   const submitHandler = (e) => { //save the product when seller adds it
     e.preventDefault();
     dispatch(
