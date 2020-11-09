@@ -14,15 +14,14 @@ function ProfileScreen(props) {
     const userSignin = useSelector((state) => state.userSignin);
     const { userInfo } = userSignin;
     const userDetails = useSelector((state) => state.userDetails);
-    var seller = "User";
-    if(userInfo.isSeller == true){
-      seller = "Seller";
-    }
     const { user } = userDetails;
     const dispatch = useDispatch();
     const handleBalance = () => {
      props.history.push("/balance");
-    } 
+    }
+    const handleTransaction = () => {
+        props.history.push("/transaction");
+    }
     const handleProducts = () => {
       props.history.push("/products");
     }
@@ -57,19 +56,19 @@ function ProfileScreen(props) {
           </h1>
         </li>
         <li>
-          <h1>
-            Balance: ${userInfo.balance}
+            <h1>
+                Balance: ${userInfo.balance.toFixed(2)}
+            </h1>
+        </li>
+        <li>
             <button type="button" onClick={handleBalance} className="button secondary full-width">Add Balance</button>
-          </h1>
         </li>
         <li>
-          <h1>
-            Status: {seller}
-          </h1>
+            <button type="button" onClick={handleTransaction} className="button secondary full-width">Purchase History</button>
         </li>
-        <li>
+        {userInfo.isSeller && <li>
             <button type="button" onClick={handleProducts} className="button secondary full-width">Add/Edit Products</button>
-        </li>
+        </li>}
         <li>
             <button type="button" onClick={handleLogout} className="button secondary full-width">Logout</button>
         </li>

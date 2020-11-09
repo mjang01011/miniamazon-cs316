@@ -1,0 +1,17 @@
+.order-box {
+    margin: 20px;
+    border: solid black 1px;
+    padding: 10px;
+}
+
+.order-image {
+    height: 150px;
+    width: 150px;
+}
+
+.order-box .individual-item {
+    margin: 20px;
+    border: solid black 1px;
+    padding: 10px;
+    background-color: antiquewhite;
+}

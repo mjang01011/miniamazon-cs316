@@ -73,5 +73,5 @@ function productReviewSaveReducer(state = {}, action) {
       default:
         return state;
     }
-  }
+}
 export {sellerDetailsReducer, productListReducer, productDetailsReducer, productSaveReducer, productReviewSaveReducer}

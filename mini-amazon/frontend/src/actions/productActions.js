@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, {Component} from 'react';
-import ReactDOM from 'react-dom'; 
+import ReactDOM from 'react-dom';
 
-const { PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_LIST_FAIL, PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_DETAILS_FAIL, PRODUCT_SAVE_REQUEST,
+const { SELLER_PRODUCT_LIST_REQUEST, SELLER_PRODUCT_LIST_SUCCESS, SELLER_PRODUCT_LIST_FAIL, PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_LIST_FAIL, PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_DETAILS_FAIL, PRODUCT_SAVE_REQUEST,
     PRODUCT_SAVE_SUCCESS,
     PRODUCT_SAVE_FAIL, SELLER_LIST_FAIL, SELLER_LIST_REQUEST, SELLER_LIST_SUCCESS, PRODUCT_REVIEW_SAVE_REQUEST, PRODUCT_REVIEW_SAVE_SUCCESS, PRODUCT_REVIEW_SAVE_FAIL} = require("../constants/productConstants")
 
@@ -33,7 +33,9 @@ const saveProduct = (product) => async (dispatch, getState) => {
         userSignin: { userInfo },
       } = getState();
       if (!product._id) { //ensure we only create new product if it doesn't exist yet (when updating)
-        const { data } = await axios.post('/api/products', product, {
+        //const { data } = await axios.post('/api/products', product, {
+        const { data } = await axios.post('/api/sells', product, {
+          
           headers: {
             Authorization: 'Bearer ' + userInfo.token, //make sure user token is authorized to do this request, gotten by getState()
           },
@@ -42,7 +44,8 @@ const saveProduct = (product) => async (dispatch, getState) => {
         dispatch({ type: PRODUCT_SAVE_SUCCESS, payload: data }); //if successful authentication, dispatch data
       } else {
         const { data } = await axios.put(
-          '/api/products/' + product._id,
+          //'/api/products/' + product._id,
+          '/api/sells/' + product._id,
           product,
           {
             headers: {
@@ -64,11 +67,31 @@ const detailsProduct = (productId) => async (dispatch) => {
        dispatch({type: PRODUCT_DETAILS_REQUEST,payload: productId});
        // get product data from server
        const {data} = await axios.get("/api/products/" + productId);
+       console.log(data);
        dispatch({type:PRODUCT_DETAILS_SUCCESS, payload:data})
     } catch (error) {
         dispatch({type:PRODUCT_DETAILS_FAIL, payload: error.message});
     }
 }
+//soldByRoute.js
+//gets list of seller's products
+const listSellerProducts = () => async(dispatch, getState) => {
+  try{
+    dispatch({type: SELLER_PRODUCT_LIST_REQUEST});
+    const { userSignin: { userInfo } } = getState();
+    //call server with request for list of sellers that sell item by id
+    const {data} = await axios.get("/api/sells/", {headers:
+            { Authorization: 'Bearer ' + userInfo.token }
+    });
+    console.log(data);
+
+    dispatch({type:SELLER_PRODUCT_LIST_SUCCESS, payload:data})
+  }
+  catch(error){
+    dispatch({type: SELLER_PRODUCT_LIST_FAIL, payload: error.message});
+  }
+}
+
 //soldByRoute.js
 //gets seller list by product id when on product detail page
 const listSellers = (productId) => async(dispatch) => {
@@ -94,7 +117,7 @@ const saveProductReview = (productId, review) => async (dispatch, getState) => {
     dispatch({ type: PRODUCT_REVIEW_SAVE_REQUEST, payload: review });
     const { data } = await axios.post(
       //`/api/products/${productId}/reviews`,
-      "/api/review/" + productId,
+      "/api/products/review/" + productId,
       review,
       {
         headers: {
@@ -109,4 +132,5 @@ const saveProductReview = (productId, review) => async (dispatch, getState) => {
   }
 };
 
-export {listProducts, saveProduct, detailsProduct, listSellers, saveProductReview}
+
+export {listProducts, saveProduct, detailsProduct, listSellerProducts, listSellers, saveProductReview}
