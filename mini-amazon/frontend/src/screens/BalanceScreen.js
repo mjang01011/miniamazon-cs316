@@ -10,21 +10,24 @@ function BalanceScreen(props) {
     const { userInfo } = userSignin;
     const userDetails = useSelector((state) => state.userDetails);
     const userUpdateBalance = useSelector((state) => state.userUpdateBalance);
-    const { user } = userDetails;
+    // const { loading, success, error } = userUpdateBalance;
+    // const { user } = userDetails;
     const dispatch = useDispatch();
     const submitHandler = (e) => {
         e.preventDefault();
         if (balance <= 0) {
-            alert("Try Again");
+            alert("Try Again. Invalid Number.");
         } 
         else {
-            dispatch(updateUserBalance({ userId: user._id, balance }));
+            dispatch(updateUserBalance({ balance }));
+            props.history.push("/profile");
         }
   };
     return <div className="addbalance" >
+      <form onSubmit={submitHandler} >
         <li>
           <h1>
-            Current Balance: ${userInfo.balance}
+            Current Balance: ${userInfo.balance.toFixed(2)}
           </h1>
         </li>
         <li>
@@ -38,9 +41,10 @@ function BalanceScreen(props) {
         </li>
         <li>
           <h1>
-            <button type="submit" onSubmit={submitHandler} className="button secondary full-width">Proceed</button>
+            <button type="submit" className="button secondary full-width">Proceed</button>
           </h1>
         </li>
+      </form>
   </div>
 }
 

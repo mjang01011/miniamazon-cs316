@@ -29,11 +29,7 @@ function userSigninReducer(state = {}, action) {
     }
   }
 
-  export {
-      userSigninReducer, userRegisterReducer
-  }
-
-  export const userDetailsReducer = (state = { loading: true }, action) => {
+  const userDetailsReducer = (state = { loading: true }, action) => {
     switch (action.type) {
       case USER_DETAILS_REQUEST:
         return { loading: true };
@@ -44,9 +40,9 @@ function userSigninReducer(state = {}, action) {
       default:
         return state;
     }
-  };
+  }
 
-  export const userUpdateBalanceReducer = (state = {}, action) => {
+  const userUpdateBalanceReducer = (state = {}, action) => {
     switch (action.type) {
       case USER_UPDATE_BALANCE_REQUEST:
         return { loading: true };
@@ -57,4 +53,8 @@ function userSigninReducer(state = {}, action) {
       default:
         return state;
     }
-  };
+  }
+
+  export {
+    userSigninReducer, userRegisterReducer, userDetailsReducer, userUpdateBalanceReducer
+}

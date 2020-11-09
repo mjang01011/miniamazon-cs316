@@ -1,20 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { logout } from '../actions/userActions';
+import { logout, detailsUser } from '../actions/userActions';
 import { useDispatch, useSelector } from 'react-redux';
 
 
 function ProfileScreen(props) {
-    // const [fullName, setFullName] = useState('');
-    // const [username, setUserName] = useState('');
-    // const [email, setEmail] = useState('');
-    // const [password, setPassword] = useState('');
-    // const [balance, setBalance] = useState('');
-    // const [isSeller, setisSeller] = useState('');
     const userSignin = useSelector((state) => state.userSignin);
     const { userInfo } = userSignin;
     const userDetails = useSelector((state) => state.userDetails);
-    const { user } = userDetails;
+    // const { user } = userDetails;
     const dispatch = useDispatch();
     const handleBalance = () => {
      props.history.push("/balance");
@@ -32,7 +26,7 @@ function ProfileScreen(props) {
     return <div className="profile">
         <li>
           <h1>
-            Avatar:
+            Avatar: 
           </h1>
         </li>
         <li>
