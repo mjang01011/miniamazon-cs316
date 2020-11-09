@@ -229,10 +229,9 @@ const [modalVisible, setModalVisible] = useState(false); //hide create product f
           {sellerProducts.map((product) => (
               <tr key={product._id}>
                 <td>{product._id}</td>
-                <td>{product.itemName}</td>
+                <td>{product.item.itemName}</td>
                 <td>{product.price}</td>
-                <td>{product.category}</td>
-                <td>{product.brand}</td>
+                <td>{product.item.category}</td>
                 <td>
                   {/* open create product form with exact product to be edited */}
                   <button className="button" onClick={() => openModal(product)}>
