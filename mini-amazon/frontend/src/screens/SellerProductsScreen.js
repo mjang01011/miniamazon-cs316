@@ -19,8 +19,10 @@ const [modalVisible, setModalVisible] = useState(false); //hide create product f
   const [inventory, setInventory] = useState('');
   const [description, setDescription] = useState('');
   const [uploading, setUploading] = useState(false);
-  const productList = useSelector((state) => state.productList);
-  const { loading, products, error } = productList; //get elements from productList element
+  //const productList = useSelector((state) => state.productList);
+  const sellerProductList = useSelector((state) => state.sellerProductList);
+  //const { loading, products, error } = productList; //get elements from productList element
+  const { loading, sellerProducts, error } = sellerProductList;//list of products for each sellers
 
   const productSave = useSelector((state) => state.productSave);
   const {
@@ -42,7 +44,7 @@ const [modalVisible, setModalVisible] = useState(false); //hide create product f
       setModalVisible(false);
     }
     dispatch(listSellerProducts()); //unfortunately there are no products attached to sellers yet?
-    dispatch(listProducts()); //this lists all products; 
+    //dispatch(listProducts()); //this lists all products; 
     return () => {
       //
     };
@@ -223,8 +225,8 @@ const [modalVisible, setModalVisible] = useState(false); //hide create product f
             </tr>
           </thead>
           <tbody>
-          {/* {products} */}
-          {products.map((product) => (
+
+          {sellerProducts.map((product) => (
               <tr key={product._id}>
                 <td>{product._id}</td>
                 <td>{product.itemName}</td>
