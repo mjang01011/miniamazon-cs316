@@ -31,6 +31,7 @@ const register = (fullName, username, email, password, isSeller) => async (dispa
 
 const logout = () => (dispatch) => {
   Cookies.remove("userInfo");
+  Cookies.remove("cartItems");
   dispatch({ type: USER_LOGOUT })
 }
 

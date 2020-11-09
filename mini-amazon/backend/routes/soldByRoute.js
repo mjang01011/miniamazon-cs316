@@ -22,7 +22,7 @@ router.get("/:id", async(req, res) => {
 router.post("/cart", isAuth, isSeller, async(req, res) => {
     const seller = req.body.seller;
     const item = req.body.item;
-    const sellList = await SoldBy.findOne({seller: seller, item: item}).populate('item');
+    const sellList = await SoldBy.findOne({seller: seller, item: item}).populate('item').populate('seller');
     res.send(sellList);
 })
 

@@ -23,8 +23,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/routes/soldByRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/soldByRoute.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/actions/cartActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/actions/cartActions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/actions/userActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/actions/userActions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/screens/CartScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/screens/CartScreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/screens/ProductScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/screens/ProductScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/store.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,6 +94,7 @@
       <workItem from="1604717369371" duration="26497000" />
       <workItem from="1604765646536" duration="681000" />
       <workItem from="1604803253814" duration="300000" />
+      <workItem from="1604938879033" duration="690000" />
     </task>
     <servers />
   </component>

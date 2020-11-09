@@ -20,14 +20,14 @@ const addToCart = (productId, seller, qty) => async (dispatch, getState) => { //
             image: data.item.image,
             price: data.price,
             inventory: data.quantity,
-            seller: seller,
+            seller: data.seller,
             qty: qty, //number of items in cart for specific product
       }
     });
     //get access to cart items
     const { cart: { cartItems } } = getState();
     //save cart items into the cookie
-    //Cookie.set("cartItems", JSON.stringify(cartItems));
+    Cookie.set("cartItems", JSON.stringify(cartItems), {expires: 1/24});
   } catch (error) {
     console.log(error);
   }
@@ -37,7 +37,7 @@ const removeFromCart = (productId) => (dispatch, getState) => {
     dispatch({ type: REMOVE_ITEM_CART, payload: productId });
     //remove the items from cookie
     const { cart: { cartItems } } = getState();
-   //Cookie.set("cartItems", JSON.stringify(cartItems), {expires: new Date(new Date().getTime() + 60 * 1000)});
+   Cookie.set("cartItems", JSON.stringify(cartItems), {expires: 1/24});
 }
 
 const createTransaction = (transaction) => async (dispatch, getState) => {

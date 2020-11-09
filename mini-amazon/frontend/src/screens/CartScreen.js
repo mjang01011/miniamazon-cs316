@@ -21,7 +21,6 @@ function CartScreen(props) {
 
   const transactionCreate = useSelector(state => state.transactionCreate);
   const { loading, success, error, transaction } = transactionCreate;
-
   useEffect(() => {
     if (productId) {//if productId exists
       dispatch(addToCart(productId, seller, qty)); //dispatch action add to cart
@@ -34,10 +33,7 @@ function CartScreen(props) {
   }, [success]); //only run command after rendering has been done
 
   const checkoutHandler = async () => {
-    dispatch(createTransaction({
-      cartItems: cartItems.map(item => {item["seller"] = "5f885898af49bc1071eea5b4"; return item;}), //for testing
-    }));
-
+    dispatch(createTransaction({cartItems: cartItems}));
   };
 
   return <div className="cart">
@@ -71,6 +67,9 @@ function CartScreen(props) {
                     {item.name} 
                   </Link>
 
+                </div>
+                <div>
+                  Sold By: {item.seller.username}
                 </div>
                 <div>
                   Qty: 

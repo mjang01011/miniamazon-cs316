@@ -10,17 +10,14 @@ import {
 } from './reducers/userReducers';
 import Cookie from 'js-cookie';
 
-// const cartItems = Cookie.getJSON("cartItems") || []; //if no cart items, set empty array
+const cartItems = Cookie.getJSON("cartItems") || []; //if no cart items, set empty array
 const userInfo = Cookie.getJSON("userInfo") || null; //get userInfo from Cookie
-const cartItems = [];
-
 
 //create initial state on the item that comes from the cookie
 const initialState = {//default states
 cart: { cartItems, shipping: {}, payment: {} },
 userSignin: { userInfo },
 };
-
 
 const reducer = combineReducers({
     sellerProductList: sellerProductListReducer,
