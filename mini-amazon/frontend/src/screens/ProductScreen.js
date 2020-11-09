@@ -9,6 +9,7 @@ function ProductScreen(props){
     const [rating, setRating] = useState(1);
     const [comment, setComment] = useState('');
     const [qty, setQty] = useState(1);
+
     // get user info for posting reviews
     const userSignin = useSelector((state) => state.userSignin);
     const { userInfo } = userSignin;
@@ -54,20 +55,20 @@ function ProductScreen(props){
 
     //list to hold other listings/sellers of the current product
     let divs = []
-    //added test data; remove later
-    var o = {};
-    o["seller"] = {"username": "reddevil"};
-    o["price"] = 9999;
-    o["quantity"] = 8;
-    o["item"] = "testitemid";
-    divs.push(o);
-
-    var ob = {};
-    ob["seller"] = {"username": "testuser123"};
-    ob["price"] = 250;
-    ob["quantity"] = 3;
-    ob["item"] = "itemid";
-    divs.push(ob);
+    // //added test data; remove later
+    // var o = {};
+    // o["seller"] = {"username": "reddevil"};
+    // o["price"] = 9999;
+    // o["quantity"] = 8;
+    // o["item"] = "testitemid";
+    // divs.push(o);
+    //
+    // var ob = {};
+    // ob["seller"] = {"username": "testuser123"};
+    // ob["price"] = 250;
+    // ob["quantity"] = 3;
+    // ob["item"] = "itemid";
+    // divs.push(ob);
 
     function handleList(props){
         for (var sellerIndex in props) {
@@ -102,15 +103,16 @@ function ProductScreen(props){
                 </li>,
                 <li>
                     {/*Add to cart buttons for the other sellers*/}
-                    {quantity>0 && <button onClick={handleAddToCart} className="button primary">
+                    {quantity>0 && <button onClick={() => handleAddToCart(seller._id)} className="button primary">
                         Add to cart
                     </button>}
                 </li>,
             ]);
         })
     }
-    const handleAddToCart = () => {
-        props.history.push("/cart/" + props.match.params.id + "?qty=" + qty)
+    const handleAddToCart = (seller) => {
+        console.log(seller.target);
+        props.history.push("/cart/" + props.match.params.id + "?qty=" + qty + "&seller=" + seller);
     }
 
     function handleReview(props){
@@ -145,14 +147,11 @@ function ProductScreen(props){
                 <ul>
                     <li>
                         <h3>
-                            {product.name}
+                            {product.itemName}
                         </h3>
                     </li>
                     <li>
                         {product.avgRating} stars ({product.reviews && product.reviews.length} ratings)
-                    </li>
-                    <li>
-                        <b>Price: ${product.price}</b>
                     </li>
                     <li>
                         <b>Description: </b>
@@ -169,38 +168,38 @@ function ProductScreen(props){
                     </li>
                 </ul>
             </div>
-            <div className="details-action">
-                <ul>
-                    <li>
-                    <a href="#reviews">
-                        <Rating
-                        value={product.rating}
-                        text={product.numReviews + ' reviews'}
-                        />
-                    </a>
-                    </li>
-                    <li>
-                        Price: ${product.price}
-                    </li>
-                    <li>
-                        Status: {product.inventory>0? "In stock" : "Out of stock" }
-                    </li>
-                    {product.inventory > 0 && <li>
-                        {/*value that user selects is put in qty var*/}
-                        Quantity: <select value={qty} onChange={(e)=>{setQty(e.target.value)}}>
-                            {[...Array(product.inventory).keys()].map(x=>
-                                <option key={x+1} value={x+1}>{x+1}</option>)}
+            {/*<div className="details-action">*/}
+            {/*    <ul>*/}
+            {/*        <li>*/}
+            {/*        <a href="#reviews">*/}
+            {/*            <Rating*/}
+            {/*            value={product.rating}*/}
+            {/*            text={product.numReviews + ' reviews'}*/}
+            {/*            />*/}
+            {/*        </a>*/}
+            {/*        </li>*/}
+                    {/*<li>*/}
+                    {/*    Price: ${product.price}*/}
+                    {/*</li>*/}
+                    {/*<li>*/}
+                    {/*    Status: {product.inventory>0? "In stock" : "Out of stock" }*/}
+                    {/*</li>*/}
+                    {/*{product.inventory > 0 && <li>*/}
+                    {/*    /!*value that user selects is put in qty var*!/*/}
+                    {/*    Quantity: <select value={qty} onChange={(e)=>{setQty(e.target.value)}}>*/}
+                    {/*        {[...Array(product.inventory).keys()].map(x=>*/}
+                    {/*            <option key={x+1} value={x+1}>{x+1}</option>)}*/}
 
-                        </select>
-                    </li>}
-                    <li>
-                        {/* only show add to cart if item in stock*/}
-                        {product.inventory>0 && <button onClick={handleAddToCart} className="button primary">
-                            Add to cart
-                        </button>}
-                    </li>
-                </ul>
-            </div>
+                    {/*    </select>*/}
+                    {/*</li>}*/}
+                    {/*<li>*/}
+                    {/*    /!* only show add to cart if item in stock*!/*/}
+                    {/*    {product.inventory>0 && <button onClick={handleAddToCart} className="button primary">*/}
+                    {/*        Add to cart*/}
+                    {/*    </button>}*/}
+                    {/*</li>*/}
+            {/*    </ul>*/}
+            {/*</div>*/}
             <div className="review-action">
                 <h2><b>Reviews</b></h2>
                 {product.reviews !== undefined && <div>There are {product.reviews.length} reviews for this product.</div>}

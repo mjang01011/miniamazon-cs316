@@ -11,7 +11,9 @@ function CartScreen(props) {
   const productId = props.match.params.id; //get product id
   //get quantity selected from Qty dropdown in frontend--if there is a quantity existing, 
   //get the element to the right of the equal sign (will see qty=x); if not exist, put 1
-  const qty = props.location.search ? Number(props.location.search.split("=")[1]) : 1; 
+  const query = props.location.search.split("&");
+  const qty = query[0] ? Number(query[0].split("=")[1]) : 1;
+  const seller = query[1] ? query[1].split("=")[1] : "";
   const dispatch = useDispatch();
   const removeFromCartHandler = (productId) => { //called when click on remove from cart button
     dispatch(removeFromCart(productId)); //dispatch action removeFromCart in cartActions.js
@@ -22,7 +24,7 @@ function CartScreen(props) {
 
   useEffect(() => {
     if (productId) {//if productId exists
-      dispatch(addToCart(productId, qty)); //dispatch action add to cart
+      dispatch(addToCart(productId, seller, qty)); //dispatch action add to cart
     };
 
     if (success) {
@@ -73,7 +75,7 @@ function CartScreen(props) {
                 <div>
                   Qty: 
                   {/*updates the cart subtotal when quantity is changed*/}
-                <select value={item.qty} onChange={(e) => dispatch(addToCart(item.product, e.target.value))}>
+                <select value={item.qty} onChange={(e) => dispatch(addToCart(item.product, item.seller, e.target.value))}>
                     {[...Array(item.inventory).keys()].map(x =>
                       <option key={x + 1} value={x + 1}>{x + 1}</option> 
                     )}
