@@ -1,18 +1,19 @@
 import express from 'express';
 import SoldBy from "../models/soldByModel";
 import { isAuth, isSeller } from '../util';
+import sanitize from 'mongo-sanitize';
 
 const router = express.Router();
 
 //Get list of items sold by seller id
 router.get("/", isAuth, isSeller, async(req, res) => {
-    const sellList = await SoldBy.find({seller: req.user.uid}).populate('item');
+    const sellList = await SoldBy.find({seller: sanitize(req.user.uid)}).populate('item');
     res.send(sellList);
 })
 
 //Get list of sellers that sell an item by item id
 router.get("/:id", async(req, res) => {
-    const soldItemId = req.params.id;
+    const soldItemId = sanitize(req.params.id);
     //added additional fields to populate
     const sellerList = await SoldBy.find({item: soldItemId}).populate('seller');
     res.send(sellerList);
@@ -20,15 +21,15 @@ router.get("/:id", async(req, res) => {
 
 //Get specific sold by item by seller id and item id
 router.post("/cart", isAuth, isSeller, async(req, res) => {
-    const seller = req.body.seller;
-    const item = req.body.item;
+    const seller = sanitize(req.body.seller);
+    const item = sanitize(req.body.item);
     const sellList = await SoldBy.findOne({seller: seller, item: item}).populate('item').populate('seller');
     res.send(sellList);
 })
 
 //Allow seller to add item to seller list for the first time
 router.post("/", isAuth, isSeller, async(req, res) => {
-    const soldItemId = req.params.id;
+    const soldItemId = sanitize(req.params.id);
     const soldBy = new SoldBy({
         item: soldItemId,
         seller: req.user.uid,
@@ -44,8 +45,8 @@ router.post("/", isAuth, isSeller, async(req, res) => {
 
 //Allow seller to amend item stock and price
 router.put("/:id", isAuth, isSeller, async(req, res) => {
-    const soldItemId = req.params.id;
-    const soldItem = await SoldBy.findOne({item: soldItemId, seller: req.user.uid});
+    const soldItemId = sanitize(req.params.id);
+    const soldItem = await SoldBy.findOne({item: soldItemId, seller: sanitize(req.user.uid)});
     if (soldItem) {
         soldItem.quantity = req.body.quantity;
         soldItem.price = req.body.price;
@@ -58,8 +59,8 @@ router.put("/:id", isAuth, isSeller, async(req, res) => {
 })
 
 router.delete("/:id", isAuth, isSeller, async(req, res) => {
-    const soldItemId = req.params.id;
-    const soldItem = await SoldBy.findOne({item: soldItemId, seller: req.user.uid});
+    const soldItemId = sanitize(req.params.id);
+    const soldItem = await SoldBy.findOne({item: soldItemId, seller: sanitize(req.user.uid)});
     if (soldItem) {
         await soldItem.remove();
         return res.send({message: 'Item successfully deleted'});

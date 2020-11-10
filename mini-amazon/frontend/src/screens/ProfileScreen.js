@@ -41,11 +41,6 @@ function ProfileScreen(props) {
         </li>
         <li>
           <h1>
-            Password: {userInfo.password}
-          </h1>
-        </li>
-        <li>
-          <h1>
             Email:  {userInfo.email}         
           </h1>
         </li>

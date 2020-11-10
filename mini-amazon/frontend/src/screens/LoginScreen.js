@@ -34,7 +34,7 @@ function SigninScreen(props) {
         </li>
         <li>
           {loading && <div>Loading...</div>}
-          {error && <div>{error}</div>}
+          {error && <div style={{color: "red"}}>Incorrect email and password combination. Please try again.</div>}
         </li>
         <li>
             {/* email box and password box */}

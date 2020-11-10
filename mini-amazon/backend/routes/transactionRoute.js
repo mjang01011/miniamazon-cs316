@@ -3,12 +3,13 @@ import Transaction from "../models/transactionModel";
 import SoldBy from "../models/soldByModel";
 import User from "../models/userModel"
 import { isAuth } from '../util';
+import sanitize from 'mongo-sanitize';
 
 const router = express.Router();
 
 //Get user's list of transactions
 router.get("/", isAuth, async(req, res) => {
-    const transactions = await Transaction.find({buyerId: req.user.uid}).populate('transactedItems.item transactedItems.seller');
+    const transactions = await Transaction.find({buyerId: sanitize(req.user.uid)}).populate('transactedItems.item transactedItems.seller');
     res.send(transactions);
 })
 
@@ -19,24 +20,24 @@ router.post("/", isAuth, async(req, res) => {
     //check every item has sufficient stock
     const transactedItems = [];
     for (const item of req.body.cartItems) {
-        const soldItem = await SoldBy.findOne({seller: item.seller, item: item.product});
+        const soldItem = await SoldBy.findOne({seller: sanitize(item.seller), item: sanitize(item.product)});
         if (soldItem.quantity < item.qty) return res.status(403).send({message: `${item.name} has insufficient quantity in stock. Please reselect quantity.`});
         transactedItems.push({item: item.product, seller: item.seller, quantity: item.qty, price: item.price});
         totalPrice += item.qty * soldItem.price;
     }
 
     //check balance is enough
-    const thisUser = await User.findById(req.user.uid);
+    const thisUser = await User.findById(sanitize(req.user.uid));
     if (totalPrice > thisUser.balance) return res.status(403).send({message: 'Insufficient balance amount! Please top up.'});
 
 
     //deduct item stock and award money to every seller
     for (const item of req.body.cartItems) {
-        const soldItem = await SoldBy.findOne({seller: item.seller, item: item.product});
+        const soldItem = await SoldBy.findOne({seller: sanitize(item.seller), item: sanitize(item.product)});
         soldItem.quantity -= item.qty;
         await soldItem.save();
 
-        const thisSeller = await User.findById(item.seller);
+        const thisSeller = await User.findById(sanitize(item.seller));
         thisSeller.balance += item.qty * soldItem.price;
         await thisSeller.save()
     }

@@ -1,6 +1,8 @@
 import express from 'express';
 import User from '../models/userModel';
 import { getToken, isAuth } from '../util';
+import sanitize from "mongo-sanitize";
+import md5 from 'md5';
 
 const router = express.Router();
 
@@ -30,8 +32,8 @@ router.put('/balance', async (req, res) => {
 router.post('/signin', async (req, res) => {
   const signinUser = await User.findOne({
     //check email and password
-    email: req.body.email,
-    password: req.body.password,
+    email: sanitize(req.body.email),
+    password: sanitize(req.body.password),
   });
 
   //if email & password exists, send back data to front end
@@ -59,7 +61,7 @@ router.post('/register', async (req, res) => {
     fullName: req.body.fullName,
     username: req.body.username,
     email: req.body.email,
-    password: req.body.password,
+    password: md5(req.body.password),
     isSeller: req.body.isSeller == true,
   });
   const newUser = await user.save();

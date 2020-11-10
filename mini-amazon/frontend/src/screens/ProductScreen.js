@@ -160,7 +160,7 @@ function ProductScreen(props){
                         </div>
                     </li>
                     <li>
-                        <b>Other Sellers:</b>
+                        <b>Sellers:</b>
                         <div>
                             {/*display listings of same item by different sellers*/} 
                             {createComponent(divs)}

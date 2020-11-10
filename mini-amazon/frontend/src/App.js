@@ -37,17 +37,14 @@ function App() {
                     <Link to="/">Mini Amazon</Link> {/*Links back to home on click of brand*/}
                 </div>
                 <div className="header-links"> {/*banner links*/}
-                    {/* <a href="cart.html">Cart</a> */}
-                    <Link to="/cart">Cart</Link>
-                    {/* <a href="login.html"> Log In</a> */}
-                    {/* <Link to="/signin"> Log In</Link> */}
+                    {userInfo && ( //if user info exists, show profile, else show signin
+                        <Link to="/cart">Cart</Link>
+                    )}
                     {userInfo ? ( //if user info exists, show profile, else show signin
                         <Link to="/profile">{userInfo.name} Profile</Link>
                         ) : (
                     <Link to="/signin">Sign In</Link>
                     )}
-                    
-                    {/* <Link to="/signin">Sign In</Link> */}
                 </div>
             </header>
             <aside className="sidebar">

@@ -2,6 +2,7 @@ import express from 'express';
 import Item from "../models/itemModel";
 import SoldBy from "../models/soldByModel";
 import { isAuth, isSeller, isAdmin} from '../util';
+import sanitize from "mongo-sanitize";
 
 const router = express.Router();
 
@@ -43,7 +44,7 @@ router.get("/", async(req, res) => {
 })
 
 router.get("/:id", async(req, res) => {
-    const items = await Item.findById(req.params.id).populate('reviews.authorId');
+    const items = await Item.findById(sanitize(req.params.id)).populate('reviews.authorId');
     res.send(items);
 })
 
@@ -77,7 +78,7 @@ router.post("/", isAuth, isSeller, async(req, res) => {
 
 //for existing items
 router.post("/:id", isAuth, async(req, res) => {
-    const itemId = req.params.id;
+    const itemId = sanitize(req.params.id);
     const existingItem = await Item.findOne({_id: itemId});
     //If item does not exist, create one
     if (!existingItem) {
@@ -95,7 +96,7 @@ router.post("/:id", isAuth, async(req, res) => {
 
 //Posting reviews (accessible to all users)
 router.post('/review/:id', isAuth, async (req, res) => {
-    const item = await Item.findById(req.params.id);
+    const item = await Item.findById(sanitize(req.params.id));
     if (item) {
         const review = {
             authorId: req.user.uid,
@@ -119,7 +120,7 @@ router.post('/review/:id', isAuth, async (req, res) => {
 //*** Admin endpoints below. SHOULD NOT BE TOUCHED BY USERS. To change item stock/quantity by seller, use soldByRoute endpoints ****
 
 router.put("/:id", isAuth, isSeller, isAdmin, async(req, res) => {
-    const itemId = req.params.id;
+    const itemId = sanitize(req.params.id);
     const item = await Item.findById(itemId);//this needs to be here??
     if (item) {
         item.itemName = req.body.itemName;
@@ -135,7 +136,7 @@ router.put("/:id", isAuth, isSeller, isAdmin, async(req, res) => {
 })
 
 router.delete("/:id", isAuth, isSeller, isAdmin, async(req, res) => {
-    const item = await Item.findById(req.params.id);
+    const item = await Item.findById(sanitize(req.params.id));
     if (item) {
         await item.remove();
         return res.send({message: 'Item successfully deleted'});
