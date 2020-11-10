@@ -4,6 +4,28 @@ import { getToken, isAuth } from '../util';
 
 const router = express.Router();
 
+router.put('/balance', async (req, res) => {
+  const userEmail = req.params.email;
+  const user = await User.findById(userEmail);
+  if (user) {
+    user.balance = req.body.balance || user.balance;
+    const updatedUser = await user.save();
+    res.send({
+      fullName: updatedUser.fullName,
+      username: updatedUser.username,
+      email: updatedUser.email,
+      password: updatedUser.password,
+      balance: updatedUser.balance,
+      isAuth: updatedUser.isAuth,
+      isSeller: updatedUser.isSeller,
+      isAdmin: updatedUser.isAdmin,
+      token: getToken(updatedUser),
+    });
+  } else {
+    res.status(404).send({ message: 'User Not Found' });
+  }
+});
+
 //Sign-in; Get email and password from user for sign-in
 router.post('/signin', async (req, res) => {
   const signinUser = await User.findOne({

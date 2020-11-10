@@ -8,8 +8,8 @@ function BalanceScreen(props) {
     const [balance, setBalance] = useState('');
     const userSignin = useSelector((state) => state.userSignin);
     const { userInfo } = userSignin;
-    const userDetails = useSelector((state) => state.userDetails);
-    const userUpdateBalance = useSelector((state) => state.userUpdateBalance);
+    //const userDetails = useSelector((state) => state.userDetails);
+    //const userUpdateBalance = useSelector((state) => state.userUpdateBalance);
     // const { loading, success, error } = userUpdateBalance;
     // const { user } = userDetails;
     const dispatch = useDispatch();
@@ -19,8 +19,8 @@ function BalanceScreen(props) {
             alert("Try Again. Invalid Number.");
         } 
         else {
-            dispatch(updateUserBalance({ balance }));
-            props.history.push("/profile");
+            dispatch(updateUserBalance({ email: userInfo.email, balance: userInfo.balance }));
+            //props.history.push("/profile");
         }
   };
     return <div className="addbalance" >
