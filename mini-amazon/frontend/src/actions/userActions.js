@@ -1,11 +1,21 @@
 import Axios from "axios";
 import Cookies from 'js-cookie';
 import {
-  USER_SIGNIN_REQUEST, USER_SIGNIN_SUCCESS,
-  USER_SIGNIN_FAIL, USER_DETAILS_REQUEST, USER_DETAILS_SUCCESS, USER_DETAILS_FAIL, USER_REGISTER_REQUEST,
-  USER_REGISTER_SUCCESS, USER_REGISTER_FAIL, USER_UPDATE_BALANCE_REQUEST, USER_UPDATE_BALANCE_FAIL, USER_UPDATE_BALANCE_SUCCESS,
-  USER_LOGOUT
+  USER_SIGNIN_REQUEST,
+  USER_SIGNIN_SUCCESS,
+  USER_SIGNIN_FAIL,
+  USER_DETAILS_REQUEST,
+  USER_DETAILS_SUCCESS,
+  USER_DETAILS_FAIL,
+  USER_REGISTER_REQUEST,
+  USER_REGISTER_SUCCESS,
+  USER_REGISTER_FAIL,
+  USER_UPDATE_BALANCE_REQUEST,
+  USER_UPDATE_BALANCE_FAIL,
+  USER_LOGOUT,
+  USER_GET_BALANCE_REQUEST
 } from "../constants/userConstants";
+import axios from "axios";
 
 const signin = (email, password) => async (dispatch) => {
   dispatch({ type: USER_SIGNIN_REQUEST, payload: { email, password } });
@@ -56,18 +66,29 @@ export const detailsUser = (userId) => async (dispatch, getState) => {
   }
 };
 
-export const updateUserBalance = (user) => async (dispatch, getState) => {
-  dispatch({ type: USER_UPDATE_BALANCE_REQUEST, payload: user });
-  const {
-    userSignin: { userInfo },
-  } = getState();
+export const getUserBalance = () => async (dispatch, getState) => {
   try {
-    const { data } = await Axios.put(`/api/users/`, user, {
-      headers: { Authorization: ` ${userInfo.token}` },
+    dispatch({type: USER_GET_BALANCE_REQUEST});
+    const { userSignin: { userInfo } } = getState();
+    const { data } = await axios.get("/api/users/balance", {headers:
+          { Authorization: 'Bearer ' + userInfo.token }
     });
-    dispatch({ type: USER_UPDATE_BALANCE_SUCCESS, payload: data });
     dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
     Cookies.set('userInfo', JSON.stringify(data));
+  } catch {
+    return;
+  }
+}
+
+export const updateUserBalance = (topUp) => async (dispatch, getState) => {
+  dispatch({ type: USER_UPDATE_BALANCE_REQUEST, payload: topUp });
+  const {userSignin: { userInfo }} = getState();
+  try {
+    const { data } = await Axios.put(`/api/users/balance`, {topUp: Number(topUp)}, {headers:
+          { Authorization: 'Bearer ' + userInfo.token }
+    });
+    dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
+    Cookies.set('userInfo', JSON.stringify(data), { expires: 1/24 });
   } catch (error) {
     const message =
       error.response && error.response.data.message

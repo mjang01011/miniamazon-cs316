@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { logout, detailsUser } from '../actions/userActions';
+import React, { useEffect } from 'react';
+import {logout, getUserBalance} from '../actions/userActions';
 import { useDispatch, useSelector } from 'react-redux';
 
 
@@ -10,6 +9,15 @@ function ProfileScreen(props) {
     const userDetails = useSelector((state) => state.userDetails);
     // const { user } = userDetails;
     const dispatch = useDispatch();
+
+    //calls api to get balance everytime page is refreshed/rendered
+    useEffect(() => {
+        dispatch(getUserBalance());
+        return () => {
+            //
+        };
+    }, []);
+
     const handleBalance = () => {
      props.history.push("/balance");
     }

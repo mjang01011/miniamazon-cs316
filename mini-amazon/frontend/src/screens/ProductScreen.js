@@ -91,7 +91,7 @@ function ProductScreen(props){
             return ([
                 <p className="sellers-list" key={seller._id}></p>,
                 <div>Seller: {seller.username}</div>,
-                <div>Price: ${price}</div>,
+                <div>Price: ${price.toFixed(2)}</div>,
                 <div>Available: {quantity}</div>,
                 <li>
                     {/*Quantity dropdown for the other sellers*/}
@@ -151,7 +151,7 @@ function ProductScreen(props){
                         </h3>
                     </li>
                     <li>
-                        {product.avgRating} stars ({product.reviews && product.reviews.length} ratings)
+                        {product.avgRating && product.avgRating.toFixed(2)} stars ({product.reviews && product.reviews.length} ratings)
                     </li>
                     <li>
                         <b>Description: </b>

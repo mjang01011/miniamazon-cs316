@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateUserBalance } from '../actions/userActions';
 
 function BalanceScreen(props) {
-    const [balance, setBalance] = useState('');
+    const [balance, setBalance] = useState(0);
     const userSignin = useSelector((state) => state.userSignin);
     const { userInfo } = userSignin;
     //const userDetails = useSelector((state) => state.userDetails);
@@ -13,14 +13,15 @@ function BalanceScreen(props) {
     // const { loading, success, error } = userUpdateBalance;
     // const { user } = userDetails;
     const dispatch = useDispatch();
+
     const submitHandler = (e) => {
         e.preventDefault();
         if (balance <= 0) {
             alert("Try Again. Invalid Number.");
         } 
         else {
-            dispatch(updateUserBalance({ email: userInfo.email, balance: userInfo.balance }));
-            //props.history.push("/profile");
+            dispatch(updateUserBalance(balance));
+            props.history.push("/profile");
         }
   };
     return <div className="addbalance" >

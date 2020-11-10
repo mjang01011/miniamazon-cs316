@@ -34,6 +34,7 @@ const reducer = combineReducers({
     transactionCreate: transactionCreateReducer,
     transactionList: transactionListReducer,
 })
+
 //check devtools on chrome
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 //allows async actions

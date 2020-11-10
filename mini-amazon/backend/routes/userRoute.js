@@ -6,11 +6,29 @@ import md5 from 'md5';
 
 const router = express.Router();
 
-router.put('/balance', async (req, res) => {
-  const userEmail = req.params.email;
-  const user = await User.findById(userEmail);
+router.get('/balance', isAuth, async(req, res) => {
+  const user = await User.findById(sanitize(req.user.uid));
   if (user) {
-    user.balance = req.body.balance || user.balance;
+    return res.send({
+      uid: user.uid,
+      fullName: user.fullName,
+      username: user.username,
+      email: user.email,
+      password: user.password,
+      balance: user.balance,
+      isAuth: user.isAuth,
+      isSeller: user.isSeller,
+      isAdmin: user.isAdmin,
+      token: getToken(user),
+    });
+  }
+  return res.status(404).send({message: "User not found"});
+});
+
+router.put('/balance', isAuth, async (req, res) => {
+  const user = await User.findById(sanitize(req.user.uid));
+  if (user) {
+    user.balance += sanitize(req.body.topUp);
     const updatedUser = await user.save();
     res.send({
       fullName: updatedUser.fullName,
