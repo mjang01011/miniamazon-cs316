@@ -18,6 +18,14 @@ router.get("/:id", async(req, res) => {
     res.send(sellerList);
 })
 
+//Get specific sold by item by seller id and item id
+router.post("/cart", isAuth, isSeller, async(req, res) => {
+    const seller = req.body.seller;
+    const item = req.body.item;
+    const sellList = await SoldBy.findOne({seller: seller, item: item}).populate('item').populate('seller');
+    res.send(sellList);
+})
+
 //Allow seller to add item to seller list for the first time
 router.post("/", isAuth, isSeller, async(req, res) => {
     const soldItemId = req.params.id;
