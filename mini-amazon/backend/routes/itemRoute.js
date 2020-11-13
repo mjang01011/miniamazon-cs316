@@ -57,6 +57,7 @@ router.post("/", isAuth, isSeller, async(req, res) => {
         category: req.body.category,
         image: req.body.image,
         description: req.body.description,
+        lowestPrice: req.body.price,
     });
     const newItem = await item.save();
     if (newItem) {
@@ -74,24 +75,6 @@ router.post("/", isAuth, isSeller, async(req, res) => {
         }
     }
     return res.status(500).send({message: 'Error in adding new item'});
-})
-
-//for existing items
-router.post("/:id", isAuth, async(req, res) => {
-    const itemId = sanitize(req.params.id);
-    const existingItem = await Item.findOne({_id: itemId});
-    //If item does not exist, create one
-    if (!existingItem) {
-        const item = new Item({
-            itemName: req.body.itemName,
-            category: req.body.category,
-            image: req.body.image,
-            description: req.body.description,
-        });
-        const newItem = await item.save();
-        if (!newItem) return res.status(500).send({message: 'Error in adding new item'});
-        else res.status(201).send({message: 'Item successfully added', data: newItem});
-    } else res.status(500).send({message: 'Item already exists', data: existingItem});
 })
 
 //Posting reviews (accessible to all users)

@@ -1,5 +1,6 @@
 import express from 'express';
 import SoldBy from "../models/soldByModel";
+import Item from "../models/itemModel";
 import { isAuth, isSeller } from '../util';
 import sanitize from 'mongo-sanitize';
 
@@ -28,7 +29,7 @@ router.post("/cart", isAuth, isSeller, async(req, res) => {
 })
 
 //Allow seller to add item to seller list for the first time
-router.post("/", isAuth, isSeller, async(req, res) => {
+router.post("/:id", isAuth, isSeller, async(req, res) => {
     const soldItemId = sanitize(req.params.id);
     const soldBy = new SoldBy({
         item: soldItemId,
@@ -38,6 +39,12 @@ router.post("/", isAuth, isSeller, async(req, res) => {
     })
     const newSoldBy = await soldBy.save();
     if (newSoldBy) {
+        //update lowest price too
+        const soldItem = await Item.findOne({item: soldItemId});
+        if (req.body.price < soldItem.lowestPrice) {
+            soldItem.lowestPrice = req.body.price;
+        }
+        await soldItem.save();
         return res.status(201).send({message: 'Item added to selling list', data: newSoldBy});
     }
     return res.status(500).send({message: 'Error in adding item'});
@@ -53,6 +60,12 @@ router.put("/:id", isAuth, isSeller, async(req, res) => {
     }
     const updatedItem = await soldItem.save();
     if (updatedItem) {
+        //update lowest price too
+        const soldItem = await Item.findOne({item: soldItemId});
+        if (req.body.price < soldItem.lowestPrice) {
+            soldItem.lowestPrice = req.body.price;
+        }
+        await soldItem.save();
         return res.status(200).send({message: 'Successfully updated', data: updatedItem});
     }
     return res.status(500).send({message: 'Error in updating item'});
