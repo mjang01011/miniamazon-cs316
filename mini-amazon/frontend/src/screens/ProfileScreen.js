@@ -60,7 +60,7 @@ function ProfileScreen(props) {
         props.history.push("/signin");
       }
     return userInfo && (<div className="profile">
-          <h1>
+          <h1 align="center">
             Avatar: <img className="product-image" src={userInfo.avatar}></img>
           </h1>
         {/*
@@ -77,26 +77,28 @@ function ProfileScreen(props) {
                 {uploading && <div>Uploading...</div>}
         </li>
         */}
-          <h1 classname="profile-info">
+          <h1 align="center">
             Full Name: {userInfo.fullName}
           </h1>
-          <h1>
+          <h1 align="center">
             User Name: {userInfo.username}
           </h1>
-          <h1>
+          <h1 align="center">
             Email:  {userInfo.email}         
           </h1>
-            <h1>
+            <h1 align="center">
                 Account Balance: ${userInfo.balance.toFixed(2)}
             </h1>
-            <button type="button" onClick={handleBalance} className="button primary">Add Balance</button>
-            <p></p>
-            <button type="button" onClick={handleTransaction} className="button primary">Purchase History</button>
-            <p></p>
-        {userInfo.isSeller &&
-            <button type="button" onClick={handleProducts} className="button primary">Add/Edit Products</button>}
-            <p></p>
-            <button type="button" onClick={handleLogout} className="button primary">Logout</button>
+            <div className="profile-buttons">
+              <button type="button" onClick={handleBalance} className="button primary full-width" align="center">Add Balance</button>
+              <p></p>
+              <button type="button" onClick={handleTransaction} className="button primary full-width">Purchase History</button>
+              <p></p>
+          {userInfo.isSeller &&
+              <button type="button" onClick={handleProducts} className="button primary full-width">Add/Edit Products</button>}
+              <p></p>
+              <button type="button" onClick={handleLogout} className="button primary full-width">Logout</button>
+            </div>
   </div>)
 }
 

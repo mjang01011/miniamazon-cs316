@@ -34,7 +34,9 @@ function App() {
             <header className="header">
                 <div className="category">
                     <button onClick={openSidebar}>&#9776;</button> {/*Call openSidebar on button click*/}
-                    <Link to="/">Mini Amazon</Link> {/*Links back to home on click of brand*/}
+                </div>
+                <div className="logo">
+                    <Link to="/">mini amazon</Link> {/*Links back to home on click of brand*/}
                 </div>
                 <div className="header-links"> {/*banner links*/}
                     {userInfo && ( //if user info exists, show profile, else show signin

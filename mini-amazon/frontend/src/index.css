@@ -1,3 +1,5 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+
 html {
   font-size: 75%; /* px*/
   box-sizing: border-box; /*tells browser to account for border and padding*/
@@ -60,10 +62,19 @@ a:hover{ /*default color when hover over any link*/
   font-weight: bold;
   text-decoration: none; /*remove bullet point*/
 }
+.logo a{
+    color: white;
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-decoration: none; 
+    display: flex;
+    align-items: left;
+}
 
 .header-links a{
   color: white;
   text-decoration: none; /*remove bullet point*/
+  font-size: 1.5rem;
 }
 
 .header-links a:hover{
@@ -334,11 +345,5 @@ ul.review {
 a > .rating > span:last-child {
   color: #0000ff;
 }
-
-.profile-info{
-  color: blue;
-  font-size: 1.4rem;
-}
-
 
 
