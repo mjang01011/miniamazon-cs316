@@ -335,5 +335,10 @@ a > .rating > span:last-child {
   color: #0000ff;
 }
 
+.profile-info{
+  color: blue;
+  font-size: 1.4rem;
+}
+
 
 

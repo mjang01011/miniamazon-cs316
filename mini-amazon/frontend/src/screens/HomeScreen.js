@@ -37,25 +37,22 @@ function HomeScreen(props){
 
     return <>
         <ul className="filter">
-            <li>
-                <form onSubmit={submitHandler}>
+            <form onSubmit={submitHandler}>
                     <input
                         name="searchKeyword"
                         onChange={(e) => setSearchKeyword(e.target.value)}
                         autoComplete={'off'}
                     />
                     <button type="submit">Search</button>
+                    <p></p>
                 </form>
-            </li>
-            <li>
                 Sort By{' '}
                 <select name="sortOrder" onChange={sortHandler}>
-                    <option value="aToZ">Alphabetical (A-Z)</option>
-                    <option value="zToA">Alphabetical (Z-A)</option>
-                    <option value="rating">Rating</option>
-                    <option value="category">Category</option>
+                    <option value="aToZ">alphabetical (A-Z)</option>
+                    <option value="zToA">alphabetical (Z-A)</option>
+                    <option value="rating">rating</option>
+                    <option value="category">category</option>
                 </select>
-            </li>
         </ul>
         {loading? (<div>Loading...</div>) :
             error? (<div>{error}</div>) :

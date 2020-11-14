@@ -60,11 +60,9 @@ function ProfileScreen(props) {
         props.history.push("/signin");
       }
     return userInfo && (<div className="profile">
-        <li>
           <h1>
             Avatar: <img className="product-image" src={userInfo.avatar}></img>
           </h1>
-        </li>
         {/*
         <li>
           <label htmlFor="avatar">Upload Avatar</label>
@@ -79,38 +77,26 @@ function ProfileScreen(props) {
                 {uploading && <div>Uploading...</div>}
         </li>
         */}
-        <li>
-          <h1>
+          <h1 classname="profile-info">
             Full Name: {userInfo.fullName}
           </h1>
-        </li>
-        <li>
           <h1>
             User Name: {userInfo.username}
           </h1>
-        </li>
-        <li>
           <h1>
             Email:  {userInfo.email}         
           </h1>
-        </li>
-        <li>
             <h1>
-                Balance: ${userInfo.balance.toFixed(2)}
+                Account Balance: ${userInfo.balance.toFixed(2)}
             </h1>
-        </li>
-        <li>
-            <button type="button" onClick={handleBalance} className="button secondary full-width">Add Balance</button>
-        </li>
-        <li>
-            <button type="button" onClick={handleTransaction} className="button secondary full-width">Purchase History</button>
-        </li>
-        {userInfo.isSeller && <li>
-            <button type="button" onClick={handleProducts} className="button secondary full-width">Add/Edit Products</button>
-        </li>}
-        <li>
-            <button type="button" onClick={handleLogout} className="button secondary full-width">Logout</button>
-        </li>
+            <button type="button" onClick={handleBalance} className="button primary">Add Balance</button>
+            <p></p>
+            <button type="button" onClick={handleTransaction} className="button primary">Purchase History</button>
+            <p></p>
+        {userInfo.isSeller &&
+            <button type="button" onClick={handleProducts} className="button primary">Add/Edit Products</button>}
+            <p></p>
+            <button type="button" onClick={handleLogout} className="button primary">Logout</button>
   </div>)
 }
 

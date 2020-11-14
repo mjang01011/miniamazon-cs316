@@ -6,7 +6,6 @@ import sanitize from "mongo-sanitize";
 
 const router = express.Router();
 
-//TODO: add back auths
 //Sorting functions
 const alphabeticalAsc = (a,b) => a.itemName.localeCompare(b.itemName);
 const alphabeticalDesc = (a,b) => b.itemName.localeCompare(a.itemName);
