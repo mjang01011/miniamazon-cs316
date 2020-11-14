@@ -26,6 +26,11 @@ function ProductScreen(props){
     const { success: productSaveSuccess } = productReviewSave;
 
     useEffect(() => {
+        if (!userInfo) {
+            props.history.push("/signin", "/product/" + props.match.params.id);
+            return;
+        }
+
         // runs after the elements are rendered on the screen 
         dispatch(detailsProduct(props.match.params.id)); // matches product based on id
         dispatch(listSellers(props.match.params.id)); // matches seller details based on id

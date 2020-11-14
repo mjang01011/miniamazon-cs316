@@ -24,6 +24,9 @@ const [modalVisible, setModalVisible] = useState(false); //hide create product f
   //const { loading, products, error } = productList; //get elements from productList element
   const { loading, sellerProducts, error } = sellerProductList;//list of products for each sellers
 
+  const userSignin = useSelector((state) => state.userSignin);
+  const { userInfo } = userSignin;
+
   const productSave = useSelector((state) => state.productSave);
   const {
     loading: loadingSave,
@@ -40,6 +43,10 @@ const [modalVisible, setModalVisible] = useState(false); //hide create product f
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if (!userInfo) {
+      props.history.push("/signin", "/products");
+      return;
+    }
     if (successSave) {
       setModalVisible(false);
     }

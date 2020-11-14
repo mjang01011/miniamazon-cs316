@@ -4,13 +4,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { signin } from '../actions/userActions';
 
 function SigninScreen(props) {
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');//get pwd
   const userSignin = useSelector(state => state.userSignin); //access from redux store
   const { loading, userInfo, error } = userSignin;
   const dispatch = useDispatch();
-  const redirect = props.location.search ? props.location.search.split("=")[1] : '/';
+  const redirect = props.location.state ? props.location.state : '/';
   useEffect(() => {
     if (userInfo) {
       props.history.push(redirect); //if userInfo exists, direct user to homepage [may be subject to change later]

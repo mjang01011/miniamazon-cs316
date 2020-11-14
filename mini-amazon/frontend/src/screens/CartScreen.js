@@ -15,6 +15,9 @@ function CartScreen(props) {
   const qty = query[0] ? Number(query[0].split("=")[1]) : 1;
   const seller = query[1] ? query[1].split("=")[1] : "";
   const dispatch = useDispatch();
+  const userSignin = useSelector((state) => state.userSignin);
+  const { userInfo } = userSignin;
+
   const removeFromCartHandler = (productId) => { //called when click on remove from cart button
     dispatch(removeFromCart(productId)); //dispatch action removeFromCart in cartActions.js
   }
@@ -22,6 +25,10 @@ function CartScreen(props) {
   const transactionCreate = useSelector(state => state.transactionCreate);
   const { loading, success, error, transaction } = transactionCreate;
   useEffect(() => {
+    if (!userInfo) {
+      props.history.push("/signin", "/cart");
+      return;
+    }
     if (productId) {//if productId exists
       dispatch(addToCart(productId, seller, qty)); //dispatch action add to cart
     };

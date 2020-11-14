@@ -11,9 +11,15 @@ function HomeScreen(props){
     const productList = useSelector(state => state.productList);
     const {products, loading, error} = productList;
     const dispatch = useDispatch();
+    const userSignin = useSelector((state) => state.userSignin);
+    const { userInfo } = userSignin;
 
     //calls api to get products
     useEffect(() => {
+            if (!userInfo) {
+                props.history.push("/signin", "/");
+                return;
+            }
             //send to store
             dispatch(listProducts(searchKeyword, sortOrder));
         }, [sortOrder]
@@ -36,6 +42,7 @@ function HomeScreen(props){
                     <input
                         name="searchKeyword"
                         onChange={(e) => setSearchKeyword(e.target.value)}
+                        autoComplete={'off'}
                     />
                     <button type="submit">Search</button>
                 </form>

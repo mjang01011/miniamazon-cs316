@@ -6,15 +6,19 @@ import { useDispatch, useSelector } from 'react-redux';
 
 function ProfileScreen(props) {
     const userSignin = useSelector((state) => state.userSignin);
+    const { userInfo } = userSignin;
     const [avatar, setAvatar] = useState('');
     const [uploading, setUploading] = useState(false);
-    const { userInfo } = userSignin;
     const userDetails = useSelector((state) => state.userDetails);
-    // const { user } = userDetails;
+    const { user } = userDetails;
     const dispatch = useDispatch();
 
     //calls api to get balance everytime page is refreshed/rendered
     useEffect(() => {
+        if (!userInfo) {
+            props.history.push("/signin", "/profile");
+            return;
+        }
         dispatch(getUserBalance());
         return () => {
             //
@@ -55,7 +59,7 @@ function ProfileScreen(props) {
         dispatch(logout());
         props.history.push("/signin");
       }
-    return <div className="profile">
+    return userInfo && (<div className="profile">
         <li>
           <h1>
             Avatar: <img className="product-image" src={userInfo.avatar}></img>
@@ -107,7 +111,7 @@ function ProfileScreen(props) {
         <li>
             <button type="button" onClick={handleLogout} className="button secondary full-width">Logout</button>
         </li>
-  </div>
+  </div>)
 }
 
 export default ProfileScreen;
