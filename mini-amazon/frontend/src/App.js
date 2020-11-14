@@ -35,9 +35,10 @@ function App() {
                 <div className="category">
                     <button onClick={openSidebar}>&#9776;</button> {/*Call openSidebar on button click*/}
                 </div>
-                <div className="logo">
+                <span className="logo">
+                    <i class="fa fa-amazon" style={{fontSize: '28px', color: '#FF9900'}}></i>
                     <Link to="/">mini amazon</Link> {/*Links back to home on click of brand*/}
-                </div>
+                </span>
                 <div className="header-links"> {/*banner links*/}
                     {userInfo && ( //if user info exists, show profile, else show signin
                         <Link to="/cart">Cart</Link>
