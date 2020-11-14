@@ -164,19 +164,19 @@ a:hover{ /*default color when hover over any link*/
 }
 
 .details-image {
-  flex: 2 1 60rem; /*2 = how much it grows; 1 = how much it shrinks; 60 = length of product li*/
+  flex: 2 1 40rem; /*2 = how much it grows; 1 = how much it shrinks; 60 = length of product li*/
 }
 .details-image img{
   max-width: 40%;
   width: 100%;/*Specifies the minimum number of line boxes of a block container that must be left in a fragment after a break.*/
 }
 .details-info {
-  flex: 1 1 3rem; 
+  flex: 1 1 30rem; 
 }
 .details-info ul, .details-action ul {
   list-style-type: none;
   padding: 0;
-
+  
 }
 .details-info li, .details-action li {
   list-style-type: none;
