@@ -160,6 +160,12 @@ function ProductScreen(props){
                         </div>
                     </li>
                     <li>
+                        <b>Category: </b>
+                        <div>
+                            {product.category}
+                        </div>
+                    </li>
+                    <li>
                         <b>Sellers:</b>
                         <div>
                             {/*display listings of same item by different sellers*/} 

@@ -116,7 +116,7 @@ const [modalVisible, setModalVisible] = useState(false); //hide create product f
         <button className="button primary" onClick={() => openModal({})}>
           Create Product
         </button>
-      </div> 
+      </div>
       {/* open create product form */}
       {modalVisible && ( 
         <div className="form">
@@ -233,14 +233,15 @@ const [modalVisible, setModalVisible] = useState(false); //hide create product f
               <th>Action</th>
             </tr>
           </thead>
+          {loading? (<div>Loading...</div>) :
+              error? (<div>{error}</div>) : (
           <tbody>
-
           {sellerProducts.map((product) => (
               <tr key={product._id}>
                 <td>{product._id}</td>
                 <td>{product.item.itemName}</td>
                 {/* need to go into item obj first to get more attributes */}
-                <td>{product.price}</td>
+                <td>{product.price.toFixed(2)}</td>
                 <td>{product.item.category}</td>
                 <td>
                   {/* open create product form with exact product to be edited */}
@@ -257,7 +258,7 @@ const [modalVisible, setModalVisible] = useState(false); //hide create product f
               </tr>
             ))}
 
-          </tbody>
+          </tbody>)}
         </table>
       </div>
     </div>

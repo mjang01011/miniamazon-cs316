@@ -17,7 +17,7 @@ const listProducts = (searchKeyword = "", sortOrder = "") => async (dispatch) =>
             searchKeyword +
             "&sortOrder=" +
             sortOrder);
-
+        console.log(data);
         //get data from server
         dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data});
     }

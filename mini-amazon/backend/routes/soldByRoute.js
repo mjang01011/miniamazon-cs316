@@ -31,21 +31,20 @@ router.post("/cart", isAuth, isSeller, async(req, res) => {
 //Allow seller to add item to seller list for the first time
 router.post("/:id", isAuth, isSeller, async(req, res) => {
     const soldItemId = sanitize(req.params.id);
-    const soldBy = new SoldBy({
-        item: soldItemId,
-        seller: req.user.uid,
-        quantity: req.body.quantity,
-        price: req.body.price,
-    })
-    const newSoldBy = await soldBy.save();
-    if (newSoldBy) {
-        //update lowest price too
-        const soldItem = await Item.findOne({item: soldItemId});
+    const soldItem = await Item.findById(soldItemId);
+    if (soldItem) {
         if (req.body.price < soldItem.lowestPrice) {
             soldItem.lowestPrice = req.body.price;
+            await soldItem.save();
         }
-        await soldItem.save();
-        return res.status(201).send({message: 'Item added to selling list', data: newSoldBy});
+        const soldBy = new SoldBy({
+            item: soldItemId,
+            seller: req.user.uid,
+            quantity: req.body.quantity,
+            price: req.body.price,
+        })
+        const newSoldBy = await soldBy.save();
+        if (newSoldBy) return res.status(201).send({message: 'Item added to selling list', data: newSoldBy});
     }
     return res.status(500).send({message: 'Error in adding item'});
 })
@@ -53,20 +52,17 @@ router.post("/:id", isAuth, isSeller, async(req, res) => {
 //Allow seller to amend item stock and price
 router.put("/:id", isAuth, isSeller, async(req, res) => {
     const soldItemId = sanitize(req.params.id);
-    const soldItem = await SoldBy.findOne({item: soldItemId, seller: sanitize(req.user.uid)});
-    if (soldItem) {
-        soldItem.quantity = req.body.quantity;
-        soldItem.price = req.body.price;
-    }
-    const updatedItem = await soldItem.save();
-    if (updatedItem) {
-        //update lowest price too
-        const soldItem = await Item.findOne({item: soldItemId});
+    const soldItem = await Item.findById(soldItemId);;
+    const soldBy = await SoldBy.findOne({item: soldItemId, seller: sanitize(req.user.uid)});
+    if (soldItem && soldBy) {
         if (req.body.price < soldItem.lowestPrice) {
             soldItem.lowestPrice = req.body.price;
+            await soldItem.save();
         }
-        await soldItem.save();
-        return res.status(200).send({message: 'Successfully updated', data: updatedItem});
+        soldBy.quantity = req.body.quantity;
+        soldBy.price = req.body.price;
+        const newSoldBy = await soldBy.save();
+        if (newSoldBy) return res.status(201).send({message: 'Item added to selling list', data: newSoldBy});
     }
     return res.status(500).send({message: 'Error in updating item'});
 })

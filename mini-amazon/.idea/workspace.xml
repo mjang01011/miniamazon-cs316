@@ -21,6 +21,11 @@
   <component name="ChangeListManager">
     <list default="true" id="802ccfbf-113d-47b3-975a-3a468654391c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/routes/soldByRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/soldByRoute.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/actions/productActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/actions/productActions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/screens/HomeScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/screens/HomeScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/screens/ProductScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/screens/ProductScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/screens/SellerProductsScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/screens/SellerProductsScreen.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +96,10 @@
       <workItem from="1604803253814" duration="300000" />
       <workItem from="1604938879033" duration="1021000" />
       <workItem from="1605007555756" duration="9322000" />
-      <workItem from="1605258428575" duration="203000" />
+      <workItem from="1605258428575" duration="1343000" />
+      <workItem from="1605279559325" duration="43000" />
+      <workItem from="1605282405982" duration="424000" />
+      <workItem from="1605328805514" duration="5593000" />
     </task>
     <servers />
   </component>
