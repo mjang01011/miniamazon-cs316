@@ -69,7 +69,7 @@ function HomeScreen(props){
                                     </Link>
 
                                     <div className="product-name">
-                                        <Link to={'/product/' + product._id}>{product.itemName.slice(0, 70) + (product.itemName.length > 70 && "...")}</Link>
+                                        <Link to={'/product/' + product._id}>{product.itemName.slice(0, 70) + (product.itemName.length > 70 ? "..." : "")}</Link>
                                     </div>
                                     <div className="product-category">{product.category}</div>
                                     <div className="product-price">${product.lowestPrice && product.lowestPrice.toFixed(2)}</div>
