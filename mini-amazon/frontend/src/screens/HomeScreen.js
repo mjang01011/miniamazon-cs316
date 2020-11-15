@@ -8,6 +8,7 @@ function HomeScreen(props){
     //defining variables
     const [searchKeyword, setSearchKeyword] = useState("");
     const [sortOrder, setSortOrder] = useState("");
+    const category = props.location.state ? props.location.state : "";
     const productList = useSelector(state => state.productList);
     const {products, loading, error} = productList;
     const dispatch = useDispatch();
@@ -21,8 +22,8 @@ function HomeScreen(props){
                 return;
             }
             //send to store
-            dispatch(listProducts(searchKeyword, sortOrder));
-        }, [sortOrder]
+            dispatch(listProducts(searchKeyword, sortOrder, category));
+        }, [sortOrder, category]
     )
 
     //query handlers
@@ -73,7 +74,7 @@ function HomeScreen(props){
                                     </div>
                                     <div className="product-category">{product.category}</div>
                                     <div className="product-price">${product.lowestPrice && product.lowestPrice.toFixed(2)}</div>
-                                    <div className="product-rating">{product.avgRating} stars ({product.reviews.length} ratings)</div>
+                                    <div className="product-rating">{product.avgRating.toFixed(2)} stars ({product.reviews.length} ratings)</div>
                                 </div>
                             </li>
                         )
