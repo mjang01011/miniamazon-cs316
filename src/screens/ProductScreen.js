@@ -141,7 +141,10 @@ function ProductScreen(props){
                         </h3>
                     </li>
                     <li>
-                        {product.avgRating && product.avgRating.toFixed(2)} stars ({product.reviews && product.reviews.length} ratings)
+                        <Rating
+                            value={product.avgRating && product.avgRating.toFixed(2)}
+                            text={product.reviews && product.reviews.length + ' reviews'}
+                        />
                     </li>
                     <li>
                         <b>Description: </b>

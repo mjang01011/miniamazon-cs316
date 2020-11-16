@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import {listProducts} from '../actions/productActions';
+import Rating from '../components/Rating';
 
 function HomeScreen(props){
     //defining variables
@@ -75,7 +76,11 @@ function HomeScreen(props){
                                     </div>
                                     <div className="product-category">{product.category}</div>
                                     <div className="product-price">${product.lowestPrice && product.lowestPrice.toFixed(2)}</div>
-                                    <div className="product-rating">{product.avgRating.toFixed(2)} stars ({product.reviews.length} ratings)</div>
+                                    <div className="product-rating">
+                                        <Rating
+                                        value={product.avgRating.toFixed(2)}
+                                        text={product.reviews.length + ' ratings'}/>
+                                    </div>
                                 </div>
                             </li>
                         )
