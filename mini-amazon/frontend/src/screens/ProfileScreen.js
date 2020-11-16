@@ -59,7 +59,7 @@ function ProfileScreen(props) {
         props.history.push("/signin");
       }
 
-    return userInfo && (<div className="profile">
+    return userInfo && (<div className="profile" style={{lineHeight: "40px"}}>
           <h1 align="center">
             Avatar: <img className="product-image" src={userInfo.avatar}></img>
           </h1>
@@ -89,15 +89,12 @@ function ProfileScreen(props) {
             <h1 align="center">
                 Account Balance: ${userInfo.balance.toFixed(2)}
             </h1>
-            <div className="profile-buttons">
-              <button type="button" onClick={handleBalance} className="button primary full-width" align="center">Add Balance</button>
-              <p></p>
-              <button type="button" onClick={handleTransaction} className="button primary full-width">Purchase History</button>
-              <p></p>
+            <div className="profile-buttons" style={{textAlign: "center"}}>
+              <button type="button" onClick={handleBalance} className="profile-button button primary" align="center">Add Balance</button>
+              <button type="button" onClick={handleTransaction} className="profile-button button primary">Purchase History</button>
           {userInfo.isSeller &&
-              <button type="button" onClick={handleProducts} className="button primary full-width">Add/Edit Products</button>}
-              <p></p>
-              <button type="button" onClick={handleLogout} className="button primary full-width">Logout</button>
+              <button type="button" onClick={handleProducts} className="profile-button button primary">Add/Edit Products</button>}
+              <button type="button" onClick={handleLogout} className="profile-button button primary">Logout</button>
             </div>
   </div>)
 }
