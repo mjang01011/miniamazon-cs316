@@ -19,11 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="802ccfbf-113d-47b3-975a-3a468654391c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/screens/ProfileScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/screens/ProfileScreen.js" afterDir="false" />
-    </list>
+    <list default="true" id="802ccfbf-113d-47b3-975a-3a468654391c" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -99,7 +95,7 @@
       <workItem from="1605328805514" duration="6159000" />
       <workItem from="1605352890538" duration="1600000" />
       <workItem from="1605410231300" duration="5044000" />
-      <workItem from="1605491298079" duration="1292000" />
+      <workItem from="1605491298079" duration="1963000" />
     </task>
     <servers />
   </component>
@@ -119,10 +115,11 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="-1222" y="333" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1602139164146">
-      <screen x="-1920" y="84" width="1920" height="1057" />
+    <state x="-1222" y="317" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1605493596681">
+      <screen x="-1920" y="84" width="1920" height="990" />
     </state>
     <state x="-1222" y="333" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.810/-1920.84.1920.1057@-1920.84.1920.1057" timestamp="1602139164146" />
+    <state x="-1222" y="317" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.877/-1920.84.1920.990@-1920.84.1920.990" timestamp="1605493596681" />
     <state x="-1295" y="302" width="670" height="676" key="search.everywhere.popup" timestamp="1605493458400">
       <screen x="-1920" y="84" width="1920" height="990" />
     </state>
