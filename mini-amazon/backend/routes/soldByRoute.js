@@ -54,6 +54,9 @@ router.put("/:id", isAuth, isSeller, async(req, res) => {
     const soldItemId = sanitize(req.params.id);
     const soldItem = await Item.findById(soldItemId);;
     const soldBy = await SoldBy.findOne({item: soldItemId, seller: sanitize(req.user.uid)});
+    //console.log(req.body);
+    //console.log(soldItemId);
+    //console.log(soldItem);
     if (soldItem && soldBy) {
         if (req.body.price < soldItem.lowestPrice) {
             soldItem.lowestPrice = req.body.price;

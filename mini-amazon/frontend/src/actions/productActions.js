@@ -35,7 +35,7 @@ const saveProduct = (product) => async (dispatch, getState) => {
       if (!product._id) { //ensure we only create new product if it doesn't exist yet (when updating)
         console.log("in save product: not created product yet");
         //const { data } = await axios.post('/api/products', product, {
-        const { data } = await axios.post('/api/sells', product, {
+        const { data } = await axios.post('/api/products', product, {
           headers: {
             Authorization: 'Bearer ' + userInfo.token, //make sure user token is authorized to do this request, gotten by getState()
           },
@@ -44,6 +44,7 @@ const saveProduct = (product) => async (dispatch, getState) => {
         dispatch({ type: PRODUCT_SAVE_SUCCESS, payload: data }); //if successful authentication, dispatch data
       } else {//already have product: edit product
         console.log("in save product: created product already"); //gets here
+        console.log(product);
         const { data } = await axios.put(
           //'/api/products/' + product._id,
           '/api/sells/' + product._id,
