@@ -21,7 +21,10 @@
   <component name="ChangeListManager">
     <list default="true" id="802ccfbf-113d-47b3-975a-3a468654391c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/screens/SellerProductsScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/screens/SellerProductsScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/@babel/register/.babel.7.11.6.development.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/@babel/register/.babel.7.11.6.development.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,6 +104,7 @@
       <workItem from="1605491298079" duration="5703000" />
       <workItem from="1605512423054" duration="74000" />
       <workItem from="1605514393856" duration="184000" />
+      <workItem from="1605521694868" duration="547000" />
     </task>
     <servers />
   </component>

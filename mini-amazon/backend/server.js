@@ -7,6 +7,7 @@ import itemRoute from './routes/itemRoute';
 import transactionRoute from './routes/transactionRoute';
 import soldByRoute from './routes/soldByRoute';
 import awsUploadRoute from './routes/awsUploadRoute';
+import path from 'path';
 
 const mongodbUrl = config.MONGODB_URL;
 mongoose.connect(mongodbUrl,
@@ -14,6 +15,9 @@ mongoose.connect(mongodbUrl,
     .catch(err => console.log(err.reason));
 
 const app = express();
+
+const buildPath = path.join(__dirname, '../frontend/', 'build');
+app.use(express.static(buildPath));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -24,6 +28,6 @@ app.use("/api/transactions", transactionRoute);
 app.use("/api/sells", soldByRoute)
 app.use("/api/upload", awsUploadRoute)
 
-app.listen(8080, () => {console.log('Server started at http://localhost:8080')});
+app.listen(process.env.PORT || 8080, () => {console.log('Server started at http://localhost:8080')});
 
 
