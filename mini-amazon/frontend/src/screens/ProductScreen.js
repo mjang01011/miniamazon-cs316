@@ -26,6 +26,11 @@ function ProductScreen(props){
     const { success: productSaveSuccess } = productReviewSave;
 
     useEffect(() => {
+        if (!userInfo) {
+            props.history.push("/signin", "/product/" + props.match.params.id);
+            return;
+        }
+
         // runs after the elements are rendered on the screen 
         dispatch(detailsProduct(props.match.params.id)); // matches product based on id
         dispatch(listSellers(props.match.params.id)); // matches seller details based on id
@@ -55,20 +60,6 @@ function ProductScreen(props){
 
     //list to hold other listings/sellers of the current product
     let divs = []
-    // //added test data; remove later
-    // var o = {};
-    // o["seller"] = {"username": "reddevil"};
-    // o["price"] = 9999;
-    // o["quantity"] = 8;
-    // o["item"] = "testitemid";
-    // divs.push(o);
-    //
-    // var ob = {};
-    // ob["seller"] = {"username": "testuser123"};
-    // ob["price"] = 250;
-    // ob["quantity"] = 3;
-    // ob["item"] = "itemid";
-    // divs.push(ob);
 
     function handleList(props){
         for (var sellerIndex in props) {
@@ -85,7 +76,6 @@ function ProductScreen(props){
     handleList(products);
 
     //function to handle outputting the list info
-    //TODO: make it prettier or make it into components 
     function createComponent(props){
         return props.map( ( {seller, price, quantity} ) => {
             return ([
@@ -157,6 +147,12 @@ function ProductScreen(props){
                         <b>Description: </b>
                         <div>
                             {product.description}
+                        </div>
+                    </li>
+                    <li>
+                        <b>Category: </b>
+                        <div>
+                            {product.category}
                         </div>
                     </li>
                     <li>

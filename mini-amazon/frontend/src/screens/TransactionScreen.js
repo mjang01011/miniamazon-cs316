@@ -9,7 +9,14 @@ function TransactionScreen(props) {
 
     const dispatch = useDispatch();
 
+    const userSignin = useSelector((state) => state.userSignin);
+    const { userInfo } = userSignin;
+
     useEffect(() => {
+        if (!userInfo) {
+            props.history.push("/signin", "/transaction");
+            return;
+        }
         dispatch(listTransactions());
         return () => {
             //

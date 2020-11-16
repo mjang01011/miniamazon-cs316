@@ -34,8 +34,11 @@ function App() {
             <header className="header">
                 <div className="category">
                     <button onClick={openSidebar}>&#9776;</button> {/*Call openSidebar on button click*/}
-                    <Link to="/">Mini Amazon</Link> {/*Links back to home on click of brand*/}
                 </div>
+                <span className="logo">
+                    <i class="fa fa-amazon" style={{fontSize: '28px', color: '#FF9900'}}></i>
+                    <Link to="/">mini amazon</Link> {/*Links back to home on click of brand*/}
+                </span>
                 <div className="header-links"> {/*banner links*/}
                     {userInfo && ( //if user info exists, show profile, else show signin
                         <Link to="/cart">Cart</Link>
@@ -52,22 +55,37 @@ function App() {
                 <button className="sidebar-close" onClick={closeSidebar}>x</button> 
                 <ul>
                     <li>
-                        <a href="index.html">Food and Beverage</a>
+                        <Link to={{ pathname: '/'}} onClick={closeSidebar}>All</Link>
                     </li>
                     <li>
-                        <a href="index.html">Apparel</a>
+                        <Link to={{ pathname: '/', state:'Food %26 Beverage'}} onClick={closeSidebar}>Food & Beverage</Link>
                     </li>
                     <li>
-                        <a href="index.html">Appliances</a>
+                        <Link to={{ pathname: '/', state:'Electronics'}} onClick={closeSidebar}>Electronics</Link>
                     </li>
                     <li>
-                        <a href="index.html">Sporting Equipment</a>
+                        <Link to={{ pathname: '/', state:'Men\'s Fashion'}} onClick={closeSidebar}>Men's Fashion</Link>
                     </li>
                     <li>
-                        <a href="index.html">Shoes</a>
+                        <Link to={{ pathname: '/', state:'Women\'s Fashion'}} onClick={closeSidebar}>Women's Fashion</Link>
                     </li>
                     <li>
-                        <a href="index.html">Books</a>
+                        <Link to={{ pathname: '/', state:'Cushions %26 Accessories'}} onClick={closeSidebar}>Cushions & Accessories</Link>
+                    </li>
+                    <li>
+                        <Link to={{ pathname: '/', state:'Travel Accessories'}} onClick={closeSidebar}>Travel Accessories</Link>
+                    </li>
+                    <li>
+                        <Link to={{ pathname: '/', state:'Furniture'}} onClick={closeSidebar}>Furniture</Link>
+                    </li>
+                    <li>
+                        <Link to={{ pathname: '/', state:'Indoor Lighting'}} onClick={closeSidebar}>Indoor Lighting</Link>
+                    </li>
+                    <li>
+                        <Link to={{ pathname: '/', state:'Beauty and Personal Care'}} onClick={closeSidebar}>Beauty and Personal Care</Link>
+                    </li>
+                    <li>
+                        <Link to={{ pathname: '/', state:'Boxes %26 Organisers'}} onClick={closeSidebar}>Boxes & Organisers</Link>
                     </li>
                 </ul>
             </aside>
@@ -82,6 +100,7 @@ function App() {
                     <Route path="/" exact={true} component={HomeScreen}/> {/*creates a route : default = homescreen*/}
                     <Route exact path="/register" component={RegisterScreen}/> {/*route to register screen*/}
                     <Route path="/transaction" component={TransactionScreen} />  {/*route to transaction screen*/}
+                    <Route path="/category/:id" component={HomeScreen} /> {/*route to home page with specified category of products*/}
                 </div>
             </main>
         </div>

@@ -7,17 +7,15 @@ const { SELLER_PRODUCT_LIST_REQUEST, SELLER_PRODUCT_LIST_SUCCESS, SELLER_PRODUCT
     PRODUCT_SAVE_FAIL, SELLER_LIST_FAIL, SELLER_LIST_REQUEST, SELLER_LIST_SUCCESS, PRODUCT_REVIEW_SAVE_REQUEST, PRODUCT_REVIEW_SAVE_SUCCESS, PRODUCT_REVIEW_SAVE_FAIL} = require("../constants/productConstants")
 
 //make function called listProduct : lists all products
-const listProducts = (searchKeyword = "", sortOrder = "") => async (dispatch) => {
+const listProducts = (searchKeyword = "", sortOrder = "", category = "") => async (dispatch) => {
     try{
         //call api
         dispatch({type: PRODUCT_LIST_REQUEST});
 
         //send ajax request to server (with query parameters)
-        const {data} = await axios.get("/api/products?searchKeyword=" +
-            searchKeyword +
-            "&sortOrder=" +
-            sortOrder);
-
+        const {data} = await axios.get("/api/products?searchKeyword=" + searchKeyword +
+            "&sortOrder=" + sortOrder +
+            "&category=" + category);
         //get data from server
         dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data});
     }

@@ -8,15 +8,22 @@ function HomeScreen(props){
     //defining variables
     const [searchKeyword, setSearchKeyword] = useState("");
     const [sortOrder, setSortOrder] = useState("");
+    const category = props.location.state ? props.location.state : "";
     const productList = useSelector(state => state.productList);
     const {products, loading, error} = productList;
     const dispatch = useDispatch();
+    const userSignin = useSelector((state) => state.userSignin);
+    const { userInfo } = userSignin;
 
     //calls api to get products
     useEffect(() => {
+            if (!userInfo) {
+                props.history.push("/signin", "/");
+                return;
+            }
             //send to store
-            dispatch(listProducts(searchKeyword, sortOrder));
-        }, [sortOrder]
+            dispatch(listProducts(searchKeyword, sortOrder, category));
+        }, [sortOrder, category]
     )
 
     //query handlers
@@ -31,24 +38,22 @@ function HomeScreen(props){
 
     return <>
         <ul className="filter">
-            <li>
-                <form onSubmit={submitHandler}>
+            <form onSubmit={submitHandler}>
                     <input
                         name="searchKeyword"
                         onChange={(e) => setSearchKeyword(e.target.value)}
+                        autoComplete={'off'}
                     />
                     <button type="submit">Search</button>
+                    <p></p>
                 </form>
-            </li>
-            <li>
                 Sort By{' '}
                 <select name="sortOrder" onChange={sortHandler}>
-                    <option value="aToZ">Alphabetical (A-Z)</option>
-                    <option value="zToA">Alphabetical (Z-A)</option>
-                    <option value="rating">Rating</option>
-                    <option value="category">Category</option>
+                    <option value="aToZ">alphabetical (A-Z)</option>
+                    <option value="zToA">alphabetical (Z-A)</option>
+                    <option value="rating">rating</option>
+                    <option value="category">category</option>
                 </select>
-            </li>
         </ul>
         {loading? (<div>Loading...</div>) :
             error? (<div>{error}</div>) :
@@ -65,11 +70,11 @@ function HomeScreen(props){
                                     </Link>
 
                                     <div className="product-name">
-                                        <Link to={'/product/' + product._id}>{product.itemName}</Link>
+                                        <Link to={'/product/' + product._id}>{product.itemName.slice(0, 70) + (product.itemName.length > 70 ? "..." : "")}</Link>
                                     </div>
                                     <div className="product-category">{product.category}</div>
-                                    <div className="product-price">${product.lowestPrice}</div>
-                                    <div className="product-rating">{product.avgRating} stars ({product.reviews.length} ratings)</div>
+                                    <div className="product-price">${product.lowestPrice && product.lowestPrice.toFixed(2)}</div>
+                                    <div className="product-rating">{product.avgRating.toFixed(2)} stars ({product.reviews.length} ratings)</div>
                                 </div>
                             </li>
                         )

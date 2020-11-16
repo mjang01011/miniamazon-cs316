@@ -6,7 +6,6 @@ import sanitize from "mongo-sanitize";
 
 const router = express.Router();
 
-//TODO: add back auths
 //Sorting functions
 const alphabeticalAsc = (a,b) => a.itemName.localeCompare(b.itemName);
 const alphabeticalDesc = (a,b) => b.itemName.localeCompare(a.itemName);
@@ -15,15 +14,18 @@ const ratingAsc = (a,b) => b.avgRating - a.avgRating;
 
 //Getting items (accessible to all users)
 router.get("/", async(req, res) => {
-    const searchKeyword = req.query.searchKeyword
+    const searchKeyword = sanitize(req.query.searchKeyword)
         ? {
             itemName: {
-                $regex: req.query.searchKeyword,
+                $regex: sanitize(req.query.searchKeyword),
                 $options: 'i',
             },
         }
         : {};
-
+    const category = sanitize(req.query.category)
+        ? {
+            category: sanitize(req.query.category)
+        } : {};
     let sortOrder = req.query.sortOrder
     switch(sortOrder) {
         case "zToA":
@@ -38,7 +40,7 @@ router.get("/", async(req, res) => {
         default:
             sortOrder = alphabeticalAsc;
     }
-    const items = await Item.find({...searchKeyword }).populate('reviews.authorId');
+    const items = await Item.find({...searchKeyword, ...category}).populate('reviews.authorId');
     items.sort(sortOrder);
     res.send(items);
 })

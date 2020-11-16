@@ -24,6 +24,9 @@ function SellerProductsScreen(props) {
   //const { loading, products, error } = productList; //get elements from productList element
   const { loading, sellerProducts, error } = sellerProductList;//list of products for each sellers
 
+  const userSignin = useSelector((state) => state.userSignin);
+  const { userInfo } = userSignin;
+
   const productSave = useSelector((state) => state.productSave);
   const {
     loading: loadingSave,
@@ -40,6 +43,10 @@ function SellerProductsScreen(props) {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if (!userInfo) {
+      props.history.push("/signin", "/products");
+      return;
+    }
     if (successSave) {
       setModalVisible(false);
       setCreateModalVisible(false);
@@ -129,7 +136,7 @@ function SellerProductsScreen(props) {
         <button className="button primary" onClick={() => openCreateModal({})}>
           Create Product
         </button>
-      </div> 
+      </div>
       {/* open create product form */}
       {createModalVisible && ( 
         <div className="form">
@@ -235,14 +242,15 @@ function SellerProductsScreen(props) {
               <th>Action</th>
             </tr>
           </thead>
+          {loading? (<div>Loading...</div>) :
+              error? (<div>{error}</div>) : (
           <tbody>
-
           {sellerProducts.map((product) => (
               <tr key={product._id}>
                 <td>{product._id}</td>
                 <td>{product.item.itemName}</td>
                 {/* need to go into item obj first to get more attributes */}
-                <td>{product.price}</td>
+                <td>{product.price.toFixed(2)}</td>
                 <td>{product.item.category}</td>
                 <td>
                   {/* open create product form with exact product to be edited */}
@@ -259,7 +267,7 @@ function SellerProductsScreen(props) {
               </tr>
             ))}
 
-          </tbody>
+          </tbody>)}
         </table>
       </div>
     </div>

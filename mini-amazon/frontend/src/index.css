@@ -1,3 +1,5 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+
 html {
   font-size: 75%; /* px*/
   box-sizing: border-box; /*tells browser to account for border and padding*/
@@ -60,10 +62,17 @@ a:hover{ /*default color when hover over any link*/
   font-weight: bold;
   text-decoration: none; /*remove bullet point*/
 }
+.logo a{
+    color: white;
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-decoration: none; 
+}
 
 .header-links a{
   color: white;
   text-decoration: none; /*remove bullet point*/
+  font-size: 1.5rem;
 }
 
 .header-links a:hover{
@@ -153,19 +162,19 @@ a:hover{ /*default color when hover over any link*/
 }
 
 .details-image {
-  flex: 2 1 60rem; /*2 = how much it grows; 1 = how much it shrinks; 60 = length of product li*/
+  flex: 2 1 40rem; /*2 = how much it grows; 1 = how much it shrinks; 60 = length of product li*/
 }
 .details-image img{
   max-width: 40%;
   width: 100%;/*Specifies the minimum number of line boxes of a block container that must be left in a fragment after a break.*/
 }
 .details-info {
-  flex: 1 1 3rem; 
+  flex: 1 1 30rem; 
 }
 .details-info ul, .details-action ul {
   list-style-type: none;
   padding: 0;
-
+  
 }
 .details-info li, .details-action li {
   list-style-type: none;
@@ -334,6 +343,5 @@ ul.review {
 a > .rating > span:last-child {
   color: #0000ff;
 }
-
 
 
