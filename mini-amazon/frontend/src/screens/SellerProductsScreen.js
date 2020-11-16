@@ -80,13 +80,13 @@ function SellerProductsScreen(props) {
   const openCreateModal = () => { //open the create product form
     console.log("open create")
     setCreateModalVisible(true);
-    setId(id);
-    setItemName(itemName);
-    setPrice(price);
-    setDescription(description);
-    setImage(image);
-    setCategory(category);
-    setInventory(quantity);
+    setId('');
+    setItemName('');
+    setPrice();
+    setDescription('');
+    setImage();
+    setCategory('');
+    setInventory();
   };
 
   
@@ -221,6 +221,98 @@ function SellerProductsScreen(props) {
                 <button
                   type="button"
                   onClick={() => setCreateModalVisible(false)}
+                  className="button secondary"
+                >
+                  Back
+                </button>
+              </li>
+            </ul>
+          </form>
+        </div>
+      )}
+      {modalVisible && ( 
+        <div className="form">
+          <form onSubmit={submitHandler}>
+            <ul className="form-container">
+              <li>
+                <h2>Edit Product</h2>
+              </li>
+              <li>
+                {loadingSave && <div>Loading...</div>}
+                {errorSave && <div>{errorSave}</div>}
+              </li>
+
+              <li>
+                <label htmlFor="name">Item Name</label>
+                <input
+                  type="text"
+                  name="itemName"
+                  value={itemName}
+                  id="itemName"
+                  onChange={(e) => setItemName(e.target.value)}
+                ></input>
+              </li>
+              <li>
+                <label htmlFor="price">Price</label>
+                <input
+                  type="text"
+                  name="price"
+                  value={price}
+                  id="price"
+                  onChange={(e) => setPrice(e.target.value)}
+                ></input>
+              </li>
+              <li>
+                <label htmlFor="image">Image</label>
+                <input
+                  type="text"
+                  name="image"
+                  value={image}
+                  id="image"
+                  onChange={(e) => setImage(e.target.value)}
+                ></input>
+                <input type="file" onChange={uploadFileHandler}></input>
+                {uploading && <div>Uploading...</div>}
+              </li>
+              <li>
+                <label htmlFor="inventory">inventory</label>
+                <input
+                  type="text"
+                  name="inventory"
+                  value={quantity}
+                  id="inventory"
+                  onChange={(e) => setInventory(e.target.value)}
+                ></input>
+              </li>
+              <li>
+                <label htmlFor="itemName">Category</label>
+                <input
+                  type="text"
+                  name="category"
+                  value={category}
+                  id="category"
+                  onChange={(e) => setCategory(e.target.value)}
+                ></input>
+              </li>
+              <li>
+                <label htmlFor="description">Description</label>
+                <textarea
+                  name="description"
+                  value={description}
+                  id="description"
+                  onChange={(e) => setDescription(e.target.value)}
+                ></textarea>
+              </li>
+              <li>
+                {/* if id already exists, show update, else show create */}
+                <button type="submit" className="button primary">
+                  {id ? 'Update' : 'Create'} 
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => setModalVisible(false)}
                   className="button secondary"
                 >
                   Back
