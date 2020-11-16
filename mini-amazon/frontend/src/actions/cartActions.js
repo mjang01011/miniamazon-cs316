@@ -29,7 +29,7 @@ const addToCart = (productId, seller, qty) => async (dispatch, getState) => { //
     //save cart items into the cookie
     Cookie.set("cartItems", JSON.stringify(cartItems), {expires: 1/24});
   } catch (error) {
-    console.log(error);
+    //console.log(error);
   }
 }
 

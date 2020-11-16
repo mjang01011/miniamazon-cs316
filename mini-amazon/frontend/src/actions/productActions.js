@@ -25,26 +25,26 @@ const listProducts = (searchKeyword = "", sortOrder = "", category = "") => asyn
 }
 
 const saveProduct = (product) => async (dispatch, getState) => {
-  console.log("in save product");//okay so it does successfully get here
+  //console.log("in save product");//okay so it does successfully get here
     try {
-      console.log("in save product try");//okay so it does successfully get here
+      //console.log("in save product try");//okay so it does successfully get here
       dispatch({ type: PRODUCT_SAVE_REQUEST, payload: product });
       const {
         userSignin: { userInfo },
       } = getState();
       if (!product._id) { //ensure we only create new product if it doesn't exist yet (when updating)
-        console.log("in save product: not created product yet");
+        //console.log("in save product: not created product yet");
         //const { data } = await axios.post('/api/products', product, {
         const { data } = await axios.post('/api/products', product, {
           headers: {
             Authorization: 'Bearer ' + userInfo.token, //make sure user token is authorized to do this request, gotten by getState()
           },
         });
-        console.log("dispatching create product message");
+        //console.log("dispatching create product message");
         dispatch({ type: PRODUCT_SAVE_SUCCESS, payload: data }); //if successful authentication, dispatch data
       } else {//already have product: edit product
-        console.log("in save product: created product already"); //gets here
-        console.log(product);
+        //console.log("in save product: created product already"); //gets here
+        //console.log(product);
         const { data } = await axios.put(
           //'/api/products/' + product._id,
           '/api/sells/' + product._id,
@@ -55,12 +55,12 @@ const saveProduct = (product) => async (dispatch, getState) => {
             },
           }
         );
-        console.log("in save product: before dispatch");//doesn't reach this either
+        //console.log("in save product: before dispatch");//doesn't reach this either
         dispatch({ type: PRODUCT_SAVE_SUCCESS, payload: data });
-        console.log("in save product: created product already -- hopefully saved product"); //does not get here!!!
+        //console.log("in save product: created product already -- hopefully saved product"); //does not get here!!!
       }
     } catch (error) {
-        console.log(error.message);
+        //console.log(error.message);
       dispatch({ type: PRODUCT_SAVE_FAIL, payload: error.message });
     }
   };
@@ -71,7 +71,7 @@ const detailsProduct = (productId) => async (dispatch) => {
        dispatch({type: PRODUCT_DETAILS_REQUEST,payload: productId});
        // get product data from server
        const {data} = await axios.get("/api/products/" + productId);
-       console.log(data);
+       //console.log(data);
        dispatch({type:PRODUCT_DETAILS_SUCCESS, payload:data})
     } catch (error) {
         dispatch({type:PRODUCT_DETAILS_FAIL, payload: error.message});
@@ -87,7 +87,7 @@ const listSellerProducts = () => async(dispatch, getState) => {
     const {data} = await axios.get("/api/sells/", {headers:
             { Authorization: 'Bearer ' + userInfo.token }
     });
-    console.log(data);
+    //console.log(data);
 
     dispatch({type:SELLER_PRODUCT_LIST_SUCCESS, payload:data})
   }

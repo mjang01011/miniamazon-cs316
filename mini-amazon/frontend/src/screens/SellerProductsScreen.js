@@ -61,8 +61,6 @@ function SellerProductsScreen(props) {
   const openModal = (product) => { //open the create product form
     setModalVisible(true);
     setId(product.item._id);
-    console.log("modal:");
-    console.log(product);
     //if product exists, do .item if not, don;t
     if (product !== undefined){
       setItemName(product.item.itemName);
@@ -80,7 +78,6 @@ function SellerProductsScreen(props) {
   };
 
   const openCreateModal = () => { //open the create product form
-    console.log("open create")
     setCreateModalVisible(true);
     setId('');
     setItemName('');
@@ -93,7 +90,6 @@ function SellerProductsScreen(props) {
 
   
   const submitHandler = (e) => { //save the product when seller adds it
-    console.log("handler called")
     e.preventDefault();
     dispatch(
       saveProduct({
@@ -126,7 +122,6 @@ function SellerProductsScreen(props) {
         setUploading(false);
       })
       .catch((err) => {
-        console.log(err);
         setUploading(false);
       });
   };
@@ -185,7 +180,7 @@ function SellerProductsScreen(props) {
                 {uploading && <div>Uploading...</div>}
               </li>
               <li>
-                <label htmlFor="inventory">inventory</label>
+                <label htmlFor="inventory">Inventory</label>
                 <input
                   type="text"
                   name="inventory"

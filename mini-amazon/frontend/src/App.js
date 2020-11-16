@@ -36,7 +36,7 @@ function App() {
                     <button onClick={openSidebar}>&#9776;</button> {/*Call openSidebar on button click*/}
                 </div>
                 <span className="logo">
-                    <Link to="/"><i className="fa fa-amazon" style={{fontSize: '28px', color: '#FF9900', paddingRight: "5px"}}></i>mini amazon</Link> {/*Links back to home on click of brand*/}
+                    <Link to="/"><i className="fa fa-amazon" style={{fontSize: '28px', color: '#FF9900', marginRight: "10px"}}></i>mini amazon</Link> {/*Links back to home on click of brand*/}
                 </span>
                 <div className="header-links"> {/*banner links*/}
                     {userInfo && ( //if user info exists, show profile, else show signin

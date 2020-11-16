@@ -40,7 +40,7 @@ function ProfileScreen(props) {
           setUploading(false);
         })
         .catch((err) => {
-          console.log(err);
+          //console.log(err);
           setUploading(false);
         });
     };

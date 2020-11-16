@@ -49,7 +49,7 @@ function ProductScreen(props){
     // dispatch review
     const submitHandler = (e) => {
         e.preventDefault();
-        console.log(product);
+        //console.log(product);
         dispatch(
           saveProductReview(props.match.params.id, {
             rating: rating,
@@ -101,7 +101,7 @@ function ProductScreen(props){
         })
     }
     const handleAddToCart = (seller) => {
-        console.log(seller.target);
+        //console.log(seller.target);
         props.history.push("/cart/" + props.match.params.id + "?qty=" + qty + "&seller=" + seller);
     }
 
