@@ -2,6 +2,11 @@ body {
   font-family: Roboto
 }
 
+.sidebar {
+  font-size: 15px;
+  line-height: 30px;
+}
+
 .App {
   text-align: center;
 }

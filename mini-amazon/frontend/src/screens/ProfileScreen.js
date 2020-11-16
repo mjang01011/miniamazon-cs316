@@ -3,7 +3,6 @@ import axios from 'axios';
 import {logout, getUserBalance} from '../actions/userActions';
 import { useDispatch, useSelector } from 'react-redux';
 
-
 function ProfileScreen(props) {
     const userSignin = useSelector((state) => state.userSignin);
     const { userInfo } = userSignin;

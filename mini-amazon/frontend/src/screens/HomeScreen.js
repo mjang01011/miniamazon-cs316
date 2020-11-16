@@ -40,11 +40,12 @@ function HomeScreen(props){
         <ul className="filter">
             <form onSubmit={submitHandler}>
                     <input
+                        style={{width: "300px"}}
                         name="searchKeyword"
                         onChange={(e) => setSearchKeyword(e.target.value)}
                         autoComplete={'off'}
                     />
-                    <button type="submit">Search</button>
+                    <button style={{marginLeft: "10px", fontSize: "15px"}} type="submit">Search</button>
                     <p></p>
                 </form>
                 Sort By{' '}
