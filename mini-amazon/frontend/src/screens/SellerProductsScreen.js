@@ -9,12 +9,12 @@ import {
 } from '../actions/productActions';
 
 function SellerProductsScreen(props) {
-const [modalVisible, setModalVisible] = useState(false); //hide create product form unless you click on create product button
+  const [modalVisible, setModalVisible] = useState(false); //hide create product form unless you click on create product button
+  const [createModalVisible, setCreateModalVisible] = useState(false);  
   const [id, setId] = useState('');
   const [itemName, setItemName] = useState('');
   const [price, setPrice] = useState('');
   const [image, setImage] = useState('');
-  const [brand, setBrand] = useState('');
   const [category, setCategory] = useState('');
   const [quantity, setInventory] = useState('');
   const [description, setDescription] = useState('');
@@ -49,6 +49,7 @@ const [modalVisible, setModalVisible] = useState(false); //hide create product f
     }
     if (successSave) {
       setModalVisible(false);
+      setCreateModalVisible(false);
     }
     dispatch(listSellerProducts()); //unfortunately there are no products attached to sellers yet?
     //dispatch(listProducts()); //this lists all products; 
@@ -76,8 +77,21 @@ const [modalVisible, setModalVisible] = useState(false); //hide create product f
     setInventory(product.quantity);
   };
 
+  const openCreateModal = () => { //open the create product form
+    console.log("open create")
+    setCreateModalVisible(true);
+    setId(id);
+    setItemName(itemName);
+    setPrice(price);
+    setDescription(description);
+    setImage(image);
+    setCategory(category);
+    setInventory(quantity);
+  };
+
   
   const submitHandler = (e) => { //save the product when seller adds it
+    console.log("handler called")
     e.preventDefault();
     dispatch(
       saveProduct({
@@ -85,7 +99,6 @@ const [modalVisible, setModalVisible] = useState(false); //hide create product f
         itemName,
         price,
         image,
-        brand,
         category,
         quantity: quantity,
         description,
@@ -120,12 +133,12 @@ const [modalVisible, setModalVisible] = useState(false); //hide create product f
     <div className="content content-margined">
       <div className="product-header">
         <h3>Products</h3>
-        <button className="button primary" onClick={() => openModal({})}>
+        <button className="button primary" onClick={() => openCreateModal({})}>
           Create Product
         </button>
       </div>
       {/* open create product form */}
-      {modalVisible && ( 
+      {createModalVisible && ( 
         <div className="form">
           <form onSubmit={submitHandler}>
             <ul className="form-container">
@@ -170,16 +183,6 @@ const [modalVisible, setModalVisible] = useState(false); //hide create product f
                 {uploading && <div>Uploading...</div>}
               </li>
               <li>
-                <label htmlFor="brand">Brand</label>
-                <input
-                  type="text"
-                  name="brand"
-                  value={brand}
-                  id="brand"
-                  onChange={(e) => setBrand(e.target.value)}
-                ></input>
-              </li>
-              <li>
                 <label htmlFor="inventory">inventory</label>
                 <input
                   type="text"
@@ -217,7 +220,7 @@ const [modalVisible, setModalVisible] = useState(false); //hide create product f
               <li>
                 <button
                   type="button"
-                  onClick={() => setModalVisible(false)}
+                  onClick={() => setCreateModalVisible(false)}
                   className="button secondary"
                 >
                   Back
@@ -236,7 +239,6 @@ const [modalVisible, setModalVisible] = useState(false); //hide create product f
               <th>Item Name</th>
               <th>Price</th>
               <th>Category</th>
-              <th>Brand</th>
               <th>Action</th>
             </tr>
           </thead>
