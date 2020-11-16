@@ -35,25 +35,19 @@ function BalanceScreen(props) {
   };
     return userInfo && <div className="addbalance" >
       <form onSubmit={submitHandler} >
-        <li>
-          <h1>
+          <h1 align="center">
             Current Balance: ${userInfo.balance.toFixed(2)}
           </h1>
-        </li>
-        <li>
-          <h1>
+          <h1 align="center">
             <div>
                 How much balance do you want to top up to this account?
             </div>
             $<input id="balance" type="number" placeholder="Enter Amount" min="0.00" step="1.00" onChange={(e) => setBalance(e.target.value)}>
             </input>
           </h1>
-        </li>
-        <li>
-          <h1>
-            <button type="submit" className="button secondary full-width">Proceed</button>
+          <h1 align="center">
+            <button type="submit" className="profile-button button primary" align="center">Proceed</button>
           </h1>
-        </li>
       </form>
   </div>
 }
