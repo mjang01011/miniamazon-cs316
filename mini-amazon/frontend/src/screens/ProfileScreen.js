@@ -60,11 +60,9 @@ function ProfileScreen(props) {
       }
 
     return userInfo && (<div className="profile" style={{lineHeight: "40px"}}>
-          <h1 align="center">
-            Avatar: <img className="product-image" src={userInfo.avatar}></img>
-          </h1>
-        
-        
+        {userInfo.avatar && <div align="center" style={{marginTop:"30px"}}>
+            <img className="avatar-image" src={userInfo.avatar}></img>
+          </div>}
         {/*
         <li>
           <label htmlFor="avatar">Upload Avatar</label>

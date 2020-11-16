@@ -2,6 +2,10 @@ body {
   font-family: Roboto
 }
 
+.avatar-image {
+  width: 100px;
+}
+
 .profile-button {
   margin: 20px;
 }

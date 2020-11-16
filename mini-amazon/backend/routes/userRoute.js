@@ -19,6 +19,7 @@ router.get('/balance', isAuth, async(req, res) => {
       isAuth: user.isAuth,
       isSeller: user.isSeller,
       isAdmin: user.isAdmin,
+      avatar: user.avatar,
       token: getToken(user),
     });
   }
@@ -39,6 +40,7 @@ router.put('/balance', isAuth, async (req, res) => {
       isAuth: updatedUser.isAuth,
       isSeller: updatedUser.isSeller,
       isAdmin: updatedUser.isAdmin,
+      avatar: user.avatar,
       token: getToken(updatedUser),
     });
   } else {
@@ -66,6 +68,7 @@ router.post('/signin', async (req, res) => {
       isAuth: signinUser.isAuth,
       isSeller: signinUser.isSeller,
       isAdmin: signinUser.isAdmin,
+      avatar: signinUser.avatar,
       token: getToken(signinUser),
     });
   } else {
@@ -79,7 +82,7 @@ router.post('/register', async (req, res) => {
     fullName: req.body.fullName,
     username: req.body.username,
     email: req.body.email,
-    password: md5(req.body.password),
+    password: req.body.password,
     isSeller: req.body.isSeller == true,
   });
   const newUser = await user.save();
