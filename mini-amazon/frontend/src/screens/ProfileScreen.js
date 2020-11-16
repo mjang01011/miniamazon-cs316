@@ -56,11 +56,13 @@ function ProfileScreen(props) {
         props.history.push("/signin");
       }
     return <div className="profile">
+      {/*}
         <li>
           <h1>
             Avatar: <img className="product-image" src={userInfo.avatar}></img>
           </h1>
         </li>
+        */}
         {/*
         <li>
           <label htmlFor="avatar">Upload Avatar</label>
