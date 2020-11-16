@@ -328,6 +328,7 @@ ul.review {
 }
 .review-action {
   margin: 5rem; /*1rem*/
+  display: block;
 }
 
 /* Rating */
