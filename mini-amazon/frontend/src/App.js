@@ -50,7 +50,7 @@ function App() {
                 </div>
             </header>
             <aside className="sidebar">
-                <h3>Shopping Categories</h3>
+                <h3 style={{paddingLeft: "20px"}}>Shopping Categories</h3>
                 <button className="sidebar-close" onClick={closeSidebar}>x</button> 
                 <ul>
                     <li>

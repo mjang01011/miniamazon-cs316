@@ -3,7 +3,6 @@ import axios from 'axios';
 import {logout, getUserBalance} from '../actions/userActions';
 import { useDispatch, useSelector } from 'react-redux';
 
-
 function ProfileScreen(props) {
     const userSignin = useSelector((state) => state.userSignin);
     const { userInfo } = userSignin;
@@ -59,21 +58,11 @@ function ProfileScreen(props) {
         dispatch(logout());
         props.history.push("/signin");
       }
-<<<<<<< HEAD
-    return <div className="profile">
-      {/*}
-        <li>
-          <h1>
-            Avatar: <img className="product-image" src={userInfo.avatar}></img>
-          </h1>
-        </li>
-        */}
-=======
+
     return userInfo && (<div className="profile">
           <h1 align="center">
             Avatar: <img className="product-image" src={userInfo.avatar}></img>
           </h1>
->>>>>>> 11deed7b8c7da2d421a9ecdf5e2c257e333b5a00
         {/*
         <li>
           <label htmlFor="avatar">Upload Avatar</label>
