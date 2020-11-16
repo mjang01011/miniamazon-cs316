@@ -36,15 +36,14 @@ function App() {
                     <button onClick={openSidebar}>&#9776;</button> {/*Call openSidebar on button click*/}
                 </div>
                 <span className="logo">
-                    <i class="fa fa-amazon" style={{fontSize: '28px', color: '#FF9900'}}></i>
-                    <Link to="/">mini amazon</Link> {/*Links back to home on click of brand*/}
+                    <Link to="/"><i className="fa fa-amazon" style={{fontSize: '28px', color: '#FF9900', paddingRight: "5px"}}></i>mini amazon</Link> {/*Links back to home on click of brand*/}
                 </span>
                 <div className="header-links"> {/*banner links*/}
                     {userInfo && ( //if user info exists, show profile, else show signin
-                        <Link to="/cart">Cart</Link>
+                        <Link to="/cart" style={{fontSize: "15px", paddingRight: "10px"}}>Cart</Link>
                     )}
                     {userInfo ? ( //if user info exists, show profile, else show signin
-                        <Link to="/profile">{userInfo.name} Profile</Link>
+                        <Link to="/profile" style={{fontSize: "15px", paddingRight: "10px"}}>{userInfo.name} Profile</Link>
                         ) : (
                     <Link to="/signin">Sign In</Link>
                     )}
